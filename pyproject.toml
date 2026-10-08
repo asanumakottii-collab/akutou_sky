@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "akutou-sky"
+dynamic = ["version"]
+description = "Spherical atmosphere modelling of sunrise, sunset and twilight spectra and colours"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "numpy>=2.0,<3",
+  "scipy>=1.14,<2",
+  "sasktran2==2026.10.0",
+  "colour-science>=0.4.6,<0.5",
+  "xarray>=2025.1,<2027",
+  "netCDF4>=1.7,<2",
+]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.9,<4"]
+
+[project.scripts]
+akutou-sky = "akutou_sky.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+akutou_sky = ["py.typed"]
+
+[tool.setuptools.dynamic]
+version = {attr = "akutou_sky._version.__version__"}

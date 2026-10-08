@@ -1,0 +1,40 @@
+test_background_error_precedes_transport (test_library.LibraryTests.test_background_error_precedes_transport) ... ok
+test_explicit_cache_overrides_environment_without_modifying_it (test_library.LibraryTests.test_explicit_cache_overrides_environment_without_modifying_it) ... ok
+test_failed_save_preserves_previous_file_and_cleans_partial (test_library.LibraryTests.test_failed_save_preserves_previous_file_and_cleans_partial) ... <frozen importlib._bootstrap>:488: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility. Expected 16 from C header, got 96 from PyObject
+ok
+test_import_is_light_and_has_no_process_side_effects (test_library.LibraryTests.test_import_is_light_and_has_no_process_side_effects) ... ok
+test_netcdf_export_bundle_and_overwrite_refusal (test_library.LibraryTests.test_netcdf_export_bundle_and_overwrite_refusal) ... /Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+ok
+test_offline_missing_data_does_not_create_cache (test_library.LibraryTests.test_offline_missing_data_does_not_create_cache) ... ok
+test_plot_does_not_change_global_backend_or_style (test_library.LibraryTests.test_plot_does_not_change_global_backend_or_style) ... ok
+test_presets_serialization_and_immutability (test_library.LibraryTests.test_presets_serialization_and_immutability) ... ok
+test_real_solver_matches_saved_v2_and_accepts_simple_callback (test_library.LibraryTests.test_real_solver_matches_saved_v2_and_accepts_simple_callback) ... ok
+test_validation_in_memory_returns_report_without_result_files (test_library.LibraryTests.test_validation_in_memory_returns_report_without_result_files) ... ok
+test_angles_allow_morning_order_reject_duplicates (test_model.NumericalTests.test_angles_allow_morning_order_reject_duplicates) ... ok
+test_background_requires_full_coverage_and_positive_values (test_model.NumericalTests.test_background_requires_full_coverage_and_positive_values) ... ok
+test_band_constant_field_and_non_sampled_boundaries (test_model.NumericalTests.test_band_constant_field_and_non_sampled_boundaries) ... ok
+test_band_uses_photon_amount_not_average_rgb (test_model.NumericalTests.test_band_uses_photon_amount_not_average_rgb) ... ok
+test_bins_cover_visible_range_without_double_counting (test_model.NumericalTests.test_bins_cover_visible_range_without_double_counting) ... ok
+test_black_is_black_undefined_chromaticity (test_model.NumericalTests.test_black_is_black_undefined_chromaticity) ... ok
+test_columns_recover_requested_aod_and_ozone (test_model.NumericalTests.test_columns_recover_requested_aod_and_ozone) ... ok
+test_configuration_rejects_bad_input (test_model.NumericalTests.test_configuration_rejects_bad_input) ... ok
+test_export_handles_arbitrary_axes_and_background (test_model.NumericalTests.test_export_handles_arbitrary_axes_and_background) ... /Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+ok
+test_fascode_units_and_profile_lengths (test_model.NumericalTests.test_fascode_units_and_profile_lengths) ... ok
+test_flat_spectrum_invariant_to_bin_width (test_model.NumericalTests.test_flat_spectrum_invariant_to_bin_width) ... ok
+test_flat_spectrum_photopic_luminance (test_model.NumericalTests.test_flat_spectrum_photopic_luminance) ... ok
+test_large_source_grid_rejected_before_solver (test_model.NumericalTests.test_large_source_grid_rejected_before_solver) ... ok
+test_no_spectral_extrapolation (test_model.NumericalTests.test_no_spectral_extrapolation) ... ok
+test_nonuniform_spectrum_integral (test_model.NumericalTests.test_nonuniform_spectrum_integral) ... ok
+test_piecewise_integral_exact_partial_bins (test_model.NumericalTests.test_piecewise_integral_exact_partial_bins) ... ok
+test_real_solver_smoke_geometry_and_color_export (test_model.NumericalTests.test_real_solver_smoke_geometry_and_color_export) ... ok
+test_xyz_scaling_preserves_preview (test_model.NumericalTests.test_xyz_scaling_preserves_preview) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 10.154s
+
+OK

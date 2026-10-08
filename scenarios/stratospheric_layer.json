@@ -1,0 +1,6 @@
+{
+  "aod550": 0.1,
+  "stratospheric_aod550": 0.01,
+  "stratospheric_center_m": 20000,
+  "stratospheric_width_m": 4000
+}

@@ -1,0 +1,49 @@
+{
+  "created_date": "2026-10-06",
+  "classification": "uncalibrated_physical_model_scenario",
+  "packages": {
+    "sasktran2": "2026.10.0",
+    "colour-science": "0.4.7",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "reportlab": "4.4.9"
+  },
+  "physical_inputs": [
+    {
+      "file": "model_cache/.DS_Store",
+      "sha256": "db123a2f80947c1f4924e6a97ac4950be344b117e2179ec3c22ab065c74bbc7f",
+      "url": "https://arg.usask.ca/sasktranfiles/sasktran2_db/v_latest/.DS_Store"
+    },
+    {
+      "file": "model_cache/solar/solar_irradiance_hsrs_2022_11_30_extended.nc",
+      "sha256": "a6f914be04dcf68c2ef49bdfdf5347f11c3e15de5ba3d87828d7f9a458a11470",
+      "url": "https://arg.usask.ca/sasktranfiles/sasktran2_db/v_latest/solar/solar_irradiance_hsrs_2022_11_30_extended.nc"
+    },
+    {
+      "file": "model_cache/climatology/fascode/std.atm",
+      "sha256": "8c0d8006b4de711f04a437cdce3854edbff14abb1efcdac85138cf4b32de8701",
+      "url": "https://arg.usask.ca/sasktranfiles/sasktran2_db/v_latest/climatology/fascode/std.atm"
+    },
+    {
+      "file": "model_cache/cross_sections/o3/dbm.nc",
+      "sha256": "8be10201ebeb95cccc50b0bafe22fd057f7ed1f52b634102082067e39872fcd5",
+      "url": "https://arg.usask.ca/sasktranfiles/sasktran2_db/v_latest/cross_sections/o3/dbm.nc"
+    }
+  ],
+  "selected_run": "runs/baseline.npz",
+  "validation_runs": [
+    "uniform_1km",
+    "medium",
+    "coarse"
+  ],
+  "aerosol_sensitivity_same_2km_grid": [
+    "low_haze",
+    "medium",
+    "high_haze"
+  ],
+  "near_horizon_convergence": "not_established",
+  "angular_and_horizontal_full_convergence": "not_established",
+  "night_sky_background": "excluded",
+  "geometric_angles": true
+}

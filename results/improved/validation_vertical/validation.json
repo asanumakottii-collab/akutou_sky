@@ -1,0 +1,176 @@
+{
+  "scope": "Sampled angles only, numerical sensitivity, not an error bound or observational validation",
+  "input": "/Users/asanumawatarushi/Documents/東大天文部/あくとう/output/science/results/improved/sky.nc",
+  "input_sha256": "7e7111272e55f4891d0d784e433c46e80be8f8ef1dcf8924224cfb74f379ac52",
+  "reference_config": {
+    "aod550": 0.1,
+    "aerosol_model": "mie",
+    "aerosol_scale_height_m": 1500.0,
+    "angstrom_exponent": 1.3,
+    "aerosol_ssa": 0.95,
+    "aerosol_g": 0.65,
+    "median_radius_nm": 100.0,
+    "mode_width": 1.6,
+    "refractive_index_real": 1.45,
+    "refractive_index_imag": 0.005,
+    "stratospheric_aod550": 0.0,
+    "stratospheric_center_m": 20000.0,
+    "stratospheric_width_m": 4000.0,
+    "ozone_du": 300.0,
+    "surface_albedo": 0.1,
+    "observer_altitude_m": 2.0,
+    "solar_distance_au": 1.0,
+    "solar_refraction": true,
+    "refraction_wavelength_nm": 550.0,
+    "num_stokes": 1,
+    "wavelength_step_nm": 5.0,
+    "nodes": 38,
+    "nsza": 41,
+    "horizontal_sampling": "twilight",
+    "ground_step_m": 125.0,
+    "middle_step_m": 500.0,
+    "upper_step_m": 2000.0,
+    "source_ground_step_m": 500.0,
+    "source_middle_step_m": 1000.0,
+    "source_upper_step_m": 4000.0,
+    "max_source_samples": 120000,
+    "max_view_source_product": 350000000,
+    "max_atmosphere_source_product": 20000000,
+    "iterations": 80,
+    "relative_tolerance": 1e-08,
+    "absolute_tolerance": 1e-20,
+    "legendre_moments": 64,
+    "wavelength_chunk": 1,
+    "num_threads": 1
+  },
+  "sample_coordinates": {
+    "depression": [
+      0.0,
+      6.0,
+      12.0,
+      18.0
+    ],
+    "azimuth": [
+      0.0
+    ],
+    "elevation": [
+      0.0,
+      1.0,
+      5.0,
+      15.0,
+      45.0,
+      90.0
+    ]
+  },
+  "checks": {
+    "vertical": {
+      "changed_settings": {
+        "ground_step_m": [
+          125.0,
+          113.63636363636363
+        ],
+        "middle_step_m": [
+          500.0,
+          454.5454545454545
+        ],
+        "source_ground_step_m": [
+          500.0,
+          454.5454545454545
+        ],
+        "source_middle_step_m": [
+          1000.0,
+          909.090909090909
+        ],
+        "source_upper_step_m": [
+          4000.0,
+          3636.363636363636
+        ],
+        "upper_step_m": [
+          2000.0,
+          1818.181818181818
+        ]
+      },
+      "reference_floor_cd_m2": 1e-12,
+      "per_depression": [
+        {
+          "depression_deg": 0.0,
+          "all": {
+            "max_relative_Y": 0.009443173798582961,
+            "median_relative_Y": 0.00010081281622043836,
+            "max_delta_xy": 0.00044573428835221004
+          },
+          "above_5deg": {
+            "max_relative_Y": 0.00015540781105801563,
+            "median_relative_Y": 4.426431774931007e-05,
+            "max_delta_xy": 3.2600051139191954e-05
+          },
+          "below_5deg": {
+            "max_relative_Y": 0.009443173798582961,
+            "median_relative_Y": 0.005664388461538841,
+            "max_delta_xy": 0.00044573428835221004
+          }
+        },
+        {
+          "depression_deg": 6.0,
+          "all": {
+            "max_relative_Y": 1.145740378301105,
+            "median_relative_Y": 0.054585250064020915,
+            "max_delta_xy": 0.014750546567269998
+          },
+          "above_5deg": {
+            "max_relative_Y": 1.145740378301105,
+            "median_relative_Y": 0.43513542127458055,
+            "max_delta_xy": 0.014750546567269998
+          },
+          "below_5deg": {
+            "max_relative_Y": 0.06622752237119087,
+            "median_relative_Y": 0.054585250064020915,
+            "max_delta_xy": 0.005048071087221755
+          }
+        },
+        {
+          "depression_deg": 12.0,
+          "all": {
+            "max_relative_Y": 0.050319110692961,
+            "median_relative_Y": 0.000745843530943366,
+            "max_delta_xy": 0.018768023723411652
+          },
+          "above_5deg": {
+            "max_relative_Y": 0.0008509685181177336,
+            "median_relative_Y": 0.0006319119564606463,
+            "max_delta_xy": 0.0001591925261326987
+          },
+          "below_5deg": {
+            "max_relative_Y": 0.050319110692961,
+            "median_relative_Y": 0.025607190124944012,
+            "max_delta_xy": 0.018768023723411652
+          }
+        },
+        {
+          "depression_deg": 18.0,
+          "all": {
+            "max_relative_Y": 0.010847446992597523,
+            "median_relative_Y": 0.002102429514592353,
+            "max_delta_xy": 0.00185898698055194
+          },
+          "above_5deg": {
+            "max_relative_Y": 0.0021187529283513084,
+            "median_relative_Y": 0.0020743610263491584,
+            "max_delta_xy": 8.056780204127576e-05
+          },
+          "below_5deg": {
+            "max_relative_Y": 0.010847446992597523,
+            "median_relative_Y": 0.008447042447302587,
+            "max_delta_xy": 0.00185898698055194
+          }
+        }
+      ],
+      "max_relative_Y": 1.145740378301105,
+      "max_delta_xy": 0.018768023723411652,
+      "passes_5percent_Y_and_0_005_xy": false,
+      "status": "completed"
+    }
+  },
+  "all_requested_checks_complete": true,
+  "passes_all_sampled_checks": false
+}

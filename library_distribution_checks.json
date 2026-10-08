@@ -1,0 +1,42 @@
+{
+  "checked_utc": "2026-10-08T03:32:50.657259+00:00",
+  "project_directory": "/Users/asanumawatarushi/Documents/東大天文部/あくとう/output/akutou_sky",
+  "actual_folder_name": "akutou_sky",
+  "removed_python_files": [
+    "_compat.py",
+    "compute_profiles.py",
+    "model_config.py",
+    "colorimetry.py",
+    "run_batch.py",
+    "analyze_profiles.py",
+    "plot_profiles.py",
+    "validate_model.py",
+    "build_report.py",
+    "build_report_v1.py",
+    "legacy_v1/analyze_profiles.py",
+    "legacy_v1/build_report.py",
+    "legacy_v1/compute_profiles.py",
+    "legacy_v1/run_batch.py"
+  ],
+  "removed_python_file_count": 14,
+  "retained_physics_tool": "tools/verify_physics.py",
+  "editable_registration_updated": true,
+  "unit_tests": {
+    "count": 28,
+    "passed": 28,
+    "log": "library_test_results.txt"
+  },
+  "transport_regression": {
+    "reference": "runs/v2_smoke.nc",
+    "rtol": 1e-10,
+    "atol": 1e-16,
+    "passed": true
+  },
+  "existing_results_preserved": true,
+  "existing_result_files_checked": 10,
+  "wheel_file_count": 20,
+  "source_archive_file_count": 50,
+  "wheel_and_source_archive_exclude_obsolete_scripts": true,
+  "installed_wheel_module_cli_passed": true,
+  "sky_shell_syntax_and_help_passed": true
+}
