@@ -1,0 +1,7 @@
+test_failed_refinement_cannot_be_reported_as_convergence (test_library.LibraryTests.test_failed_refinement_cannot_be_reported_as_convergence) ... <frozen importlib._bootstrap>:488: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility. Expected 16 from C header, got 96 from PyObject
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.240s
+
+OK

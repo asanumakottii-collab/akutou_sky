@@ -1,0 +1,3 @@
+Starting humid-split1d-50
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 50 angular nodes, 1 Stokes parameters; 90 viewing rays
+libc++abi: terminating due to uncaught exception of type std::runtime_error: non-finite successive-orders fixed-point iterate

@@ -1,0 +1,223 @@
+Checking urban: angular
+Geometry: 112 atmospheric / 47 source altitudes, 21 horizontal columns, 26 angular nodes, 1 Stokes parameters; 72 viewing rays
+wavelengths 1..1/20, elapsed 8.4s
+wavelengths 2..2/20, elapsed 9.4s
+wavelengths 3..3/20, elapsed 10.3s
+wavelengths 4..4/20, elapsed 11.3s
+wavelengths 5..5/20, elapsed 12.2s
+wavelengths 6..6/20, elapsed 13.2s
+wavelengths 7..7/20, elapsed 14.1s
+wavelengths 8..8/20, elapsed 15.1s
+wavelengths 9..9/20, elapsed 16.0s
+wavelengths 10..10/20, elapsed 16.9s
+wavelengths 11..11/20, elapsed 17.9s
+wavelengths 12..12/20, elapsed 18.8s
+wavelengths 13..13/20, elapsed 19.8s
+wavelengths 14..14/20, elapsed 20.7s
+wavelengths 15..15/20, elapsed 21.7s
+wavelengths 16..16/20, elapsed 22.6s
+wavelengths 17..17/20, elapsed 23.5s
+wavelengths 18..18/20, elapsed 24.5s
+wavelengths 19..19/20, elapsed 25.4s
+wavelengths 20..20/20, elapsed 26.3s
+angular: max relative Y=252.262, delta xy=0.0821558
+Checking rural: angular
+Geometry: 112 atmospheric / 47 source altitudes, 21 horizontal columns, 26 angular nodes, 1 Stokes parameters; 72 viewing rays
+wavelengths 1..1/20, elapsed 7.6s
+wavelengths 2..2/20, elapsed 8.6s
+wavelengths 3..3/20, elapsed 9.5s
+wavelengths 4..4/20, elapsed 10.4s
+wavelengths 5..5/20, elapsed 11.3s
+wavelengths 6..6/20, elapsed 12.2s
+wavelengths 7..7/20, elapsed 13.2s
+wavelengths 8..8/20, elapsed 14.1s
+wavelengths 9..9/20, elapsed 15.0s
+wavelengths 10..10/20, elapsed 15.9s
+wavelengths 11..11/20, elapsed 16.8s
+wavelengths 12..12/20, elapsed 17.8s
+wavelengths 13..13/20, elapsed 19.0s
+wavelengths 14..14/20, elapsed 20.0s
+wavelengths 15..15/20, elapsed 21.0s
+wavelengths 16..16/20, elapsed 21.9s
+wavelengths 17..17/20, elapsed 22.8s
+wavelengths 18..18/20, elapsed 23.7s
+wavelengths 19..19/20, elapsed 24.6s
+wavelengths 20..20/20, elapsed 25.5s
+angular: max relative Y=934.859, delta xy=0.0955057
+Checking humid: angular, spectral, vertical, horizontal, iterations, moments
+Geometry: 112 atmospheric / 47 source altitudes, 21 horizontal columns, 26 angular nodes, 1 Stokes parameters; 72 viewing rays
+wavelengths 1..1/20, elapsed 8.7s
+wavelengths 2..2/20, elapsed 9.7s
+wavelengths 3..3/20, elapsed 10.7s
+wavelengths 4..4/20, elapsed 11.7s
+wavelengths 5..5/20, elapsed 12.7s
+wavelengths 6..6/20, elapsed 13.6s
+wavelengths 7..7/20, elapsed 14.6s
+wavelengths 8..8/20, elapsed 15.6s
+wavelengths 9..9/20, elapsed 16.9s
+wavelengths 10..10/20, elapsed 17.9s
+wavelengths 11..11/20, elapsed 18.9s
+wavelengths 12..12/20, elapsed 20.0s
+wavelengths 13..13/20, elapsed 21.0s
+wavelengths 14..14/20, elapsed 22.1s
+wavelengths 15..15/20, elapsed 23.2s
+wavelengths 16..16/20, elapsed 24.2s
+wavelengths 17..17/20, elapsed 25.2s
+wavelengths 18..18/20, elapsed 27.5s
+wavelengths 19..19/20, elapsed 28.8s
+wavelengths 20..20/20, elapsed 29.8s
+angular: max relative Y=264.608, delta xy=0.102199
+Geometry: 112 atmospheric / 47 source altitudes, 21 horizontal columns, 14 angular nodes, 1 Stokes parameters; 72 viewing rays
+wavelengths 1..1/40, elapsed 4.6s
+wavelengths 2..2/40, elapsed 5.2s
+wavelengths 3..3/40, elapsed 5.7s
+wavelengths 4..4/40, elapsed 6.3s
+wavelengths 5..5/40, elapsed 6.8s
+wavelengths 6..6/40, elapsed 7.3s
+wavelengths 7..7/40, elapsed 7.9s
+wavelengths 8..8/40, elapsed 8.4s
+wavelengths 9..9/40, elapsed 9.0s
+wavelengths 10..10/40, elapsed 9.5s
+wavelengths 11..11/40, elapsed 10.0s
+wavelengths 12..12/40, elapsed 10.5s
+wavelengths 13..13/40, elapsed 11.0s
+wavelengths 14..14/40, elapsed 11.6s
+wavelengths 15..15/40, elapsed 12.1s
+wavelengths 16..16/40, elapsed 12.6s
+wavelengths 17..17/40, elapsed 13.1s
+wavelengths 18..18/40, elapsed 13.6s
+wavelengths 19..19/40, elapsed 14.2s
+wavelengths 20..20/40, elapsed 14.7s
+wavelengths 21..21/40, elapsed 15.2s
+wavelengths 22..22/40, elapsed 15.7s
+wavelengths 23..23/40, elapsed 16.2s
+wavelengths 24..24/40, elapsed 16.7s
+wavelengths 25..25/40, elapsed 17.3s
+wavelengths 26..26/40, elapsed 17.8s
+wavelengths 27..27/40, elapsed 18.3s
+wavelengths 28..28/40, elapsed 18.8s
+wavelengths 29..29/40, elapsed 19.3s
+wavelengths 30..30/40, elapsed 19.8s
+wavelengths 31..31/40, elapsed 20.4s
+wavelengths 32..32/40, elapsed 20.9s
+wavelengths 33..33/40, elapsed 21.4s
+wavelengths 34..34/40, elapsed 22.0s
+wavelengths 35..35/40, elapsed 22.5s
+wavelengths 36..36/40, elapsed 23.0s
+wavelengths 37..37/40, elapsed 23.5s
+wavelengths 38..38/40, elapsed 24.0s
+wavelengths 39..39/40, elapsed 24.5s
+wavelengths 40..40/40, elapsed 25.1s
+spectral: max relative Y=0.00337231, delta xy=0.00211891
+Geometry: 223 atmospheric / 93 source altitudes, 21 horizontal columns, 14 angular nodes, 1 Stokes parameters; 72 viewing rays
+wavelengths 1..1/20, elapsed 23.7s
+wavelengths 2..2/20, elapsed 25.8s
+wavelengths 3..3/20, elapsed 27.8s
+wavelengths 4..4/20, elapsed 30.0s
+wavelengths 5..5/20, elapsed 32.0s
+wavelengths 6..6/20, elapsed 34.1s
+wavelengths 7..7/20, elapsed 38.0s
+wavelengths 8..8/20, elapsed 42.1s
+wavelengths 9..9/20, elapsed 44.3s
+wavelengths 10..10/20, elapsed 48.0s
+wavelengths 11..11/20, elapsed 51.6s
+wavelengths 12..12/20, elapsed 53.6s
+wavelengths 13..13/20, elapsed 55.6s
+wavelengths 14..14/20, elapsed 57.6s
+wavelengths 15..15/20, elapsed 59.5s
+wavelengths 16..16/20, elapsed 61.5s
+wavelengths 17..17/20, elapsed 63.4s
+wavelengths 18..18/20, elapsed 65.3s
+wavelengths 19..19/20, elapsed 67.3s
+wavelengths 20..20/20, elapsed 69.2s
+vertical: max relative Y=0.196334, delta xy=0.00309533
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 14 angular nodes, 1 Stokes parameters; 72 viewing rays
+wavelengths 1..1/20, elapsed 8.0s
+wavelengths 2..2/20, elapsed 9.1s
+wavelengths 3..3/20, elapsed 10.1s
+wavelengths 4..4/20, elapsed 11.2s
+wavelengths 5..5/20, elapsed 12.2s
+wavelengths 6..6/20, elapsed 13.3s
+wavelengths 7..7/20, elapsed 14.3s
+wavelengths 8..8/20, elapsed 15.3s
+wavelengths 9..9/20, elapsed 16.3s
+wavelengths 10..10/20, elapsed 17.4s
+wavelengths 11..11/20, elapsed 18.5s
+wavelengths 12..12/20, elapsed 19.7s
+wavelengths 13..13/20, elapsed 20.7s
+wavelengths 14..14/20, elapsed 21.8s
+wavelengths 15..15/20, elapsed 22.8s
+wavelengths 16..16/20, elapsed 23.8s
+wavelengths 17..17/20, elapsed 24.8s
+wavelengths 18..18/20, elapsed 25.9s
+wavelengths 19..19/20, elapsed 26.9s
+wavelengths 20..20/20, elapsed 27.9s
+horizontal: max relative Y=0.999533, delta xy=0.280228
+Geometry: 112 atmospheric / 47 source altitudes, 21 horizontal columns, 14 angular nodes, 1 Stokes parameters; 72 viewing rays
+wavelengths 1..1/20, elapsed 4.6s
+wavelengths 2..2/20, elapsed 5.1s
+wavelengths 3..3/20, elapsed 5.6s
+wavelengths 4..4/20, elapsed 6.2s
+wavelengths 5..5/20, elapsed 6.7s
+wavelengths 6..6/20, elapsed 7.2s
+wavelengths 7..7/20, elapsed 7.8s
+wavelengths 8..8/20, elapsed 8.3s
+wavelengths 9..9/20, elapsed 8.8s
+wavelengths 10..10/20, elapsed 9.3s
+wavelengths 11..11/20, elapsed 9.9s
+wavelengths 12..12/20, elapsed 10.4s
+wavelengths 13..13/20, elapsed 10.9s
+wavelengths 14..14/20, elapsed 11.4s
+wavelengths 15..15/20, elapsed 12.0s
+wavelengths 16..16/20, elapsed 12.5s
+wavelengths 17..17/20, elapsed 13.1s
+wavelengths 18..18/20, elapsed 13.6s
+wavelengths 19..19/20, elapsed 14.2s
+wavelengths 20..20/20, elapsed 14.7s
+iterations: max relative Y=2.60919e-05, delta xy=2.87093e-06
+Geometry: 112 atmospheric / 47 source altitudes, 21 horizontal columns, 14 angular nodes, 1 Stokes parameters; 72 viewing rays
+wavelengths 1..1/20, elapsed 6.8s
+wavelengths 2..2/20, elapsed 7.9s
+wavelengths 3..3/20, elapsed 9.0s
+wavelengths 4..4/20, elapsed 10.2s
+wavelengths 5..5/20, elapsed 11.3s
+wavelengths 6..6/20, elapsed 12.4s
+wavelengths 7..7/20, elapsed 13.5s
+wavelengths 8..8/20, elapsed 14.6s
+wavelengths 9..9/20, elapsed 15.8s
+wavelengths 10..10/20, elapsed 16.9s
+wavelengths 11..11/20, elapsed 17.9s
+wavelengths 12..12/20, elapsed 19.0s
+wavelengths 13..13/20, elapsed 20.1s
+wavelengths 14..14/20, elapsed 21.2s
+wavelengths 15..15/20, elapsed 22.3s
+wavelengths 16..16/20, elapsed 23.5s
+wavelengths 17..17/20, elapsed 24.6s
+wavelengths 18..18/20, elapsed 25.6s
+wavelengths 19..19/20, elapsed 26.7s
+wavelengths 20..20/20, elapsed 27.8s
+moments: max relative Y=1.14114e-06, delta xy=8.55251e-08
+Checking dry: angular
+Geometry: 112 atmospheric / 47 source altitudes, 21 horizontal columns, 26 angular nodes, 1 Stokes parameters; 72 viewing rays
+wavelengths 1..1/20, elapsed 7.6s
+wavelengths 2..2/20, elapsed 8.6s
+wavelengths 3..3/20, elapsed 9.5s
+wavelengths 4..4/20, elapsed 10.5s
+wavelengths 5..5/20, elapsed 11.5s
+wavelengths 6..6/20, elapsed 12.4s
+wavelengths 7..7/20, elapsed 13.4s
+wavelengths 8..8/20, elapsed 14.3s
+wavelengths 9..9/20, elapsed 15.2s
+wavelengths 10..10/20, elapsed 16.2s
+wavelengths 11..11/20, elapsed 17.1s
+wavelengths 12..12/20, elapsed 18.0s
+wavelengths 13..13/20, elapsed 19.0s
+wavelengths 14..14/20, elapsed 19.9s
+wavelengths 15..15/20, elapsed 20.9s
+wavelengths 16..16/20, elapsed 21.9s
+wavelengths 17..17/20, elapsed 22.9s
+wavelengths 18..18/20, elapsed 23.8s
+wavelengths 19..19/20, elapsed 24.8s
+wavelengths 20..20/20, elapsed 25.7s
+angular: max relative Y=529.445, delta xy=0.386139
+{"all_requested_checks_complete": true, "passes_all_sampled_checks": false}

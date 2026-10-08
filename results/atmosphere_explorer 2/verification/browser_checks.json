@@ -1,0 +1,10 @@
+{
+  "depression_range_and_half_degree_steps": true,
+  "morning_evening_direction_and_same_solar_position": true,
+  "four_presets": true,
+  "independent_fog_dust_and_matched_comparison": true,
+  "direction_exposure_height_reset_and_url_restore": true,
+  "csv_975_rows_and_json_config_download": true,
+  "play_stops_at_six_degrees": true,
+  "file_url_test": "Blocked by browser URL policy; interactions verified over local HTTP."
+}

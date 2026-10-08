@@ -1,0 +1,41 @@
+Starting humid-split8-50
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 50 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 21.8s
+wavelengths 2..2/10, elapsed 22.3s
+wavelengths 3..3/10, elapsed 22.8s
+wavelengths 4..4/10, elapsed 23.3s
+wavelengths 5..5/10, elapsed 23.8s
+wavelengths 6..6/10, elapsed 24.3s
+wavelengths 7..7/10, elapsed 24.8s
+wavelengths 8..8/10, elapsed 25.3s
+wavelengths 9..9/10, elapsed 25.8s
+wavelengths 10..10/10, elapsed 26.2s
+humid-split8-50 26.6 peakMB 7004.504064
+Starting humid-split8-86
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 86 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 40.6s
+wavelengths 2..2/10, elapsed 41.5s
+wavelengths 3..3/10, elapsed 42.3s
+wavelengths 4..4/10, elapsed 43.1s
+wavelengths 5..5/10, elapsed 44.0s
+wavelengths 6..6/10, elapsed 44.8s
+wavelengths 7..7/10, elapsed 45.6s
+wavelengths 8..8/10, elapsed 46.4s
+wavelengths 9..9/10, elapsed 47.2s
+wavelengths 10..10/10, elapsed 48.0s
+humid-split8-86 48.2 peakMB 8284.176384
+{"max_relative_Y": 0.058885870515508386, "max_delta_xy": 0.010195488983555033, "per_depression": [{"depression_deg": -6.0, "all": {"max_relative_Y": 0.05175063413014419, "median_relative_Y": 0.013133224374419255, "max_delta_xy": 0.004388089602561464}, "above_5deg": {"max_relative_Y": 0.05175063413014419, "median_relative_Y": 0.013133224374419255, "max_delta_xy": 0.004388089602561464}, "below_5deg": {"max_relative_Y": 0.03365568212954738, "median_relative_Y": 0.01672365376730741, "max_delta_xy": 0.002650456536063905}}, {"depression_deg": -3.0, "all": {"max_relative_Y": 0.05305210447583968, "median_relative_Y": 0.018646913728568658, "max_delta_xy": 0.003110718417624842}, "above_5deg": {"max_relative_Y": 0.03377579378194664, "median_relative_Y": 0.012528537061130062, "max_delta_xy": 0.0025219846637240338}, "below_5deg": {"max_relative_Y": 0.05305210447583968, "median_relative_Y": 0.023843212865196372, "max_delta_xy": 0.003110718417624842}}, {"depression_deg": 0.0, "all": {"max_relative_Y": 0.052344714673796276, "median_relative_Y": 0.01106367914953072, "max_delta_xy": 0.0036037587832967607}, "above_5deg": {"max_relative_Y": 0.028023328032694955, "median_relative_Y": 0.008923070659299079, "max_delta_xy": 0.0036037587832967607}, "below_5deg": {"max_relative_Y": 0.052344714673796276, "median_relative_Y": 0.020814042716629302, "max_delta_xy": 0.0035849779431762012}}, {"depression_deg": 3.0, "all": {"max_relative_Y": 0.05473631937502351, "median_relative_Y": 0.013488974664917816, "max_delta_xy": 0.0044342508940161994}, "above_5deg": {"max_relative_Y": 0.041979735880560726, "median_relative_Y": 0.010650695937085244, "max_delta_xy": 0.0044342508940161994}, "below_5deg": {"max_relative_Y": 0.05473631937502351, "median_relative_Y": 0.016334266180878364, "max_delta_xy": 0.004095598428281177}}, {"depression_deg": 6.0, "all": {"max_relative_Y": 0.058885870515508386, "median_relative_Y": 0.014097364860671016, "max_delta_xy": 0.010195488983555033}, "above_5deg": {"max_relative_Y": 0.04986890461326607, "median_relative_Y": 0.01564230153118546, "max_delta_xy": 0.010195488983555033}, "below_5deg": {"max_relative_Y": 0.058885870515508386, "median_relative_Y": 0.013110174541304514, "max_delta_xy": 0.009525997987792448}}]}
+Starting humid-split8-110
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 110 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 59.2s
+wavelengths 2..2/10, elapsed 60.3s
+wavelengths 3..3/10, elapsed 61.4s
+wavelengths 4..4/10, elapsed 62.5s
+wavelengths 5..5/10, elapsed 63.6s
+wavelengths 6..6/10, elapsed 64.7s
+wavelengths 7..7/10, elapsed 65.8s
+wavelengths 8..8/10, elapsed 66.8s
+wavelengths 9..9/10, elapsed 67.9s
+wavelengths 10..10/10, elapsed 68.9s
+humid-split8-110 69.2 peakMB 9843.818496
+{"max_relative_Y": 0.06897122485271345, "max_delta_xy": 0.009098400509013945, "per_depression": [{"depression_deg": -6.0, "all": {"max_relative_Y": 0.06897122485271345, "median_relative_Y": 0.0148653331006186, "max_delta_xy": 0.0032449506959352737}, "above_5deg": {"max_relative_Y": 0.06897122485271345, "median_relative_Y": 0.009347069913355877, "max_delta_xy": 0.0032449506959352737}, "below_5deg": {"max_relative_Y": 0.03984684278444233, "median_relative_Y": 0.03271348719203338, "max_delta_xy": 0.0022395542156446327}}, {"depression_deg": -3.0, "all": {"max_relative_Y": 0.05142631802380143, "median_relative_Y": 0.008845166125019562, "max_delta_xy": 0.003583475563280976}, "above_5deg": {"max_relative_Y": 0.05142631802380143, "median_relative_Y": 0.006477228766666348, "max_delta_xy": 0.003583475563280976}, "below_5deg": {"max_relative_Y": 0.02971716630186858, "median_relative_Y": 0.018612265411894386, "max_delta_xy": 0.0027224187380255043}}, {"depression_deg": 0.0, "all": {"max_relative_Y": 0.046034119507787116, "median_relative_Y": 0.009201222057011633, "max_delta_xy": 0.00487597067823111}, "above_5deg": {"max_relative_Y": 0.046034119507787116, "median_relative_Y": 0.006193883038618965, "max_delta_xy": 0.0028476438034867107}, "below_5deg": {"max_relative_Y": 0.04217607228570456, "median_relative_Y": 0.01775965545812513, "max_delta_xy": 0.00487597067823111}}, {"depression_deg": 3.0, "all": {"max_relative_Y": 0.03820549143954478, "median_relative_Y": 0.009642307009182501, "max_delta_xy": 0.003845332114192877}, "above_5deg": {"max_relative_Y": 0.03820549143954478, "median_relative_Y": 0.007341393436943235, "max_delta_xy": 0.0036890937957578343}, "below_5deg": {"max_relative_Y": 0.032964103154912834, "median_relative_Y": 0.016197186395923845, "max_delta_xy": 0.003845332114192877}}, {"depression_deg": 6.0, "all": {"max_relative_Y": 0.05624277962793814, "median_relative_Y": 0.036774433356779615, "max_delta_xy": 0.009098400509013945}, "above_5deg": {"max_relative_Y": 0.05624277962793814, "median_relative_Y": 0.036022125618449, "max_delta_xy": 0.009098400509013945}, "below_5deg": {"max_relative_Y": 0.04634388240680328, "median_relative_Y": 0.04132774822920151, "max_delta_xy": 0.0069482840149357565}}]}

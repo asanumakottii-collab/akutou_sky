@@ -1,0 +1,21 @@
+test_real_solver_matches_saved_v2_and_accepts_simple_callback (test_library.LibraryTests.test_real_solver_matches_saved_v2_and_accepts_simple_callback) ... <frozen importlib._bootstrap>:488: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility. Expected 16 from C header, got 96 from PyObject
+ok
+test_completed_explorer_rebuild_uses_verified_cache (test_microphysics.WaterTests.test_completed_explorer_rebuild_uses_verified_cache) ... /Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+/Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+/Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+/Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+ok
+test_split_has_correct_rayleigh_limit (test_refinement.RefinementTests.test_split_has_correct_rayleigh_limit) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 17.203s
+
+OK

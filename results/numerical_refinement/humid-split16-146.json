@@ -1,0 +1,116 @@
+{
+  "changed_settings": {
+    "nodes": [
+      110,
+      146
+    ],
+    "max_source_samples": [
+      400000,
+      450000
+    ],
+    "max_atmosphere_source_product": [
+      50000000,
+      60000000
+    ],
+    "num_threads": [
+      1,
+      2
+    ]
+  },
+  "reference_floor_cd_m2": 1e-12,
+  "per_depression": [
+    {
+      "depression_deg": -6.0,
+      "all": {
+        "max_relative_Y": 0.06469027501016286,
+        "median_relative_Y": 0.014618862487909619,
+        "max_delta_xy": 0.003074748570374549
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.028269041958194754,
+        "median_relative_Y": 0.01157960273143887,
+        "max_delta_xy": 0.003074748570374549
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.06469027501016286,
+        "median_relative_Y": 0.022122708599509315,
+        "max_delta_xy": 0.0013584830102295867
+      }
+    },
+    {
+      "depression_deg": -3.0,
+      "all": {
+        "max_relative_Y": 0.08862767248710185,
+        "median_relative_Y": 0.013772119864498342,
+        "max_delta_xy": 0.004160864348363305
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.03995510965908502,
+        "median_relative_Y": 0.01138656611175386,
+        "max_delta_xy": 0.002554458378288033
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.08862767248710185,
+        "median_relative_Y": 0.02251006407749566,
+        "max_delta_xy": 0.004160864348363305
+      }
+    },
+    {
+      "depression_deg": 0.0,
+      "all": {
+        "max_relative_Y": 0.08846690014617153,
+        "median_relative_Y": 0.02004162632539252,
+        "max_delta_xy": 0.008188798217824846
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.03896688970220399,
+        "median_relative_Y": 0.012688999064177187,
+        "max_delta_xy": 0.004025324839870525
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.08846690014617153,
+        "median_relative_Y": 0.046762805180902464,
+        "max_delta_xy": 0.008188798217824846
+      }
+    },
+    {
+      "depression_deg": 3.0,
+      "all": {
+        "max_relative_Y": 0.04502817074657876,
+        "median_relative_Y": 0.013197300846985682,
+        "max_delta_xy": 0.0025734413908429453
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.0415899646403455,
+        "median_relative_Y": 0.005977893559785838,
+        "max_delta_xy": 0.0025734413908429453
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.04502817074657876,
+        "median_relative_Y": 0.016687198191762058,
+        "max_delta_xy": 0.002528723807961228
+      }
+    },
+    {
+      "depression_deg": 6.0,
+      "all": {
+        "max_relative_Y": 0.0684658348167333,
+        "median_relative_Y": 0.02847199970330043,
+        "max_delta_xy": 0.0034444799080628006
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.0684658348167333,
+        "median_relative_Y": 0.023940369335641313,
+        "max_delta_xy": 0.0034444799080628006
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.05472225330259933,
+        "median_relative_Y": 0.0360813542775546,
+        "max_delta_xy": 0.002007427961475149
+      }
+    }
+  ],
+  "max_relative_Y": 0.08862767248710185,
+  "max_delta_xy": 0.008188798217824846,
+  "passes_5percent_Y_and_0_005_xy": false
+}

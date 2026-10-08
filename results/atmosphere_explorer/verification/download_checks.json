@@ -1,0 +1,7 @@
+{
+  "downloaded_CSV_matches_current_NetCDF": true,
+  "CSV_rows": 975,
+  "solar_depression_samples": 25,
+  "downloaded_JSON_matches_current_config": true,
+  "single_scatter_step_m": 500
+}

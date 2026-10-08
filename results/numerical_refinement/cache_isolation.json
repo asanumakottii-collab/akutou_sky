@@ -1,0 +1,14 @@
+{
+  "scope": "Repeated atmosphere after an intervening aerosol-free atmosphere; 40 nm bins, sampled rays",
+  "max_relative_radiance_difference": 2.5754568940057694e-11,
+  "max_absolute_radiance_difference": 1.0842715614245435e-13,
+  "tolerance": 1e-08,
+  "passes": true,
+  "different_atmosphere_changes_radiance": true,
+  "reused_geometry": true,
+  "files": {
+    "final-humid-110.nc": "5deeaeaab66c8e9ba90a1b47868df2cdf25ae683a914f98abc671a39d27def62",
+    "final-clear-reused.nc": "47dd9bf60f82a93617164391c70120c4d9bc330fe999a10989c2012bd9cb07b2",
+    "final-humid-repeated.nc": "938c29326ec2e029672007256bf3ed8b5cf8d979d3949bb779ba9161ce2e7c15"
+  }
+}

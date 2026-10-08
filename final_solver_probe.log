@@ -1,0 +1,67 @@
+start final-humid-110
+Geometry: 112 atmospheric / 48 source altitudes, 41 horizontal columns, 110 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 74.0s
+wavelengths 2..2/10, elapsed 76.4s
+wavelengths 3..3/10, elapsed 78.5s
+wavelengths 4..4/10, elapsed 80.5s
+wavelengths 5..5/10, elapsed 82.4s
+wavelengths 6..6/10, elapsed 84.3s
+wavelengths 7..7/10, elapsed 86.2s
+wavelengths 8..8/10, elapsed 88.0s
+wavelengths 9..9/10, elapsed 89.8s
+wavelengths 10..10/10, elapsed 91.5s
+complete final-humid-110 91.80988091699692
+start final-clear-reused
+Geometry: 112 atmospheric / 48 source altitudes, 41 horizontal columns, 110 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 1.3s
+wavelengths 2..2/10, elapsed 2.5s
+wavelengths 3..3/10, elapsed 3.7s
+wavelengths 4..4/10, elapsed 4.8s
+wavelengths 5..5/10, elapsed 5.7s
+wavelengths 6..6/10, elapsed 6.7s
+wavelengths 7..7/10, elapsed 7.7s
+wavelengths 8..8/10, elapsed 8.6s
+wavelengths 9..9/10, elapsed 9.5s
+wavelengths 10..10/10, elapsed 10.5s
+complete final-clear-reused 10.68432883299829
+start final-humid-repeated
+Geometry: 112 atmospheric / 48 source altitudes, 41 horizontal columns, 110 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 2.5s
+wavelengths 2..2/10, elapsed 4.9s
+wavelengths 3..3/10, elapsed 7.0s
+wavelengths 4..4/10, elapsed 9.1s
+wavelengths 5..5/10, elapsed 11.2s
+wavelengths 6..6/10, elapsed 13.2s
+wavelengths 7..7/10, elapsed 15.2s
+wavelengths 8..8/10, elapsed 17.2s
+wavelengths 9..9/10, elapsed 18.9s
+wavelengths 10..10/10, elapsed 20.7s
+complete final-humid-repeated 20.777136249998875
+CACHE ISOLATION PASSED
+start final-humid-thick-fog
+Geometry: 112 atmospheric / 48 source altitudes, 41 horizontal columns, 110 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 3.6s
+wavelengths 2..2/10, elapsed 7.3s
+wavelengths 3..3/10, elapsed 10.4s
+wavelengths 4..4/10, elapsed 13.4s
+wavelengths 5..5/10, elapsed 16.4s
+wavelengths 6..6/10, elapsed 19.2s
+wavelengths 7..7/10, elapsed 22.0s
+wavelengths 8..8/10, elapsed 24.8s
+wavelengths 9..9/10, elapsed 27.6s
+wavelengths 10..10/10, elapsed 30.3s
+complete final-humid-thick-fog 30.369278417005262
+start final-humid-146
+Geometry: 112 atmospheric / 48 source altitudes, 41 horizontal columns, 146 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 153.8s
+wavelengths 2..2/10, elapsed 159.0s
+wavelengths 3..3/10, elapsed 161.8s
+wavelengths 4..4/10, elapsed 164.4s
+wavelengths 5..5/10, elapsed 166.9s
+wavelengths 6..6/10, elapsed 169.3s
+wavelengths 7..7/10, elapsed 171.7s
+wavelengths 8..8/10, elapsed 174.1s
+wavelengths 9..9/10, elapsed 176.5s
+wavelengths 10..10/10, elapsed 178.8s
+complete final-humid-146 179.00769754099747
+ANGULAR 0.08649816393233005 0.008286338125760838

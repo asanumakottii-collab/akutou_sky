@@ -1,0 +1,9 @@
+test_refinement_memory_guard_skips_before_starting_solver (test_library.LibraryTests.test_refinement_memory_guard_skips_before_starting_solver) ... <frozen importlib._bootstrap>:488: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility. Expected 16 from C header, got 96 from PyObject
+ok
+test_failed_refinement_cannot_be_reported_as_convergence (test_library.LibraryTests.test_failed_refinement_cannot_be_reported_as_convergence) ... ok
+test_validation_in_memory_returns_report_without_result_files (test_library.LibraryTests.test_validation_in_memory_returns_report_without_result_files) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.732s
+
+OK

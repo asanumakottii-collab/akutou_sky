@@ -1,7 +1,8 @@
 test_background_error_precedes_transport (test_library.LibraryTests.test_background_error_precedes_transport) ... ok
 test_explicit_cache_overrides_environment_without_modifying_it (test_library.LibraryTests.test_explicit_cache_overrides_environment_without_modifying_it) ... ok
-test_failed_save_preserves_previous_file_and_cleans_partial (test_library.LibraryTests.test_failed_save_preserves_previous_file_and_cleans_partial) ... <frozen importlib._bootstrap>:488: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility. Expected 16 from C header, got 96 from PyObject
+test_failed_refinement_cannot_be_reported_as_convergence (test_library.LibraryTests.test_failed_refinement_cannot_be_reported_as_convergence) ... <frozen importlib._bootstrap>:488: RuntimeWarning: numpy.ndarray size changed, may indicate binary incompatibility. Expected 16 from C header, got 96 from PyObject
 ok
+test_failed_save_preserves_previous_file_and_cleans_partial (test_library.LibraryTests.test_failed_save_preserves_previous_file_and_cleans_partial) ... ok
 test_import_is_light_and_has_no_process_side_effects (test_library.LibraryTests.test_import_is_light_and_has_no_process_side_effects) ... ok
 test_netcdf_export_bundle_and_overwrite_refusal (test_library.LibraryTests.test_netcdf_export_bundle_and_overwrite_refusal) ... /Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
 As an alternative, you can create a new view using np.reshape (with copy=False if needed).
@@ -11,7 +12,28 @@ test_offline_missing_data_does_not_create_cache (test_library.LibraryTests.test_
 test_plot_does_not_change_global_backend_or_style (test_library.LibraryTests.test_plot_does_not_change_global_backend_or_style) ... ok
 test_presets_serialization_and_immutability (test_library.LibraryTests.test_presets_serialization_and_immutability) ... ok
 test_real_solver_matches_saved_v2_and_accepts_simple_callback (test_library.LibraryTests.test_real_solver_matches_saved_v2_and_accepts_simple_callback) ... ok
+test_refinement_memory_guard_skips_before_starting_solver (test_library.LibraryTests.test_refinement_memory_guard_skips_before_starting_solver) ... ok
+test_spectral_cache_accepts_verified_mie_tables_but_rejects_changed_inputs (test_library.LibraryTests.test_spectral_cache_accepts_verified_mie_tables_but_rejects_changed_inputs) ... ok
 test_validation_in_memory_returns_report_without_result_files (test_library.LibraryTests.test_validation_in_memory_returns_report_without_result_files) ... ok
+test_cache_rejects_physics_changes_but_allows_viewer_changes (test_microphysics.WaterTests.test_cache_rejects_physics_changes_but_allows_viewer_changes) ... ok
+test_completed_explorer_rebuild_uses_verified_cache (test_microphysics.WaterTests.test_completed_explorer_rebuild_uses_verified_cache) ... /Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+/Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+/Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+/Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/xarray/backends/netCDF4_.py:96: DeprecationWarning: Setting the shape on a NumPy array has been deprecated in NumPy 2.5.
+As an alternative, you can create a new view using np.reshape (with copy=False if needed).
+  data[key] = value
+ok
+test_kappa_growth_and_volume_mixing (test_microphysics.WaterTests.test_kappa_growth_and_volume_mixing) ... ok
+test_neutral_growth_retains_dry_optics_exactly (test_microphysics.WaterTests.test_neutral_growth_retains_dry_optics_exactly) ... ok
+test_real_saved_case_preserves_particles_and_columns (test_microphysics.WaterTests.test_real_saved_case_preserves_particles_and_columns) ... ok
+test_rejects_saturation_and_incompatible_fog_grids (test_microphysics.WaterTests.test_rejects_saturation_and_incompatible_fog_grids) ... ok
+test_surface_layer_is_resolved_in_both_grids (test_microphysics.WaterTests.test_surface_layer_is_resolved_in_both_grids) ... ok
 test_angles_allow_morning_order_reject_duplicates (test_model.NumericalTests.test_angles_allow_morning_order_reject_duplicates) ... ok
 test_background_requires_full_coverage_and_positive_values (test_model.NumericalTests.test_background_requires_full_coverage_and_positive_values) ... ok
 test_band_constant_field_and_non_sampled_boundaries (test_model.NumericalTests.test_band_constant_field_and_non_sampled_boundaries) ... ok
@@ -33,8 +55,18 @@ test_nonuniform_spectrum_integral (test_model.NumericalTests.test_nonuniform_spe
 test_piecewise_integral_exact_partial_bins (test_model.NumericalTests.test_piecewise_integral_exact_partial_bins) ... ok
 test_real_solver_smoke_geometry_and_color_export (test_model.NumericalTests.test_real_solver_smoke_geometry_and_color_export) ... ok
 test_xyz_scaling_preserves_preview (test_model.NumericalTests.test_xyz_scaling_preserves_preview) ... ok
+test_delta_m_preserves_normalization_and_low_moments (test_refinement.RefinementTests.test_delta_m_preserves_normalization_and_low_moments) ... ok
+test_depressions_half_degree_both_endpoints (test_refinement.RefinementTests.test_depressions_half_degree_both_endpoints) ... ok
+test_horizontal_refinement_keeps_existing_nodes (test_refinement.RefinementTests.test_horizontal_refinement_keeps_existing_nodes) ... ok
+test_replacement_preserves_the_saved_diffuse_component (test_refinement.RefinementTests.test_replacement_preserves_the_saved_diffuse_component) ... ok
+test_saved_batch_isolates_atmospheres (test_refinement.RefinementTests.test_saved_batch_isolates_atmospheres) ... ok
+test_single_scattering_grid_is_nested_and_independent_of_diffuse_grid (test_refinement.RefinementTests.test_single_scattering_grid_is_nested_and_independent_of_diffuse_grid) ... ok
+test_split_cannot_silently_disable_scaling_or_accept_vector (test_refinement.RefinementTests.test_split_cannot_silently_disable_scaling_or_accept_vector) ... ok
+test_split_has_correct_rayleigh_limit (test_refinement.RefinementTests.test_split_has_correct_rayleigh_limit) ... ok
+test_surface_source_brackets_ground_observer (test_refinement.RefinementTests.test_surface_source_brackets_ground_observer) ... ok
+test_zero_forward_fraction_does_not_change_rayleigh (test_refinement.RefinementTests.test_zero_forward_fraction_does_not_change_rayleigh) ... ok
 
 ----------------------------------------------------------------------
-Ran 28 tests in 10.154s
+Ran 48 tests in 21.159s
 
 OK

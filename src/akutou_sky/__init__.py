@@ -20,6 +20,7 @@ _LAZY_EXPORTS = {
     "compare_runs": ("validation", "comparison"),
     "validate_sensitivity": ("validation", "validate_sensitivity"),
     "plot_profiles": ("plotting", "plot_profiles"),
+    "build_explorer": ("explorer", "build_explorer"),
 }
 __all__ = ["__version__", "ModelConfig", "simulate", "compute_radiance",
            "ExperimentalPolarizationWarning", *_LAZY_EXPORTS]

@@ -27,7 +27,7 @@ akutou-sky = "akutou_sky.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-akutou_sky = ["py.typed"]
+akutou_sky = ["py.typed", "templates/*.html"]
 
 [tool.setuptools.dynamic]
 version = {attr = "akutou_sky._version.__version__"}

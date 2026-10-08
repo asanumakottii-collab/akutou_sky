@@ -1,0 +1,23 @@
+Geometry: 112 atmospheric / 48 source altitudes, 41 horizontal columns, 110 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/20, elapsed 70.8s
+wavelengths 2..2/20, elapsed 73.3s
+wavelengths 3..3/20, elapsed 75.5s
+wavelengths 4..4/20, elapsed 77.7s
+wavelengths 5..5/20, elapsed 79.8s
+wavelengths 6..6/20, elapsed 81.8s
+wavelengths 7..7/20, elapsed 83.7s
+wavelengths 8..8/20, elapsed 85.6s
+wavelengths 9..9/20, elapsed 87.5s
+wavelengths 10..10/20, elapsed 89.3s
+wavelengths 11..11/20, elapsed 91.2s
+wavelengths 12..12/20, elapsed 93.1s
+wavelengths 13..13/20, elapsed 94.9s
+wavelengths 14..14/20, elapsed 96.7s
+wavelengths 15..15/20, elapsed 98.6s
+wavelengths 16..16/20, elapsed 100.4s
+wavelengths 17..17/20, elapsed 102.1s
+wavelengths 18..18/20, elapsed 103.8s
+wavelengths 19..19/20, elapsed 105.6s
+wavelengths 20..20/20, elapsed 107.4s
+Refining observer single scattering on a 500 m upper-atmosphere grid
+{"passed": true, "max_relative_radiance_difference": 2.364421583980776e-10, "rtol": 1e-08, "atol": 1e-18, "reference_sha256": "441d1c8899098ad594d5e3967aa3ad3f56befa358bc529a433826830c7c1b17a", "fresh_full_solve_sha256": "c773710b5c56c809096c881e6f93787b7ac9c0292953f15393155f633acc1530", "sample_coordinates": {"depression": [-6.0, -3.0, 0.0, 3.0, 6.0], "elevation": [0.0, 1.0, 5.0, 12.0, 45.0, 90.0], "azimuth": [0.0, 90.0, 180.0]}}

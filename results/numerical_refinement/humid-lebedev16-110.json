@@ -1,0 +1,116 @@
+{
+  "changed_settings": {
+    "horizon_quadrature": [
+      true,
+      false
+    ],
+    "max_source_samples": [
+      400000,
+      450000
+    ],
+    "max_atmosphere_source_product": [
+      50000000,
+      60000000
+    ],
+    "num_threads": [
+      1,
+      2
+    ]
+  },
+  "reference_floor_cd_m2": 1e-12,
+  "per_depression": [
+    {
+      "depression_deg": -6.0,
+      "all": {
+        "max_relative_Y": 0.0889936892218491,
+        "median_relative_Y": 0.013643258170441815,
+        "max_delta_xy": 0.0012043517632773025
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.027193175747889303,
+        "median_relative_Y": 0.011806387454267805,
+        "max_delta_xy": 0.0012043517632773025
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.0889936892218491,
+        "median_relative_Y": 0.03574973395493529,
+        "max_delta_xy": 0.0011646208969108552
+      }
+    },
+    {
+      "depression_deg": -3.0,
+      "all": {
+        "max_relative_Y": 0.06438678816843874,
+        "median_relative_Y": 0.01078818184132481,
+        "max_delta_xy": 0.0036075902268741127
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.020078197198658273,
+        "median_relative_Y": 0.00959433228299639,
+        "max_delta_xy": 0.0011581470570669516
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.06438678816843874,
+        "median_relative_Y": 0.040474890364277066,
+        "max_delta_xy": 0.0036075902268741127
+      }
+    },
+    {
+      "depression_deg": 0.0,
+      "all": {
+        "max_relative_Y": 0.10629251650027986,
+        "median_relative_Y": 0.018137941940518425,
+        "max_delta_xy": 0.002800484697664956
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.050003173450035694,
+        "median_relative_Y": 0.008294587716773025,
+        "max_delta_xy": 0.0025854441285427777
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.10629251650027986,
+        "median_relative_Y": 0.03885889806316231,
+        "max_delta_xy": 0.002800484697664956
+      }
+    },
+    {
+      "depression_deg": 3.0,
+      "all": {
+        "max_relative_Y": 0.06665515478010083,
+        "median_relative_Y": 0.022774025686556572,
+        "max_delta_xy": 0.002015478617237713
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.04604232971342221,
+        "median_relative_Y": 0.006514840441772631,
+        "max_delta_xy": 0.002015478617237713
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.06665515478010083,
+        "median_relative_Y": 0.03380284208973826,
+        "max_delta_xy": 0.0012941063759496381
+      }
+    },
+    {
+      "depression_deg": 6.0,
+      "all": {
+        "max_relative_Y": 0.13813162398507897,
+        "median_relative_Y": 0.05268650903621163,
+        "max_delta_xy": 0.012913137792943561
+      },
+      "above_5deg": {
+        "max_relative_Y": 0.13813162398507897,
+        "median_relative_Y": 0.061956181940778336,
+        "max_delta_xy": 0.012913137792943561
+      },
+      "below_5deg": {
+        "max_relative_Y": 0.1362233725855779,
+        "median_relative_Y": 0.014726470617570262,
+        "max_delta_xy": 0.008007981533364059
+      }
+    }
+  ],
+  "max_relative_Y": 0.13813162398507897,
+  "max_delta_xy": 0.012913137792943561,
+  "passes_5percent_Y_and_0_005_xy": false
+}

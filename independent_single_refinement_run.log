@@ -1,0 +1,138 @@
+1/64 refined single scatter: calculations/urban/dust0_fog0.nc
+2/64 refined single scatter: calculations/urban/dust0_fog1.nc
+3/64 refined single scatter: calculations/urban/dust0_fog2.nc
+4/64 refined single scatter: calculations/urban/dust0_fog3.nc
+5/64 refined single scatter: calculations/urban/dust1_fog0.nc
+6/64 refined single scatter: calculations/urban/dust1_fog1.nc
+7/64 refined single scatter: calculations/urban/dust1_fog2.nc
+8/64 refined single scatter: calculations/urban/dust1_fog3.nc
+9/64 refined single scatter: calculations/urban/dust2_fog0.nc
+10/64 refined single scatter: calculations/urban/dust2_fog1.nc
+11/64 refined single scatter: calculations/urban/dust2_fog2.nc
+12/64 refined single scatter: calculations/urban/dust2_fog3.nc
+13/64 refined single scatter: calculations/urban/dust3_fog0.nc
+14/64 refined single scatter: calculations/urban/dust3_fog1.nc
+15/64 refined single scatter: calculations/urban/dust3_fog2.nc
+16/64 refined single scatter: calculations/urban/dust3_fog3.nc
+17/64 refined single scatter: calculations/rural/dust0_fog0.nc
+18/64 refined single scatter: calculations/rural/dust0_fog1.nc
+19/64 refined single scatter: calculations/rural/dust0_fog2.nc
+20/64 refined single scatter: calculations/rural/dust0_fog3.nc
+21/64 refined single scatter: calculations/rural/dust1_fog0.nc
+22/64 refined single scatter: calculations/rural/dust1_fog1.nc
+23/64 refined single scatter: calculations/rural/dust1_fog2.nc
+24/64 refined single scatter: calculations/rural/dust1_fog3.nc
+25/64 refined single scatter: calculations/rural/dust2_fog0.nc
+26/64 refined single scatter: calculations/rural/dust2_fog1.nc
+27/64 refined single scatter: calculations/rural/dust2_fog2.nc
+28/64 refined single scatter: calculations/rural/dust2_fog3.nc
+29/64 refined single scatter: calculations/rural/dust3_fog0.nc
+30/64 refined single scatter: calculations/rural/dust3_fog1.nc
+31/64 refined single scatter: calculations/rural/dust3_fog2.nc
+32/64 refined single scatter: calculations/rural/dust3_fog3.nc
+33/64 refined single scatter: calculations/humid/dust0_fog0.nc
+34/64 refined single scatter: calculations/humid/dust0_fog1.nc
+35/64 refined single scatter: calculations/humid/dust0_fog2.nc
+36/64 refined single scatter: calculations/humid/dust0_fog3.nc
+37/64 refined single scatter: calculations/humid/dust1_fog0.nc
+38/64 refined single scatter: calculations/humid/dust1_fog1.nc
+39/64 refined single scatter: calculations/humid/dust1_fog2.nc
+40/64 refined single scatter: calculations/humid/dust1_fog3.nc
+41/64 refined single scatter: calculations/humid/dust2_fog0.nc
+42/64 refined single scatter: calculations/humid/dust2_fog1.nc
+43/64 refined single scatter: calculations/humid/dust2_fog2.nc
+44/64 refined single scatter: calculations/humid/dust2_fog3.nc
+45/64 refined single scatter: calculations/humid/dust3_fog0.nc
+46/64 refined single scatter: calculations/humid/dust3_fog1.nc
+47/64 refined single scatter: calculations/humid/dust3_fog2.nc
+48/64 refined single scatter: calculations/humid/dust3_fog3.nc
+49/64 refined single scatter: calculations/dry/dust0_fog0.nc
+50/64 refined single scatter: calculations/dry/dust0_fog1.nc
+51/64 refined single scatter: calculations/dry/dust0_fog2.nc
+52/64 refined single scatter: calculations/dry/dust0_fog3.nc
+53/64 refined single scatter: calculations/dry/dust1_fog0.nc
+54/64 refined single scatter: calculations/dry/dust1_fog1.nc
+55/64 refined single scatter: calculations/dry/dust1_fog2.nc
+56/64 refined single scatter: calculations/dry/dust1_fog3.nc
+57/64 refined single scatter: calculations/dry/dust2_fog0.nc
+58/64 refined single scatter: calculations/dry/dust2_fog1.nc
+59/64 refined single scatter: calculations/dry/dust2_fog2.nc
+60/64 refined single scatter: calculations/dry/dust2_fog3.nc
+61/64 refined single scatter: calculations/dry/dust3_fog0.nc
+62/64 refined single scatter: calculations/dry/dust3_fog1.nc
+63/64 refined single scatter: calculations/dry/dust3_fog2.nc
+64/64 refined single scatter: calculations/dry/dust3_fog3.nc
+1/64 urban: dry AOD=0, fog AOD=0 (verified cache)
+2/64 urban: dry AOD=0, fog AOD=0.05 (verified cache)
+3/64 urban: dry AOD=0, fog AOD=0.2 (verified cache)
+4/64 urban: dry AOD=0, fog AOD=0.8 (verified cache)
+5/64 urban: dry AOD=0.03, fog AOD=0 (verified cache)
+6/64 urban: dry AOD=0.03, fog AOD=0.05 (verified cache)
+7/64 urban: dry AOD=0.03, fog AOD=0.2 (verified cache)
+8/64 urban: dry AOD=0.03, fog AOD=0.8 (verified cache)
+9/64 urban: dry AOD=0.1, fog AOD=0 (verified cache)
+10/64 urban: dry AOD=0.1, fog AOD=0.05 (verified cache)
+11/64 urban: dry AOD=0.1, fog AOD=0.2 (verified cache)
+12/64 urban: dry AOD=0.1, fog AOD=0.8 (verified cache)
+13/64 urban: dry AOD=0.3, fog AOD=0 (verified cache)
+14/64 urban: dry AOD=0.3, fog AOD=0.05 (verified cache)
+15/64 urban: dry AOD=0.3, fog AOD=0.2 (verified cache)
+16/64 urban: dry AOD=0.3, fog AOD=0.8 (verified cache)
+17/64 rural: dry AOD=0, fog AOD=0 (verified cache)
+18/64 rural: dry AOD=0, fog AOD=0.05 (verified cache)
+19/64 rural: dry AOD=0, fog AOD=0.2 (verified cache)
+20/64 rural: dry AOD=0, fog AOD=0.8 (verified cache)
+21/64 rural: dry AOD=0.03, fog AOD=0 (verified cache)
+22/64 rural: dry AOD=0.03, fog AOD=0.05 (verified cache)
+23/64 rural: dry AOD=0.03, fog AOD=0.2 (verified cache)
+24/64 rural: dry AOD=0.03, fog AOD=0.8 (verified cache)
+25/64 rural: dry AOD=0.1, fog AOD=0 (verified cache)
+26/64 rural: dry AOD=0.1, fog AOD=0.05 (verified cache)
+27/64 rural: dry AOD=0.1, fog AOD=0.2 (verified cache)
+28/64 rural: dry AOD=0.1, fog AOD=0.8 (verified cache)
+29/64 rural: dry AOD=0.3, fog AOD=0 (verified cache)
+30/64 rural: dry AOD=0.3, fog AOD=0.05 (verified cache)
+31/64 rural: dry AOD=0.3, fog AOD=0.2 (verified cache)
+32/64 rural: dry AOD=0.3, fog AOD=0.8 (verified cache)
+33/64 humid: dry AOD=0, fog AOD=0 (verified cache)
+34/64 humid: dry AOD=0, fog AOD=0.05 (verified cache)
+35/64 humid: dry AOD=0, fog AOD=0.2 (verified cache)
+36/64 humid: dry AOD=0, fog AOD=0.8 (verified cache)
+37/64 humid: dry AOD=0.03, fog AOD=0 (verified cache)
+38/64 humid: dry AOD=0.03, fog AOD=0.05 (verified cache)
+39/64 humid: dry AOD=0.03, fog AOD=0.2 (verified cache)
+40/64 humid: dry AOD=0.03, fog AOD=0.8 (verified cache)
+41/64 humid: dry AOD=0.1, fog AOD=0 (verified cache)
+42/64 humid: dry AOD=0.1, fog AOD=0.05 (verified cache)
+43/64 humid: dry AOD=0.1, fog AOD=0.2 (verified cache)
+44/64 humid: dry AOD=0.1, fog AOD=0.8 (verified cache)
+45/64 humid: dry AOD=0.3, fog AOD=0 (verified cache)
+46/64 humid: dry AOD=0.3, fog AOD=0.05 (verified cache)
+47/64 humid: dry AOD=0.3, fog AOD=0.2 (verified cache)
+48/64 humid: dry AOD=0.3, fog AOD=0.8 (verified cache)
+49/64 dry: dry AOD=0, fog AOD=0 (verified cache)
+50/64 dry: dry AOD=0, fog AOD=0.05 (verified cache)
+51/64 dry: dry AOD=0, fog AOD=0.2 (verified cache)
+52/64 dry: dry AOD=0, fog AOD=0.8 (verified cache)
+53/64 dry: dry AOD=0.03, fog AOD=0 (verified cache)
+54/64 dry: dry AOD=0.03, fog AOD=0.05 (verified cache)
+55/64 dry: dry AOD=0.03, fog AOD=0.2 (verified cache)
+56/64 dry: dry AOD=0.03, fog AOD=0.8 (verified cache)
+57/64 dry: dry AOD=0.1, fog AOD=0 (verified cache)
+58/64 dry: dry AOD=0.1, fog AOD=0.05 (verified cache)
+59/64 dry: dry AOD=0.1, fog AOD=0.2 (verified cache)
+60/64 dry: dry AOD=0.1, fog AOD=0.8 (verified cache)
+61/64 dry: dry AOD=0.3, fog AOD=0 (verified cache)
+62/64 dry: dry AOD=0.3, fog AOD=0.05 (verified cache)
+63/64 dry: dry AOD=0.3, fog AOD=0.2 (verified cache)
+64/64 dry: dry AOD=0.3, fog AOD=0.8 (verified cache)
+Refined sensitivity component: sensitivity/urban/runs/angular.nc
+Refined sensitivity component: sensitivity/rural/runs/angular.nc
+Refined sensitivity component: sensitivity/dry/runs/angular.nc
+Refined sensitivity component: sensitivity/humid/runs/angular.nc
+Refined sensitivity component: sensitivity/humid/runs/horizontal.nc
+Refined sensitivity component: sensitivity/humid/runs/iterations.nc
+Refined sensitivity component: sensitivity/humid/runs/moments.nc
+Refined sensitivity component: sensitivity/humid/runs/spectral.nc
+Refined sensitivity component: sensitivity/humid/runs/vertical.nc
+Component replacement complete; fresh full-solver regression and validation remain required.

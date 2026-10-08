@@ -1,0 +1,14 @@
+humid-angular-26 44.7 peakMB 8370.487296
+Traceback (most recent call last):
+  File "/private/tmp/probe_sky.py", line 18, in <module>
+    out=compute_model([-6,-3,0,3,6],c,[0,1,5,15,45,90],[0,90,180],cache_dir='model_cache',allow_download=False)
+  File "/Users/asanumawatarushi/Documents/東大天文部/あくとう/output/akutou_sky/src/akutou_sky/model.py", line 188, in compute_model
+    engine = sk.Engine(cfg, geo, view)
+  File "/Users/asanumawatarushi/Library/Caches/akutou-science/python313/lib/python3.13/site-packages/sasktran2/engine.py", line 193, in __init__
+    self._engine = PyEngine(
+                   ~~~~~~~~^
+        config._config, geometry._geometry, viewing_geometry._viewing_geometry
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+KeyboardInterrupt

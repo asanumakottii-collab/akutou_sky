@@ -1,42 +1,135 @@
 {
-  "checked_utc": "2026-10-08T03:32:50.657259+00:00",
-  "project_directory": "/Users/asanumawatarushi/Documents/東大天文部/あくとう/output/akutou_sky",
-  "actual_folder_name": "akutou_sky",
-  "removed_python_files": [
-    "_compat.py",
-    "compute_profiles.py",
-    "model_config.py",
-    "colorimetry.py",
-    "run_batch.py",
-    "analyze_profiles.py",
-    "plot_profiles.py",
-    "validate_model.py",
-    "build_report.py",
-    "build_report_v1.py",
-    "legacy_v1/analyze_profiles.py",
-    "legacy_v1/build_report.py",
-    "legacy_v1/compute_profiles.py",
-    "legacy_v1/run_batch.py"
+  "version": "0.3.0",
+  "installed_version_matches": true,
+  "wheel_templates_included": true,
+  "source_archive_templates_and_validation_tool_included": true,
+  "results_and_cache_excluded": true,
+  "implementation_tests_passed": 48,
+  "explorer_cases_checked": 64,
+  "numerical_checks_complete": false,
+  "numerical_convergence_established": false,
+  "previous_cleanup_report": {
+    "checked_utc": "2026-10-08T03:32:50.657259+00:00",
+    "project_directory": "/Users/asanumawatarushi/Documents/東大天文部/あくとう/output/akutou_sky",
+    "actual_folder_name": "akutou_sky",
+    "removed_python_files": [
+      "_compat.py",
+      "compute_profiles.py",
+      "model_config.py",
+      "colorimetry.py",
+      "run_batch.py",
+      "analyze_profiles.py",
+      "plot_profiles.py",
+      "validate_model.py",
+      "build_report.py",
+      "build_report_v1.py",
+      "legacy_v1/analyze_profiles.py",
+      "legacy_v1/build_report.py",
+      "legacy_v1/compute_profiles.py",
+      "legacy_v1/run_batch.py"
+    ],
+    "removed_python_file_count": 14,
+    "retained_physics_tool": "tools/verify_physics.py",
+    "editable_registration_updated": true,
+    "unit_tests": {
+      "count": 28,
+      "passed": 28,
+      "log": "library_test_results.txt"
+    },
+    "transport_regression": {
+      "reference": "runs/v2_smoke.nc",
+      "rtol": 1e-10,
+      "atol": 1e-16,
+      "passed": true
+    },
+    "existing_results_preserved": true,
+    "existing_result_files_checked": 10,
+    "wheel_file_count": 20,
+    "source_archive_file_count": 50,
+    "wheel_and_source_archive_exclude_obsolete_scripts": true,
+    "installed_wheel_module_cli_passed": true,
+    "sky_shell_syntax_and_help_passed": true
+  },
+  "model_version": "2.2",
+  "extracted_wheel_API_template_and_CLI_verified": true,
+  "source_archive_refinement_tool_and_tests_included": true,
+  "distinct_atmospheres": 52,
+  "solar_depression_samples": 25,
+  "solar_depression_step_deg": 0.5,
+  "solar_depression_range_deg": [
+    -6,
+    6
   ],
-  "removed_python_file_count": 14,
-  "retained_physics_tool": "tools/verify_physics.py",
-  "editable_registration_updated": true,
-  "unit_tests": {
-    "count": 28,
-    "passed": 28,
-    "log": "library_test_results.txt"
+  "previous_explorer_preserved": "results/atmosphere_explorer/history/0.2.0",
+  "numerical_checks_requested": 11,
+  "numerical_checks_completed": 10,
+  "numerical_checks_passed": 5,
+  "current_wheel_sources_match": true,
+  "current_source_archive_files_match": true,
+  "independent_single_scattering_full_regression": {
+    "passed": true,
+    "max_relative_radiance_difference": 2.364421583980776e-10,
+    "rtol": 1e-08,
+    "atol": 1e-18,
+    "reference_sha256": "441d1c8899098ad594d5e3967aa3ad3f56befa358bc529a433826830c7c1b17a",
+    "fresh_full_solve_sha256": "c773710b5c56c809096c881e6f93787b7ac9c0292953f15393155f633acc1530",
+    "sample_coordinates": {
+      "depression": [
+        -6.0,
+        -3.0,
+        0.0,
+        3.0,
+        6.0
+      ],
+      "elevation": [
+        0.0,
+        1.0,
+        5.0,
+        12.0,
+        45.0,
+        90.0
+      ],
+      "azimuth": [
+        0.0,
+        90.0,
+        180.0
+      ]
+    }
   },
-  "transport_regression": {
-    "reference": "runs/v2_smoke.nc",
-    "rtol": 1e-10,
-    "atol": 1e-16,
-    "passed": true
+  "browser_downloads_verified": {
+    "downloaded_CSV_matches_current_NetCDF": true,
+    "CSV_rows": 975,
+    "solar_depression_samples": 25,
+    "downloaded_JSON_matches_current_config": true,
+    "single_scatter_step_m": 500
   },
-  "existing_results_preserved": true,
-  "existing_result_files_checked": 10,
-  "wheel_file_count": 20,
-  "source_archive_file_count": 50,
-  "wheel_and_source_archive_exclude_obsolete_scripts": true,
-  "installed_wheel_module_cli_passed": true,
-  "sky_shell_syntax_and_help_passed": true
+  "checked_utc": "2026-10-08T15:59:09.395580+00:00",
+  "browser_checks": {
+    "depression_range_and_half_degree_steps": true,
+    "morning_evening_direction_and_same_solar_position": true,
+    "four_presets": true,
+    "independent_fog_dust_and_matched_comparison": true,
+    "direction_exposure_height_reset_and_url_restore": true,
+    "csv_975_rows_and_json_config_download": true,
+    "play_stops_at_six_degrees": true,
+    "file_url_test": "Blocked by browser URL policy; interactions verified over local HTTP.",
+    "final_500_m_single_scatter_grid_display": true,
+    "final_report_counts": "10 completed / 5 passed / 1 skipped",
+    "final_downloads_match_current_NetCDF": true
+  },
+  "static_page_checks": {
+    "generated_HTML_pages": 5,
+    "inline_JavaScript_syntax_valid": true,
+    "local_links_checked": 20,
+    "local_links_exist": true
+  },
+  "single_scatter_step_m": 500,
+  "previous_intermediate_explorer_preserved": "results/atmosphere_explorer/history/0.3.0-coarse-single",
+  "remaining_sensitivity": {
+    "max_relative_Y": 0.103943,
+    "checks_failing_combined_threshold": 5,
+    "checks_skipped_due_to_memory_limit": 1,
+    "relative_Y_threshold": 0.05,
+    "xy_distance_threshold": 0.005
+  }
 }

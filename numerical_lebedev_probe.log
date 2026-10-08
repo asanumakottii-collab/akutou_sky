@@ -1,0 +1,28 @@
+Starting humid-lebedev16-110
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 110 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 38.5s
+wavelengths 2..2/10, elapsed 39.6s
+wavelengths 3..3/10, elapsed 40.8s
+wavelengths 4..4/10, elapsed 41.9s
+wavelengths 5..5/10, elapsed 43.0s
+wavelengths 6..6/10, elapsed 44.1s
+wavelengths 7..7/10, elapsed 45.2s
+wavelengths 8..8/10, elapsed 46.2s
+wavelengths 9..9/10, elapsed 47.2s
+wavelengths 10..10/10, elapsed 48.3s
+humid-lebedev16-110 50.3 peakMB 8518.975488 maxY 0.13813162398507897 xy 0.012913137792943561
+Starting humid-lebedev16-146
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 146 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 105.2s
+wavelengths 2..2/10, elapsed 109.4s
+wavelengths 3..3/10, elapsed 111.5s
+wavelengths 4..4/10, elapsed 112.9s
+wavelengths 5..5/10, elapsed 114.5s
+wavelengths 6..6/10, elapsed 116.0s
+wavelengths 7..7/10, elapsed 117.5s
+wavelengths 8..8/10, elapsed 119.1s
+wavelengths 9..9/10, elapsed 120.6s
+wavelengths 10..10/10, elapsed 122.3s
+humid-lebedev16-146 123.0 peakMB 9118.892032 maxY 0.19416318844607466 xy 0.006793135809839676
+Starting humid-lebedev16-194
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 194 angular nodes, 1 Stokes parameters; 90 viewing rays

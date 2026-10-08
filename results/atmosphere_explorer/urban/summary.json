@@ -1,0 +1,31 @@
+{
+  "model_version": "2.2",
+  "shape": {
+    "depression": 25,
+    "azimuth": 3,
+    "elevation": 13,
+    "wavelength": 20,
+    "stokes": 1,
+    "bound": 2,
+    "altitude": 112,
+    "tristimulus": 3,
+    "chromaticity": 2,
+    "channel": 3,
+    "source_altitude": 48,
+    "source_horizontal_angle": 41,
+    "single_scatter_altitude": 237
+  },
+  "Y_min_cd_m2": 0.4026287949308842,
+  "Y_max_cd_m2": 10475.656846428943,
+  "gamut_clipped_count": 0,
+  "background": "none",
+  "convergence": "not established by a single run; use validate_sensitivity",
+  "elapsed_seconds": 49.47982045800018,
+  "limitations": [
+    "地平線付近は視線・散乱光の屈折が未対応。",
+    "太陽円盤の有限サイズ、雲、水平方向の大気変化は未モデル化。",
+    "O2・H2Oの狭い吸収線、NO2吸収は未実装。",
+    "深い薄明の総光量には実測の夜空背景が必要。",
+    "粒径・屈折率は仮定。実測校正・全天での数値収束保証なし。"
+  ]
+}

@@ -1,0 +1,18 @@
+Starting humid-compact64-26
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 26 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 10.1s
+wavelengths 2..2/10, elapsed 10.8s
+wavelengths 3..3/10, elapsed 11.4s
+wavelengths 4..4/10, elapsed 12.0s
+wavelengths 5..5/10, elapsed 12.5s
+wavelengths 6..6/10, elapsed 13.1s
+wavelengths 7..7/10, elapsed 13.7s
+wavelengths 8..8/10, elapsed 14.2s
+wavelengths 9..9/10, elapsed 14.8s
+wavelengths 10..10/10, elapsed 15.3s
+Traceback (most recent call last):
+  File "/private/tmp/probe_compact.py", line 20, in <module>
+    out=model.compute_model([-6,-3,0,3,6],c,[0,1,5,15,45,90],[0,90,180],cache_dir='model_cache',allow_download=False,progress=lambda m: print(m,flush=True))
+  File "/Users/asanumawatarushi/Documents/東大天文部/あくとう/output/akutou_sky/src/akutou_sky/model.py", line 195, in compute_model
+    raise ValueError('Nonfinite or negative intensity; refuse to publish this run')
+ValueError: Nonfinite or negative intensity; refuse to publish this run

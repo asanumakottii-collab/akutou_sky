@@ -1,0 +1,16 @@
+Starting humid-split16-146
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 146 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 127.6s
+wavelengths 2..2/10, elapsed 132.0s
+wavelengths 3..3/10, elapsed 137.4s
+wavelengths 4..4/10, elapsed 140.8s
+wavelengths 5..5/10, elapsed 142.7s
+wavelengths 6..6/10, elapsed 146.6s
+wavelengths 7..7/10, elapsed 149.7s
+wavelengths 8..8/10, elapsed 152.7s
+wavelengths 9..9/10, elapsed 155.2s
+wavelengths 10..10/10, elapsed 157.2s
+humid-split16-146 158.4 peakMB 10360.487936 maxY 0.08862767248710185 xy 0.008188798217824846
+Starting humid-split16-194
+Geometry: 112 atmospheric / 47 source altitudes, 41 horizontal columns, 194 angular nodes, 1 Stokes parameters; 90 viewing rays
+wavelengths 1..1/10, elapsed 337.3s

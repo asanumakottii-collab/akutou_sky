@@ -30,7 +30,7 @@ def _simulation_arguments(parser, output_root=None, tag='sky', cache_dir=None):
     parser.add_argument('--quiet', action='store_true')
     for field in fields(ModelConfig):
         option = '--'+field.name.replace('_','-')
-        if field.name == 'solar_refraction':
+        if isinstance(field.default, bool):
             parser.add_argument(option, action=argparse.BooleanOptionalAction, default=None)
         else:
             help_text = 'HG only' if field.name in ('angstrom_exponent','aerosol_ssa','aerosol_g') else None
@@ -42,6 +42,11 @@ def parser(*, output_root=None, tag='sky', cache_dir=None):
     top = argparse.ArgumentParser(description='akutou_sky · 朝焼け・夕焼け・薄明の分光モデル')
     top.add_argument('--version', action='version', version=f'akutou-sky {__version__}')
     sub = top.add_subparsers(dest='command', required=True)
+    explore = sub.add_parser('explore', help='build an offline four-scenario fog/dust explorer (64 transport runs)')
+    explore.add_argument('--output', type=Path, default=Path('results/atmosphere_explorer'))
+    explore.add_argument('--cache-dir', type=Path, default=cache_dir)
+    explore.add_argument('--offline', action='store_true')
+    explore.add_argument('--resume', action='store_true', help='verify and reuse completed cases')
     sim = sub.add_parser('simulate', help='compute spectra, colour and brightness')
     _simulation_arguments(sim, output_root, tag, cache_dir)
     exp = sub.add_parser('export', help='export a saved dataset as HTML/CSV/NetCDF')
@@ -51,7 +56,7 @@ def parser(*, output_root=None, tag='sky', cache_dir=None):
     val = sub.add_parser('validate', help='compare grid sensitivity; not observational accuracy')
     val.add_argument('--input', required=True, type=Path)
     val.add_argument('--output', type=Path, help='directory for validation.json and cached runs')
-    val.add_argument('--checks', nargs='+', choices=['spectral','vertical','horizontal','angular','iterations','moments'],
+    val.add_argument('--checks', nargs='+', choices=['spectral','vertical','horizontal','angular','iterations','moments','delta_m','single_scatter'],
                      default=['spectral','vertical','horizontal','angular','iterations'])
     val.add_argument('--cache-dir', type=Path, default=cache_dir)
     val.add_argument('--offline', action='store_true')
@@ -104,7 +109,11 @@ def main(argv=None, *, default_output_root=None, default_tag='sky', default_cach
     top = parser(output_root=default_output_root,tag=default_tag,cache_dir=default_cache)
     args = top.parse_args(argv)
     try:
-        if args.command == 'simulate':
+        if args.command == 'explore':
+            from .explorer import build_explorer
+            print(build_explorer(args.output, cache_dir=args.cache_dir, allow_download=not args.offline,
+                                 resume=args.resume, progress=lambda message:print(message,flush=True)))
+        elif args.command == 'simulate':
             simulate_command(args)
         elif args.command == 'export':
             from .io import load_dataset, export_results

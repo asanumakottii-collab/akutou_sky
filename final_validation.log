@@ -1,0 +1,15 @@
+Checking urban: angular
+angular: max relative Y=0.0473662, delta xy=0.00492918
+Checking rural: angular
+angular: max relative Y=0.0690013, delta xy=0.00745466
+Checking dry: angular
+angular: max relative Y=0.0631212, delta xy=0.00437348
+Checking humid: angular, spectral, vertical, horizontal, iterations, moments, delta_m, single_scatter
+angular: max relative Y=0.0868091, delta xy=0.00841604
+spectral: max relative Y=0.0038928, delta xy=0.00170387
+vertical: max relative Y=0.103943, delta xy=0.0017712
+horizontal: max relative Y=0.021274, delta xy=0.00113595
+iterations: max relative Y=2.92109e-10, delta xy=5.41904e-11
+moments: max relative Y=0.000911109, delta xy=0.000320246
+single_scatter: max relative Y=0.033518, delta xy=0.00519129
+{"all_requested_checks_complete": false, "passes_all_sampled_checks": false}

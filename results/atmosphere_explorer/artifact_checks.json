@@ -1,0 +1,336 @@
+{
+  "all_64_cases_checked": true,
+  "finite_nonnegative_radiance": true,
+  "XYZ_recomputed_from_spectra": true,
+  "vertical_columns_correct": true,
+  "embedded_data_matches_NetCDF": true,
+  "neutral_atmospheres_identical": true,
+  "five_HTML_pages_match_data_JSON": true,
+  "baselines_match_selected_cases": true,
+  "transport_source_hashes_match": true,
+  "max_negative_single_component_fraction_of_total": 0.0003602639439654093,
+  "higher_RH_increases_Mie_AOD_at_fixed_particle_count": true,
+  "max_zenith_azimuth_relative_difference": 1.749640726291808e-09,
+  "Y_ranges": [
+    {
+      "path": "calculations/urban/dust0_fog0.nc",
+      "min_Y": 1.1325439430812838,
+      "max_Y": 7513.106345770344
+    },
+    {
+      "path": "calculations/urban/dust0_fog1.nc",
+      "min_Y": 0.8482905086348054,
+      "max_Y": 3445305.7391603044
+    },
+    {
+      "path": "calculations/urban/dust0_fog2.nc",
+      "min_Y": 0.6969084716048025,
+      "max_Y": 5296481.451245524
+    },
+    {
+      "path": "calculations/urban/dust0_fog3.nc",
+      "min_Y": 0.5756838961658262,
+      "max_Y": 540971.1701630892
+    },
+    {
+      "path": "calculations/urban/dust1_fog0.nc",
+      "min_Y": 0.7420721244289916,
+      "max_Y": 24507.157789325873
+    },
+    {
+      "path": "calculations/urban/dust1_fog1.nc",
+      "min_Y": 0.6936058668176244,
+      "max_Y": 2371085.071615422
+    },
+    {
+      "path": "calculations/urban/dust1_fog2.nc",
+      "min_Y": 0.6257800030014663,
+      "max_Y": 3637177.4035475943
+    },
+    {
+      "path": "calculations/urban/dust1_fog3.nc",
+      "min_Y": 0.5383247076125119,
+      "max_Y": 381957.7262894788
+    },
+    {
+      "path": "calculations/urban/dust2_fog0.nc",
+      "min_Y": 0.5332359009041869,
+      "max_Y": 20946.05418422437
+    },
+    {
+      "path": "calculations/urban/dust2_fog1.nc",
+      "min_Y": 0.5449298162096792,
+      "max_Y": 998798.1447422289
+    },
+    {
+      "path": "calculations/urban/dust2_fog2.nc",
+      "min_Y": 0.5333411823127453,
+      "max_Y": 1535847.019807404
+    },
+    {
+      "path": "calculations/urban/dust2_fog3.nc",
+      "min_Y": 0.4844068697829961,
+      "max_Y": 171029.06960846213
+    },
+    {
+      "path": "calculations/urban/dust3_fog0.nc",
+      "min_Y": 0.4026287949308842,
+      "max_Y": 10475.656846428943
+    },
+    {
+      "path": "calculations/urban/dust3_fog1.nc",
+      "min_Y": 0.4098150971589988,
+      "max_Y": 102826.52926977337
+    },
+    {
+      "path": "calculations/urban/dust3_fog2.nc",
+      "min_Y": 0.4144876500224945,
+      "max_Y": 159468.46273168534
+    },
+    {
+      "path": "calculations/urban/dust3_fog3.nc",
+      "min_Y": 0.4015022190138228,
+      "max_Y": 21248.73056248746
+    },
+    {
+      "path": "calculations/rural/dust0_fog0.nc",
+      "min_Y": 1.1325439430812838,
+      "max_Y": 7513.106345770344
+    },
+    {
+      "path": "calculations/rural/dust0_fog1.nc",
+      "min_Y": 0.8482905086348054,
+      "max_Y": 3445305.7391603044
+    },
+    {
+      "path": "calculations/rural/dust0_fog2.nc",
+      "min_Y": 0.6969084716048025,
+      "max_Y": 5296481.451245524
+    },
+    {
+      "path": "calculations/rural/dust0_fog3.nc",
+      "min_Y": 0.5756838961658262,
+      "max_Y": 540971.1701630892
+    },
+    {
+      "path": "calculations/rural/dust1_fog0.nc",
+      "min_Y": 0.7327021748019765,
+      "max_Y": 26508.38038958195
+    },
+    {
+      "path": "calculations/rural/dust1_fog1.nc",
+      "min_Y": 0.67969136854935,
+      "max_Y": 2261730.95360305
+    },
+    {
+      "path": "calculations/rural/dust1_fog2.nc",
+      "min_Y": 0.6132890752612895,
+      "max_Y": 3466729.210551392
+    },
+    {
+      "path": "calculations/rural/dust1_fog3.nc",
+      "min_Y": 0.528682135352582,
+      "max_Y": 365334.7388356773
+    },
+    {
+      "path": "calculations/rural/dust2_fog0.nc",
+      "min_Y": 0.5206886739599835,
+      "max_Y": 22264.921889334513
+    },
+    {
+      "path": "calculations/rural/dust2_fog1.nc",
+      "min_Y": 0.5272625203612711,
+      "max_Y": 855987.1179140323
+    },
+    {
+      "path": "calculations/rural/dust2_fog2.nc",
+      "min_Y": 0.5139967507468057,
+      "max_Y": 1329181.8874600127
+    },
+    {
+      "path": "calculations/rural/dust2_fog3.nc",
+      "min_Y": 0.4681573922016258,
+      "max_Y": 147999.24092924193
+    },
+    {
+      "path": "calculations/rural/dust3_fog0.nc",
+      "min_Y": 0.39066506270221174,
+      "max_Y": 10753.692469209429
+    },
+    {
+      "path": "calculations/rural/dust3_fog1.nc",
+      "min_Y": 0.3953686786250143,
+      "max_Y": 69340.14790491709
+    },
+    {
+      "path": "calculations/rural/dust3_fog2.nc",
+      "min_Y": 0.3976659333676906,
+      "max_Y": 106145.44634059299
+    },
+    {
+      "path": "calculations/rural/dust3_fog3.nc",
+      "min_Y": 0.3853396973774032,
+      "max_Y": 15183.945555546417
+    },
+    {
+      "path": "calculations/humid/dust0_fog0.nc",
+      "min_Y": 1.1325439430812838,
+      "max_Y": 7513.106345770344
+    },
+    {
+      "path": "calculations/humid/dust0_fog1.nc",
+      "min_Y": 0.8482905086348054,
+      "max_Y": 3445305.7391603044
+    },
+    {
+      "path": "calculations/humid/dust0_fog2.nc",
+      "min_Y": 0.6969084716048025,
+      "max_Y": 5296481.451245524
+    },
+    {
+      "path": "calculations/humid/dust0_fog3.nc",
+      "min_Y": 0.5756838961658262,
+      "max_Y": 540971.1701630892
+    },
+    {
+      "path": "calculations/humid/dust1_fog0.nc",
+      "min_Y": 0.565434502846945,
+      "max_Y": 35996.40302856095
+    },
+    {
+      "path": "calculations/humid/dust1_fog1.nc",
+      "min_Y": 0.5722972165476511,
+      "max_Y": 1246461.368218707
+    },
+    {
+      "path": "calculations/humid/dust1_fog2.nc",
+      "min_Y": 0.5496825045170959,
+      "max_Y": 1895942.1335885837
+    },
+    {
+      "path": "calculations/humid/dust1_fog3.nc",
+      "min_Y": 0.4914186445999424,
+      "max_Y": 209424.12838715233
+    },
+    {
+      "path": "calculations/humid/dust2_fog0.nc",
+      "min_Y": 0.4100112493155994,
+      "max_Y": 18886.916653981207
+    },
+    {
+      "path": "calculations/humid/dust2_fog1.nc",
+      "min_Y": 0.4211514326741752,
+      "max_Y": 138516.2795242616
+    },
+    {
+      "path": "calculations/humid/dust2_fog2.nc",
+      "min_Y": 0.42683032854329533,
+      "max_Y": 210976.73545249266
+    },
+    {
+      "path": "calculations/humid/dust2_fog3.nc",
+      "min_Y": 0.4100505019592547,
+      "max_Y": 27510.83228355145
+    },
+    {
+      "path": "calculations/humid/dust3_fog0.nc",
+      "min_Y": 0.3109450033891371,
+      "max_Y": 5232.482517188441
+    },
+    {
+      "path": "calculations/humid/dust3_fog1.nc",
+      "min_Y": 0.31401332795148024,
+      "max_Y": 5029.203639215725
+    },
+    {
+      "path": "calculations/humid/dust3_fog2.nc",
+      "min_Y": 0.31889107753148477,
+      "max_Y": 4483.637121227003
+    },
+    {
+      "path": "calculations/humid/dust3_fog3.nc",
+      "min_Y": 0.32071283968341063,
+      "max_Y": 3357.2286511704815
+    },
+    {
+      "path": "calculations/dry/dust0_fog0.nc",
+      "min_Y": 1.1325439430812838,
+      "max_Y": 7513.106345770344
+    },
+    {
+      "path": "calculations/dry/dust0_fog1.nc",
+      "min_Y": 0.8482905086348054,
+      "max_Y": 3445305.7391603044
+    },
+    {
+      "path": "calculations/dry/dust0_fog2.nc",
+      "min_Y": 0.6969084716048025,
+      "max_Y": 5296481.451245524
+    },
+    {
+      "path": "calculations/dry/dust0_fog3.nc",
+      "min_Y": 0.5756838961658262,
+      "max_Y": 540971.1701630892
+    },
+    {
+      "path": "calculations/dry/dust1_fog0.nc",
+      "min_Y": 0.7759215396884084,
+      "max_Y": 23281.672270789284
+    },
+    {
+      "path": "calculations/dry/dust1_fog1.nc",
+      "min_Y": 0.7008831326551951,
+      "max_Y": 2457357.8945301
+    },
+    {
+      "path": "calculations/dry/dust1_fog2.nc",
+      "min_Y": 0.6242482911642289,
+      "max_Y": 3769789.3198900605
+    },
+    {
+      "path": "calculations/dry/dust1_fog3.nc",
+      "min_Y": 0.5347700196123236,
+      "max_Y": 394772.0460688474
+    },
+    {
+      "path": "calculations/dry/dust2_fog0.nc",
+      "min_Y": 0.5464792515545793,
+      "max_Y": 21393.330107158177
+    },
+    {
+      "path": "calculations/dry/dust2_fog1.nc",
+      "min_Y": 0.5504393279150261,
+      "max_Y": 1124877.4845495876
+    },
+    {
+      "path": "calculations/dry/dust2_fog2.nc",
+      "min_Y": 0.5306659706680924,
+      "max_Y": 1719253.3158807857
+    },
+    {
+      "path": "calculations/dry/dust2_fog3.nc",
+      "min_Y": 0.47822097357776366,
+      "max_Y": 190783.60384517486
+    },
+    {
+      "path": "calculations/dry/dust3_fog0.nc",
+      "min_Y": 0.4047338750638822,
+      "max_Y": 11507.960952749365
+    },
+    {
+      "path": "calculations/dry/dust3_fog1.nc",
+      "min_Y": 0.4107072425837409,
+      "max_Y": 143268.21588017786
+    },
+    {
+      "path": "calculations/dry/dust3_fog2.nc",
+      "min_Y": 0.4122915049122067,
+      "max_Y": 222664.66315352332
+    },
+    {
+      "path": "calculations/dry/dust3_fog3.nc",
+      "min_Y": 0.3957198143168157,
+      "max_Y": 28284.63467039559
+    }
+  ]
+}

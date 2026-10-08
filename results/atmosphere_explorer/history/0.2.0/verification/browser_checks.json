@@ -1,0 +1,11 @@
+{
+  "four_presets_checked": true,
+  "independent_fog_dust_controls": true,
+  "morning_evening_switch": true,
+  "viewing_direction_and_exposure": true,
+  "matched_load_comparison": true,
+  "reset": true,
+  "json_download_matches_config": true,
+  "csv_rows": 390,
+  "csv_luminance_and_RGB_match_NetCDF": true
+}

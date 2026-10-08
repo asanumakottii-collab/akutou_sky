@@ -42,7 +42,8 @@ print(akutou_sky.__version__)
             result=subprocess.run([sys.executable,'-c',code],cwd=tmp,env=env,capture_output=True,text=True)
             self.assertEqual(result.returncode,0,result.stderr)
             self.assertEqual(list(Path(tmp).iterdir()),[])
-            self.assertEqual(result.stdout.strip(),'0.1.0')
+            from akutou_sky import __version__
+            self.assertEqual(result.stdout.strip(),__version__)
 
     def test_presets_serialization_and_immutability(self):
         config=ModelConfig.from_preset('preview',aod550=.04)
@@ -93,7 +94,8 @@ print(akutou_sky.__version__)
             with self.assertRaises(FileExistsError):export_results(original,out)
             self.assertEqual((out/'sky.nc').read_bytes(),before)
             with self.assertRaises(FileExistsError):save_dataset(original,out/'sky.nc')
-            self.assertEqual(json.loads((out/'manifest.json').read_text())['library_version'],'0.1.0')
+            from akutou_sky import __version__
+            self.assertEqual(json.loads((out/'manifest.json').read_text())['library_version'],__version__)
 
     def test_failed_save_preserves_previous_file_and_cleans_partial(self):
         dataset=self.fixture()
@@ -136,6 +138,46 @@ print(akutou_sky.__version__)
             self.assertTrue(report['passes_all_sampled_checks'])
             self.assertIsNone(report['input_sha256'])
         with self.assertRaises(ValueError):validate_sensitivity(reference,checks=['unknown'])
+
+    def test_failed_refinement_cannot_be_reported_as_convergence(self):
+        reference=self.fixture()
+        original=json.loads(reference.attrs['config_json'])
+        def candidate(ds,config,elevations,azimuths,progress,**kwargs):
+            if config.wavelength_step_nm < original['wavelength_step_nm']:
+                raise ValueError('Nonfinite intensity in refinement')
+            result=reference.sel(depression=ds,elevation=elevations,azimuth=azimuths).copy()
+            result.attrs['config_json']=json.dumps(config.to_dict())
+            return result
+        with patch('akutou_sky.validation.compute_model',side_effect=candidate):
+            report=validate_sensitivity(reference,checks=['spectral','iterations'],allow_download=False)
+        self.assertEqual(report['checks']['spectral']['status'],'failed')
+        self.assertIn('Nonfinite intensity',report['checks']['spectral']['reason'])
+        self.assertEqual(report['checks']['iterations']['status'],'completed')
+        self.assertFalse(report['all_requested_checks_complete'])
+        self.assertFalse(report['passes_all_sampled_checks'])
+
+    def test_refinement_memory_guard_skips_before_starting_solver(self):
+        with patch('akutou_sky.validation.compute_model') as transport:
+            report=validate_sensitivity(self.fixture(),checks=['angular'],max_phase_terms=1)
+            transport.assert_not_called()
+        self.assertEqual(report['checks']['angular']['status'],'skipped')
+        self.assertIn('Phase-table work',report['checks']['angular']['reason'])
+        self.assertFalse(report['all_requested_checks_complete'])
+        self.assertFalse(report['passes_all_sampled_checks'])
+
+    def test_spectral_cache_accepts_verified_mie_tables_but_rejects_changed_inputs(self):
+        from types import SimpleNamespace
+        from akutou_sky.validation import _compatible_physical_inputs
+        from akutou_sky.provenance import sha256
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'mie').mkdir()
+            for name in ('gas.dat','mie/coarse.nc','mie/fine.nc'):(root/name).write_text(name)
+            item=lambda name:dict(path=name,sha256=sha256(root/name))
+            reference=SimpleNamespace(attrs={'physical_inputs_json':json.dumps([item('gas.dat'),item('mie/coarse.nc')])})
+            candidate=SimpleNamespace(attrs={'physical_inputs_json':json.dumps([item('gas.dat'),item('mie/fine.nc')])})
+            self.assertTrue(_compatible_physical_inputs(candidate,reference,root))
+            (root/'mie/fine.nc').write_text('corrupted')
+            self.assertFalse(_compatible_physical_inputs(candidate,reference,root))
 
     def test_plot_does_not_change_global_backend_or_style(self):
         try:
