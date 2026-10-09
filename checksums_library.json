@@ -1,19 +1,19 @@
 {
   "MANIFEST.in": "3c78ec0a8f6872782f8e3a9f3716680960861c578b3b7283b2b4c3ec82e1b757",
-  "README.md": "6a0c364d2793b73d1f050609b38f0c39ef9d86f6faff7aa31f2d1c395ca295eb",
+  "README.md": "b1552ea3abf38368ec0b2ed14eada76fbacadd8835034d0ab6538ae72943b75d",
   "dist/akutou_sky-0.1.0-py3-none-any.whl": "8ef06da4179c777854a1c2e6fb8829d6bd04aa2e23fe3ffa861c1e6c0652d7e7",
   "dist/akutou_sky-0.1.0.tar.gz": "6a750f792285d28d4de4a5e5be859e6afb14eb421b5606ba47e4c04bdd5ca9c4",
   "dist/akutou_sky-0.2.0-py3-none-any.whl": "5e467414dd003258471dd470e45516ceb5502ebbd3e51fe1f4402a135d2d9379",
   "dist/akutou_sky-0.2.0.tar.gz": "9a161c79f9d61f8edf2c52589109ef9fd610306131a963a3d6dfed57b570793e",
-  "dist/akutou_sky-0.3.0-py3-none-any.whl": "4ae00f50f3c1eb5be19623551fa6804b5dbeb67c410b34e61f5bcf59f402b23e",
-  "dist/akutou_sky-0.3.0.tar.gz": "3999da9bc4a0bb5554fc9894db7e6883d56cf6115937161321d2a6b7148151c4",
+  "dist/akutou_sky-0.3.0-py3-none-any.whl": "aa0ee591aa5a49093a2315ca5af7a908043242f20d415083991321a092a9396f",
+  "dist/akutou_sky-0.3.0.tar.gz": "5d9de89f443dbf7aefd107ab4982b90d9cb7469ffc9cd6acd32b5b0516d0797c",
   "docs/api.md": "b7d2993dce40c21e78afac9599b7786bfac65bb489a6a5e0ef2e6702ca5c6047",
   "docs/fog-and-dust.md": "b268eef0c249eada9c6ad51fb9d9a101adfb90b5ca3d7f0cb3ba82e82ac07ebe",
   "docs/model-and-results.md": "d6556ac086b4fbbd29f8b95b5fa440530653febe7ec86ba0da3ab48171daffd6",
   "docs/numerical-refinement.md": "42d15fe1ad421d0d75533ba62e20d4098a4e143200a3e79c661e64e3dd98b8f7",
   "examples/basic_usage.py": "f20110bd8091a814d07cafd17b0fe8de3725de38ab5de7db12f3764154e2de08",
   "examples/read_saved_result.py": "4e73a25f81e432430aabe97bfc56d7734f0201c0a1733146ffc5736d87734a86",
-  "library_distribution_checks.json": "4ff3ea50ca282f4c94dd68cbde843266a6dd35cc1d8e1a9892b36bccae6dd172",
+  "library_distribution_checks.json": "bbc6b704418b4249b470be3cf0f4728ed947b929f032ef28a10af914b76b02ef",
   "library_test_results.txt": "6f9076514146f38c80335f8785a8e868207fecbfcfcea4cf4fcb770dd93d6846",
   "pyproject.toml": "83aabb981569c86bdbebfe6fb880e4ebae90f186e75371eceecc8570bd896747",
   "requirements.txt": "66f833174ce55f5b50fbd2bd8aba0faf698a34e53b82db9df611ff1894cfbdb4",
@@ -47,5 +47,7 @@
   "tests/test_refinement.py": "64d22357c01f844c7259eb0437469428de78feb53a100304e9cdd21b2ead661a",
   "tools/refine_explorer_single_scatter.py": "adbb21ac39e12b236497436fba29d8e45bd1f96d60c30a3ba28f5ce3b966806a",
   "tools/validate_explorer.py": "6743dc8d7ef4f1aa6a4012e42a0cfccde790c6b1564fb58fd9bc99bd2bc53f1a",
-  "tools/verify_physics.py": "972c76a2c85414152fb01049ada8ec0c95bd029a4c1fa9c2ed429372a0e8ad54"
+  "tools/verify_physics.py": "972c76a2c85414152fb01049ada8ec0c95bd029a4c1fa9c2ed429372a0e8ad54",
+  "改善内容と検証.md": "59ac9a1ef39fc20aa077864b4bb3e02139513423986f5dfdf852006465e7c42c",
+  "科学的根拠と利用上の注意.md": "6abf3f850d61f87c80417d27e0c3deea5353eeed156aa6e38e78332ebb9269bb"
 }

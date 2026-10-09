@@ -131,5 +131,24 @@
     "checks_skipped_due_to_memory_limit": 1,
     "relative_Y_threshold": 0.05,
     "xy_distance_threshold": 0.005
+  },
+  "documentation_update": {
+    "updated_utc": "2026-10-09T01:58:22.287317+00:00",
+    "files": [
+      "README.md",
+      "科学的根拠と利用上の注意.md",
+      "改善内容と検証.md"
+    ],
+    "current_model": "2.2",
+    "current_library": "0.3.0",
+    "local_links_checked": 40,
+    "numerical_tables_match_saved_reports": true,
+    "Python_example_syntax_checked": true,
+    "CLI_custom_fog_arguments_and_configuration_checked": true,
+    "documented_grid_sizes_checked": true,
+    "transport_source_hashes_unchanged": true,
+    "updated_documents_in_source_distribution": true,
+    "updated_README_in_wheel_metadata": true,
+    "physical_calculations_rerun": false
   }
 }

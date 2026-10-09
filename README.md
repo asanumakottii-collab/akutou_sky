@@ -1,8 +1,10 @@
 # akutou-sky — 朝焼け・夕焼け・薄明のモデリングライブラリ
 
-球面大気の多重散乱から分光放射輝度、CIE XYZ・xy・輝度、表示用sRGBを計算するPythonライブラリです。SASKTRAN2を使い、Rayleigh散乱、MieまたはHGエアロゾル、オゾン吸収、太陽入射光の屈折を扱います。ライブラリ版は **0.3.0**、物理モデルの版は **2.2** です。2.1で微粒子の吸湿成長と独立した霧の水滴層を追加し、2.2で前方散乱の処理と数値分解能を改善しました。
+更新日：2026-10-09。ライブラリ **0.3.0**、物理モデル **2.2**、SASKTRAN2 **2026.10.0** を使用します。配布名は `akutou-sky`、Pythonのパッケージ名とこのフォルダ名は `akutou_sky` です。
 
-**物理モデルは数値収束未達の研究用試算です。** 格子依存性が大きい条件と偏光の左右対称性の不合格が残っています。吸湿・霧を無効にした標準設定は従来の計算を維持します。[改善内容と検証](改善内容と検証.md) に従来モデルの検証を、[霧と塵の説明](docs/fog-and-dust.md) に追加機能を記録しています。
+球面大気の多重散乱から分光放射輝度、CIE XYZ・xy・輝度、表示用sRGBを計算するPythonライブラリです。Rayleigh散乱、MieまたはHGエアロゾル、オゾン吸収、太陽入射光の屈折を扱います。モデル2.1で微粒子の吸湿成長と独立した霧の水滴層を追加し、2.2で前方散乱処理、角度・空間分解能、一回散乱の独立した高度格子を改善しました。
+
+**物理モデルは数値収束未達の研究用試算です。** これは、数値格子を細かくした際の差が、設定した比較基準まで十分に小さくなっていない条件があることを意味します。最新の代表条件の検査では最大10.394%の輝度差が残り、観測との校正も未実施です。最新の比較ページはスカラー計算で、別設定の偏光計算には既存の粗い格子の左右対称性の不合格も残っています。[改善内容と検証](改善内容と検証.md) と [科学的根拠と利用上の注意](科学的根拠と利用上の注意.md) に、根拠・結果・利用範囲を記載しています。
 
 ## 霧と塵を変える4種類の空
 
@@ -21,7 +23,31 @@ akutou-sky simulate --preset fog_refined --aod550 0.08 --fog-aod550 0.12 \
   --output results/custom_fog --cache-dir model_cache --offline
 ```
 
-塵は乾燥状態の550 nm AOD、霧は水滴だけの550 nm AODです。相対湿度は0〜0.95の割合で与えます。吸湿効果は `hygroscopicity_kappa > 0` のとき有効です。`fog_refined` は低層格子と前方散乱処理を改良した設定です。旧設定の `fog_preview` も維持しています。いずれも精度の保証ではありません。
+塵は乾燥状態の550 nm AOD、霧は水滴だけの550 nm AODです。AODは無次元の鉛直光学的厚さで、質量濃度・視程を直接指定するものではありません。相対湿度は0〜0.95の割合で与え、RHと `hygroscopicity_kappa` がともに正のとき吸湿成長を計算します。RHと霧の量は独立した入力です。
+
+`explore` は `fog_refined` を使います。角度110点・水平41列・次数16のDelta-M近似と一回散乱の独立格子（低層50 m、中層250 m、上層500 m刻み）を採用しています。Python APIや `simulate` で同じ改善を使う場合も、`fog_refined` を明示してください。`ModelConfig()` / `standard`、軽量の `preview`、従来の `fog_preview` は別の数値設定です。プリセット名は精度の保証ではありません。[霧と塵の詳しい設定](docs/fog-and-dust.md) と [計算方法](docs/numerical-refinement.md) も参照できます。
+
+## 保存済みのresultsの選び方
+
+| フォルダ | 内容・用途 |
+|---|---|
+| [atmosphere_explorer](results/atmosphere_explorer/index.html) | 最新の霧・塵・湿度の比較。全64条件、伏角25点、一回散乱の独立格子を反映 |
+| [atmosphere_explorer 2](<results/atmosphere_explorer 2/index.html>) | 一回散乱の独立格子を導入する前の中間結果。表示上の版番号は最新と同じだが、計算内容とソースのハッシュが異なる |
+| [atmosphere_explorer/history/0.2.0](results/atmosphere_explorer/history/0.2.0/index.html) | 霧・塵の比較ページの初期版 |
+| [improved](results/improved/index.html) | 以前の太陽方向の試算。5 nm幅・38角度点で、最新の霧・吸湿の出力ではない |
+| [overview](results/overview/index.html) | 以前の3方位の試算。5 nm幅・26角度点。improvedとは方位以外の設定も異なる |
+| [smoke](results/smoke/index.html) | 以前の動作確認用の小規模出力 |
+| [numerical_refinement](results/numerical_refinement/README.md) | 数値手法を選ぶための診断計算・中間記録 |
+
+通常の霧・塵の比較には `atmosphere_explorer` を使用します。メインフォルダ直下の日本語CSV・PNG、`summary.json`、`provenance.json` は初期計算の成果物です。出力ごとの設定は、そのフォルダのmanifestまたはNetCDFで確認してください。
+
+## 最新の検証状況
+
+保存済みの直近のライブラリテストは **48件すべて通過**しました。全64条件について、合計分光放射輝度の有限・非負、XYZの再計算、AODの積分、HTML用データ、ソースのハッシュの整合性を確認しています。一回散乱成分を更新したデータと、一から解いた全計算も、高湿度の90視線で一致しました。
+
+数値感度検査は **11件中10件完了、5件基準内、5件基準未達、1件未実施**です。比較基準は最大輝度差5%以内かつ色度xy距離0.005以内。高湿度の鉛直格子差は10.394%、一回散乱格子差は輝度3.352%・xy距離0.005191で、どちらも基準未達です。Delta-M次数16→32は検証のメモリ負荷上限を超えるため未実施です。
+
+これらは代表条件の数値設定間の差で、実空に対する誤差の上限や全64条件の収束証明ではありません。結果は [検証の集計](results/atmosphere_explorer/validation_summary.md)、[全記録JSON](results/atmosphere_explorer/numerical_sensitivity.json)、[ライブラリテストのログ](library_test_results.txt) にあります。
 
 ## インストール
 
@@ -40,9 +66,12 @@ python -m pip install -e '.[plot]'   # ソースを編集しながら使う場�
 ```python
 from akutou_sky import ModelConfig, simulate, export_results
 
-config = ModelConfig.from_preset("preview", aod550=0.05, ozone_du=330)
+config = ModelConfig.from_preset(
+    "fog_refined", aod550=0.08, fog_aod550=0.12,
+    relative_humidity=0.85, hygroscopicity_kappa=0.30,
+)
 sky = simulate(
-    depressions=[-2, 0, 6, 12],
+    depressions=[-6, -3, 0, 3, 6],
     config=config,
     elevations=[0, 1, 5, 15, 30, 60, 90],
     azimuths=[0, 90, 180],
@@ -65,7 +94,7 @@ export_results(sky, "results/library_example")
 ```python
 from akutou_sky import load_dataset, save_dataset, export_results, plot_profiles
 
-sky = load_dataset("results/improved/sky.nc")
+sky = load_dataset("results/atmosphere_explorer/humid/sky.nc")
 save_dataset(sky, "results/copied.nc")
 export_results(sky, "results/copied_viewer")
 plot_profiles(sky, "results/copied_viewer/preview.png", azimuth=0)
@@ -112,18 +141,21 @@ akutou_sky/
 ├── src/akutou_sky/
 │   ├── api.py / config.py     # 公開計算API・設定
 │   ├── model.py / data.py     # 放射伝達・データキャッシュ
+│   ├── microphysics.py       # 吸湿成長・微粒子・霧
+│   ├── delta_m.py            # 前方散乱の打切り・一回散乱補正
 │   ├── colorimetry.py         # XYZ・xy・輝度・表示RGB・帯域平均
 │   ├── io.py / provenance.py  # NetCDF・出力一式・再現条件
 │   ├── export.py / plotting.py# CSV・HTML・任意依存のPNG
+│   ├── explorer.py / templates/ # 4種類の霧・塵の比較ページ
 │   └── validation.py / cli.py # 数値感度の比較・コマンド
 ├── examples/ / docs/ / tests/
 ├── scenarios/                 # 大気条件のJSON例
 ├── results/ / model_cache/    # 既存結果とデータ
-├── tools/verify_physics.py     # 現行モデルの物理チェック
+├── tools/                    # 全64条件の検査・数値感度・物理診断
 └── sky.sh / setup_environment.sh
 ```
 
-`results/improved/` と `results/overview/`、旧CSV・PNG・NPZは既存の計算結果です。元の詳しい説明は [モデル・既存結果の説明](docs/model-and-results.md) に保存しています。
+以前の `improved`・`overview` 等の計算方法は [モデル・既存結果の説明](docs/model-and-results.md) に保存しています。この資料は旧設定を扱う説明で、現在の基準は本READMEと更新した日本語2文書です。
 
 ## 開発と検証
 
@@ -135,6 +167,12 @@ python -m pip wheel --no-deps . --wheel-dir dist
 
 テストは積分・色変換・保存・公開APIと、保存済み小規模計算に対する実ソルバーの回帰を確認します。実計算の回帰は既存の `model_cache/` と `runs/v2_smoke.nc` を使い、ネットワーク取得は行いません。データのない配布先ではその検査をスキップします。物理モデルの収束不合格と、ライブラリ構成のテストの成功は別の判定です。
 
-物理法則の診断を再実行する場合は `python tools/verify_physics.py` を使います。この診断は既知の偏光対称性の不合格を含み、全結果を記録したうえで終了コード1を返します。
+最新の比較ページを検査する場合は、次を実行します。保存データの検査、代表条件の感度検査、検証文書とページ内表示の更新を行います。計算は順番に実行してください。
 
-伏角を細かく比較する新しいビューアーは **−6°〜＋6°、0.5°刻み（25点）** です。内部格子・前方散乱処理も改良しました。[数値感度の改善内容](docs/numerical-refinement.md)を参照してください。
+```sh
+python tools/validate_explorer.py --directory results/atmosphere_explorer --cache-dir model_cache
+```
+
+検証ツールの既定の作業量上限は `--max-phase-terms 520000000` です。これはRAMのバイト数ではありません。保存されている今回の結果では未実施が1件あるため、このツールは終了コード1を返します。個々の基準未達はJSONと集計文書に記録します。
+
+物理法則の診断を再実行する場合は `python tools/verify_physics.py` を使います。この診断は既知の偏光対称性の不合格を含み、全結果を記録したうえで終了コード1を返します。
