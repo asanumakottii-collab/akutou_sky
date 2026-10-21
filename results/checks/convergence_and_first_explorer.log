@@ -1,0 +1,100 @@
+== illuminance Mon Oct 19 14:48:31 JST 2026
+standard d= -6.0  model       7045 lx  USNO       5363 lx  ratio 1.31
+standard d= -3.0  model       3146 lx  USNO       2557 lx  ratio 1.23
+standard d= +0.0  model      941.9 lx  USNO      984.5 lx  ratio 0.96
+standard d= +2.0  model      267.6 lx  USNO        169 lx  ratio 1.58
+standard d= +4.0  model      38.59 lx  USNO      24.44 lx  ratio 1.58
+standard d= +6.0  model      3.461 lx  USNO      2.992 lx  ratio 1.16
+standard d= +8.0  model     0.3368 lx  USNO     0.3447 lx  ratio 0.98
+standard d=+10.0  model    0.04437 lx  USNO    0.03886 lx  ratio 1.14
+standard d=+12.0  model   0.006788 lx  USNO   0.004365 lx  ratio 1.56
+== convergence standard Mon Oct 19 14:55:08 JST 2026
+incoming_nodes: 302 -> 434: band Y 7.23%, xy 0.0151
+outgoing_nodes: 50 -> 74: band Y 4.26%, xy 0.0018
+horizontal_step_deg: 0.5 -> 0.25: band Y 2.20%, xy 0.0008
+horizontal_margin_deg: 3.0 -> 6.0: band Y 0.36%, xy 0.0001
+atmosphere_steps_m: [50.0, 500.0, 2000.0, 4000.0] -> [25.0, 250.0, 1000.0, 2000.0]: Diffuse field work 35,877,600 exceeds 33,000,000 even for one depression; use coarser numerics
+source_steps_m: [100.0, 2000.0, 4000.0, 8000.0] -> [50.0, 1000.0, 2000.0, 4000.0]: Diffuse field work 35,207,160 exceeds 33,000,000 even for one depression; use coarser numerics
+single_scatter_steps_m: [25.0, 125.0, 250.0, 500.0] -> [12.5, 62.5, 125.0, 250.0]: band Y 0.02%, xy 0.0000
+wavelength_step_nm: 20.0 -> 10.0: band Y 0.52%, xy 0.0023
+legendre_moments: 0 -> 128: band Y 0.00%, xy 0.0000
+delta_m_order: 16 -> 32: band Y 0.01%, xy 0.0000
+polarization: scalar + coarse-grid correction -> full I/Q/U: Diffuse field work 54,631,800 exceeds 33,000,000 even for one depression; use coarser numerics
+== explorer Mon Oct 19 15:52:25 JST 2026
+1/64 urban dust 0 fog 0: computed in 277 s
+2/64 urban dust 0 fog 0.05: computed in 390 s
+3/64 urban dust 0 fog 0.2: computed in 362 s
+4/64 urban dust 0 fog 0.8: computed in 454 s
+5/64 urban dust 0.03 fog 0: computed in 218 s
+6/64 urban dust 0.03 fog 0.05: computed in 392 s
+7/64 urban dust 0.03 fog 0.2: computed in 420 s
+8/64 urban dust 0.03 fog 0.8: computed in 408 s
+9/64 urban dust 0.1 fog 0: computed in 289 s
+10/64 urban dust 0.1 fog 0.05: computed in 370 s
+11/64 urban dust 0.1 fog 0.2: computed in 445 s
+12/64 urban dust 0.1 fog 0.8: computed in 385 s
+13/64 urban dust 0.3 fog 0: computed in 258 s
+14/64 urban dust 0.3 fog 0.05: computed in 360 s
+15/64 urban dust 0.3 fog 0.2: computed in 420 s
+16/64 urban dust 0.3 fog 0.8: computed in 396 s
+17/64 rural dust 0 fog 0: shared aerosol-free
+18/64 rural dust 0 fog 0.05: shared aerosol-free
+19/64 rural dust 0 fog 0.2: shared aerosol-free
+20/64 rural dust 0 fog 0.8: shared aerosol-free
+21/64 rural dust 0.03 fog 0: computed in 278 s
+22/64 rural dust 0.03 fog 0.05: computed in 362 s
+23/64 rural dust 0.03 fog 0.2: computed in 381 s
+24/64 rural dust 0.03 fog 0.8: computed in 434 s
+25/64 rural dust 0.1 fog 0: computed in 215 s
+26/64 rural dust 0.1 fog 0.05: computed in 358 s
+27/64 rural dust 0.1 fog 0.2: computed in 379 s
+28/64 rural dust 0.1 fog 0.8: computed in 393 s
+29/64 rural dust 0.3 fog 0: computed in 236 s
+30/64 rural dust 0.3 fog 0.05: computed in 376 s
+31/64 rural dust 0.3 fog 0.2: computed in 431 s
+32/64 rural dust 0.3 fog 0.8: computed in 433 s
+33/64 humid dust 0 fog 0: shared aerosol-free
+34/64 humid dust 0 fog 0.05: shared aerosol-free
+35/64 humid dust 0 fog 0.2: shared aerosol-free
+36/64 humid dust 0 fog 0.8: shared aerosol-free
+37/64 humid dust 0.03 fog 0: computed in 248 s
+38/64 humid dust 0.03 fog 0.05: computed in 370 s
+39/64 humid dust 0.03 fog 0.2: computed in 402 s
+40/64 humid dust 0.03 fog 0.8: computed in 390 s
+41/64 humid dust 0.1 fog 0: computed in 233 s
+42/64 humid dust 0.1 fog 0.05: computed in 385 s
+43/64 humid dust 0.1 fog 0.2: computed in 419 s
+44/64 humid dust 0.1 fog 0.8: computed in 421 s
+45/64 humid dust 0.3 fog 0: computed in 306 s
+46/64 humid dust 0.3 fog 0.05: computed in 476 s
+47/64 humid dust 0.3 fog 0.2: computed in 432 s
+48/64 humid dust 0.3 fog 0.8: computed in 430 s
+49/64 dry dust 0 fog 0: shared aerosol-free
+50/64 dry dust 0 fog 0.05: shared aerosol-free
+51/64 dry dust 0 fog 0.2: shared aerosol-free
+52/64 dry dust 0 fog 0.8: shared aerosol-free
+53/64 dry dust 0.03 fog 0: computed in 204 s
+54/64 dry dust 0.03 fog 0.05: computed in 324 s
+55/64 dry dust 0.03 fog 0.2: computed in 366 s
+56/64 dry dust 0.03 fog 0.8: computed in 361 s
+57/64 dry dust 0.1 fog 0: computed in 230 s
+58/64 dry dust 0.1 fog 0.05: computed in 409 s
+59/64 dry dust 0.1 fog 0.2: computed in 407 s
+60/64 dry dust 0.1 fog 0.8: computed in 414 s
+61/64 dry dust 0.3 fog 0: computed in 253 s
+62/64 dry dust 0.3 fog 0.05: computed in 400 s
+63/64 dry dust 0.3 fog 0.2: computed in 361 s
+64/64 dry dust 0.3 fog 0.8: computed in 390 s
+saved results/explorer/index.html
+== convergence humid Mon Oct 19 21:05:45 JST 2026
+incoming_nodes: 302 -> 434: band Y 8.68%, xy 0.0112
+outgoing_nodes: 50 -> 74: band Y 7.50%, xy 0.0035
+horizontal_step_deg: 0.5 -> 0.25: band Y 2.07%, xy 0.0006
+horizontal_margin_deg: 3.0 -> 6.0: band Y 0.39%, xy 0.0001
+atmosphere_steps_m: [50.0, 500.0, 2000.0, 4000.0] -> [25.0, 250.0, 1000.0, 2000.0]: Diffuse field work 35,877,600 exceeds 33,000,000 even for one depression; use coarser numerics
+source_steps_m: [100.0, 2000.0, 4000.0, 8000.0] -> [50.0, 1000.0, 2000.0, 4000.0]: Diffuse field work 35,207,160 exceeds 33,000,000 even for one depression; use coarser numerics
+single_scatter_steps_m: [25.0, 125.0, 250.0, 500.0] -> [12.5, 62.5, 125.0, 250.0]: band Y 0.22%, xy 0.0002
+wavelength_step_nm: 20.0 -> 10.0: band Y 0.33%, xy 0.0018
+legendre_moments: 0 -> 512: band Y 0.02%, xy 0.0001
+delta_m_order: 16 -> 32: band Y 16.98%, xy 0.0177
+== done Mon Oct 19 22:33:07 JST 2026

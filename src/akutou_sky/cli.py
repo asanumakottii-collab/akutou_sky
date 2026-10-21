@@ -1,139 +1,100 @@
-"""Command-line adapters for the library; computation itself remains in memory."""
+"""akutou-sky command line: run, led, explore, check."""
 import argparse
-from dataclasses import fields
-import json
 from pathlib import Path
-import re
+import sys
 
 from ._version import __version__
-from .config import ModelConfig, PRESETS
 
-def simulation_parser(*, output_root=None, tag='sky', cache_dir=None):
-    parser = argparse.ArgumentParser(description='球面大気による朝焼け・夕焼け・薄明')
-    _simulation_arguments(parser, output_root, tag, cache_dir)
-    return parser
 
-def _simulation_arguments(parser, output_root=None, tag='sky', cache_dir=None):
-    parser.add_argument('--tag', default=tag, help='result directory name under --output-root')
-    parser.add_argument('--output', type=Path, help='explicit result directory, overriding --tag')
-    parser.add_argument('--output-root', type=Path, default=output_root or Path('results'))
-    parser.add_argument('--preset', choices=PRESETS, default='standard')
-    parser.add_argument('--config', type=Path, help='settings JSON; overrides preset')
-    parser.add_argument('--d', type=float, nargs='+', default=[-5,-2,0,2,4,6,9,12,15,18])
-    parser.add_argument('--elevations', type=float, nargs='+')
-    parser.add_argument('--azimuths', type=float, nargs='+', default=[0])
-    parser.add_argument('--background', type=Path)
-    parser.add_argument('--cache-dir', type=Path, default=cache_dir)
-    parser.add_argument('--offline', action='store_true', help='refuse atmospheric data downloads')
-    parser.add_argument('--overwrite', action='store_true')
-    parser.add_argument('--no-export', action='store_true', help='save NetCDF and provenance only')
-    parser.add_argument('--quiet', action='store_true')
-    for field in fields(ModelConfig):
-        option = '--'+field.name.replace('_','-')
-        if isinstance(field.default, bool):
-            parser.add_argument(option, action=argparse.BooleanOptionalAction, default=None)
-        else:
-            help_text = 'HG only' if field.name in ('angstrom_exponent','aerosol_ssa','aerosol_g') else None
-            parser.add_argument(option, type=type(field.default), default=None, help=help_text)
-    parser.add_argument('--aod', dest='aod550', type=float, help=argparse.SUPPRESS)
-    parser.add_argument('--step', dest='wavelength_step_nm', type=float, help=argparse.SUPPRESS)
+def _common(p):
+    p.add_argument('--cache-dir', type=Path, default=None, help='atmospheric input data (default: see README)')
+    p.add_argument('--offline', action='store_true', help='refuse to download missing input data')
+    p.add_argument('--numerics', default='final', help='preview, final, or a JSON file')
 
-def parser(*, output_root=None, tag='sky', cache_dir=None):
-    top = argparse.ArgumentParser(description='akutou_sky · 朝焼け・夕焼け・薄明の分光モデル')
-    top.add_argument('--version', action='version', version=f'akutou-sky {__version__}')
-    sub = top.add_subparsers(dest='command', required=True)
-    explore = sub.add_parser('explore', help='build an offline four-scenario fog/dust explorer (64 transport runs)')
-    explore.add_argument('--output', type=Path, default=Path('results/atmosphere_explorer'))
-    explore.add_argument('--cache-dir', type=Path, default=cache_dir)
-    explore.add_argument('--offline', action='store_true')
-    explore.add_argument('--resume', action='store_true', help='verify and reuse completed cases')
-    sim = sub.add_parser('simulate', help='compute spectra, colour and brightness')
-    _simulation_arguments(sim, output_root, tag, cache_dir)
-    exp = sub.add_parser('export', help='export a saved dataset as HTML/CSV/NetCDF')
-    exp.add_argument('input', type=Path)
-    exp.add_argument('--output','--out', dest='output', type=Path)
-    exp.add_argument('--overwrite', action='store_true')
-    val = sub.add_parser('validate', help='compare grid sensitivity; not observational accuracy')
-    val.add_argument('--input', required=True, type=Path)
-    val.add_argument('--output', type=Path, help='directory for validation.json and cached runs')
-    val.add_argument('--checks', nargs='+', choices=['spectral','vertical','horizontal','angular','iterations','moments','delta_m','single_scatter'],
-                     default=['spectral','vertical','horizontal','angular','iterations'])
-    val.add_argument('--cache-dir', type=Path, default=cache_dir)
-    val.add_argument('--offline', action='store_true')
-    val.add_argument('--quiet', action='store_true')
-    plot = sub.add_parser('plot', help='save a colour/luminance PNG (requires plot extra)')
-    plot.add_argument('input', type=Path)
-    plot.add_argument('--output','--out', dest='output', required=True, type=Path)
-    plot.add_argument('--azimuth', type=float, default=0.)
-    plot.add_argument('--overwrite', action='store_true')
-    return top
 
-def simulate_command(args):
-    from .api import simulate
-    from .io import export_results, save_dataset
-    from .provenance import manifest
-    if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_-]*',args.tag):
-        raise ValueError('--tag must contain only letters, digits, underscores and hyphens')
-    settings = dict(PRESETS[args.preset])
-    if args.config is not None:
-        supplied = json.loads(args.config.read_text(encoding='utf-8'))
-        if not isinstance(supplied,dict):
-            raise ValueError('--config must contain a JSON object')
-        settings.update(supplied)
-    settings.update({field.name:getattr(args,field.name) for field in fields(ModelConfig)
-                     if getattr(args,field.name) is not None})
-    config = ModelConfig.from_dict(settings)
-    out = args.output or args.output_root/args.tag
-    if out.exists() and any(out.iterdir()) and not args.overwrite:
-        raise FileExistsError(f'{out} already exists; choose a new directory or --overwrite')
-    progress = None if args.quiet else lambda message: print(message,flush=True)
-    dataset = simulate(args.d,config=config,elevations=args.elevations,azimuths=args.azimuths,
-                       background=args.background,cache_dir=args.cache_dir,
-                       allow_download=not args.offline,progress=progress)
-    if args.no_export:
-        raw = save_dataset(dataset,out/'sky.nc',overwrite=args.overwrite)
-        (out/'manifest.json').write_text(json.dumps(manifest(dataset,raw),ensure_ascii=False,indent=2)+'\n')
-        config.to_json(out/'requested_config.json')
-        # An explicitly replaced run must not retain presentations of the old run.
-        for name in ['colors.csv','spectra.csv','bands.csv','index.html','summary.json']:
-            (out/name).unlink(missing_ok=True)
-    else:
-        export_results(dataset,out,overwrite=args.overwrite)
-    for name in ['validation.json','preview.png']:
-        (out/name).unlink(missing_ok=True)
-    if not args.quiet:
-        print(f'Saved: {out.resolve()}',flush=True)
-    return out
+def main(argv=None):
+    parser = argparse.ArgumentParser(prog='akutou-sky', description='朝焼け・夕焼け・薄明の空の色と輝度')
+    parser.add_argument('--version', action='version', version=__version__)
+    sub = parser.add_subparsers(dest='command', required=True)
 
-def main(argv=None, *, default_output_root=None, default_tag='sky', default_cache=None):
-    top = parser(output_root=default_output_root,tag=default_tag,cache_dir=default_cache)
-    args = top.parse_args(argv)
+    run = sub.add_parser('run', help='compute one scene -> sky.nc, colors.csv, bands.csv')
+    run.add_argument('--scene', default='standard', help='clear, standard, hazy, urban, rural, humid, dry, or JSON')
+    run.add_argument('--d', type=float, nargs='+', default=[x / 2 for x in range(-12, 25)],
+                     help='solar depressions in degrees (default -6..12 every 0.5)')
+    run.add_argument('--elevations', type=float, nargs='+')
+    run.add_argument('--azimuths', type=float, nargs='+', default=[0., 90., 180.])
+    run.add_argument('--output', type=Path, default=Path('results/standard'))
+    _common(run)
+
+    led = sub.add_parser('led', help='sky.nc -> led_table.csv and akutou_sky_table.h for the ESP32')
+    led.add_argument('input', type=Path, help='sky.nc from `akutou-sky run`')
+    led.add_argument('--azimuth', type=float, default=0., help='viewing azimuth from the Sun (0 = sunward)')
+    led.add_argument('--exponent', type=float, default=.5, help='luminance compression (1 = proportional)')
+    led.add_argument('--reference-luminance', type=float, help='cd/m2 shown at full duty (default: brightest band)')
+    led.add_argument('--primaries', type=Path, help='measured LED primaries JSON (default: sRGB)')
+    led.add_argument('--output', type=Path, help='directory (default: next to the input)')
+
+    explore = sub.add_parser('explore', help='four-sky dust/fog comparison page')
+    explore.add_argument('--output', type=Path, default=Path('results/explorer'))
+    _common(explore)
+
+    check = sub.add_parser('check', help='numerical convergence and measured-illuminance comparison')
+    check.add_argument('--scene', action='append', help='scene(s) to check (default: standard)')
+    check.add_argument('--only', choices=['convergence', 'illuminance'])
+    check.add_argument('--controls', nargs='+', help='subset of numerical controls to refine')
+    check.add_argument('--output', type=Path, default=Path('results/checks'))
+    _common(check)
+
+    args = parser.parse_args(argv)
+    say = lambda message: print(message, flush=True)
     try:
-        if args.command == 'explore':
+        if args.command == 'run':
+            from .io import export
+            from .solver import render
+            ds = render(args.d, args.scene, args.numerics, args.elevations, args.azimuths,
+                        cache_dir=args.cache_dir, allow_download=not args.offline, progress=say)
+            say(f'saved {export(ds, args.output)}')
+        elif args.command == 'led':
+            from .color import add_color
+            from .io import load
+            from .led import led_table, load_primaries, write_csv, write_header
+            ds = load(args.input)
+            if 'XYZ' not in ds:
+                ds = add_color(ds)
+            table = led_table(ds, azimuth=args.azimuth, exponent=args.exponent,
+                              reference_luminance=args.reference_luminance, primaries=load_primaries(args.primaries))
+            out = args.output or args.input.parent
+            out.mkdir(parents=True, exist_ok=True)
+            write_csv(table, out / 'led_table.csv')
+            import json
+            name = json.loads(ds.attrs.get('scene_json', '{}'))
+            write_header(table, out / 'akutou_sky_table.h', version=__version__,
+                         scene_name=args.input.parent.name + f' (aod550={name.get("aod550")})')
+            say(f'saved {out / "led_table.csv"} and {out / "akutou_sky_table.h"}')
+        elif args.command == 'explore':
             from .explorer import build_explorer
-            print(build_explorer(args.output, cache_dir=args.cache_dir, allow_download=not args.offline,
-                                 resume=args.resume, progress=lambda message:print(message,flush=True)))
-        elif args.command == 'simulate':
-            simulate_command(args)
-        elif args.command == 'export':
-            from .io import load_dataset, export_results
-            out = export_results(load_dataset(args.input),args.output or args.input.parent,overwrite=args.overwrite)
-            print(f'Exported: {out.resolve()}')
-        elif args.command == 'validate':
-            from .validation import validate_sensitivity
-            output = args.output or args.input.parent
-            report = validate_sensitivity(args.input,checks=args.checks,
-                output_dir=output,run_directory=output/'validation',cache_dir=args.cache_dir,
-                allow_download=not args.offline,progress=None if args.quiet else lambda message:print(message,flush=True))
-            if not args.quiet:
-                print(json.dumps({'all_requested_checks_complete':report['all_requested_checks_complete'],
-                                  'passes_all_sampled_checks':report['passes_all_sampled_checks']}))
-            return 0 if report['passes_all_sampled_checks'] else 1
-        elif args.command == 'plot':
-            if args.output.exists() and not args.overwrite:
-                raise FileExistsError(f'{args.output} exists; pass --overwrite')
-            from . import plot_profiles
-            print(plot_profiles(args.input,args.output,azimuth=args.azimuth))
-    except (ValueError, OSError, ImportError) as exc:
-        top.error(str(exc))
+            say(f'saved {build_explorer(args.output, args.numerics, cache_dir=args.cache_dir, allow_download=not args.offline, progress=say)}')
+        elif args.command == 'check':
+            from .check import convergence, illuminance, save_report
+            ok = True
+            for scene in args.scene or ['standard']:
+                if args.only in (None, 'illuminance'):
+                    report = illuminance(scene, args.numerics, cache_dir=args.cache_dir, allow_download=not args.offline)
+                    save_report(report, args.output / f'illuminance_{Path(scene).stem}.json')
+                    for row in report['rows']:
+                        say(f'{scene} d={row["depression"]:+5.1f}  model {row["model_lux"]:10.4g} lx  '
+                            f'USNO {row["usno_lux"]:10.4g} lx  ratio {row["ratio"]:.2f}')
+                if args.only in (None, 'convergence'):
+                    report = convergence(scene, args.numerics, args.controls, cache_dir=args.cache_dir,
+                                         allow_download=not args.offline, progress=say)
+                    save_report(report, args.output / f'convergence_{Path(scene).stem}.json')
+                    ok &= report['all_pass']
+            return 0 if ok else 1
+    except (ValueError, FileNotFoundError, FileExistsError) as exc:
+        print(f'error: {exc}', file=sys.stderr)
+        return 2
     return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

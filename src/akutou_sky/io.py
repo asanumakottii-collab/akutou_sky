@@ -1,57 +1,66 @@
-"""Explicit persistence: NetCDF alone, or a complete HTML/CSV/NetCDF bundle."""
-from __future__ import annotations
-
+"""NetCDF persistence and plain CSV export."""
 import json
 from pathlib import Path
 import tempfile
-from typing import TYPE_CHECKING
+import numpy as np
+import xarray as xr
+from .color import BANDS, add_color, band_xyz, chromaticity
 
-if TYPE_CHECKING:
-    import xarray as xr
 
-EXPORT_FILES = ('sky.nc', 'manifest.json', 'colors.csv', 'spectra.csv', 'bands.csv', 'summary.json', 'index.html')
-
-def load_dataset(path: str | Path) -> xr.Dataset:
-    """Load into memory and close the input file before returning."""
-    import xarray as xr
-    with xr.open_dataset(path) as source:
-        return source.load()
-
-def save_dataset(dataset: xr.Dataset, path: str | Path, *, overwrite: bool = False) -> Path:
-    """Save compressed NetCDF atomically; refuse overwrite by default."""
+def save(ds, path):
+    """Write compressed NetCDF atomically (replaces an existing file)."""
     path = Path(path)
-    if path.exists() and not overwrite:
-        raise FileExistsError(f'{path} exists; pass overwrite=True to replace it')
     path.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.NamedTemporaryFile(dir=path.parent, prefix=f'.{path.stem}-', suffix='.nc', delete=False) as stream:
-        temporary = Path(stream.name)
+    with tempfile.NamedTemporaryFile(dir=path.parent, prefix=f'.{path.stem}-', suffix='.nc', delete=False) as f:
+        temporary = Path(f.name)
     try:
-        encoding = {name: {'zlib': True, 'complevel': 4} for name in dataset.data_vars}
-        dataset.to_netcdf(temporary, engine='netcdf4', encoding=encoding)
+        ds.to_netcdf(temporary, engine='netcdf4',
+                     encoding={name: {'zlib': True, 'complevel': 4} for name in ds.data_vars})
         temporary.replace(path)
     finally:
         temporary.unlink(missing_ok=True)
     return path
 
-def export_results(dataset: xr.Dataset, directory: str | Path, *, overwrite: bool = False) -> Path:
-    """Write sky.nc, manifest.json, CSVs and a self-contained offline HTML viewer.
 
-    Raw transport datasets receive colour conversion before export. Existing
-    result files are refused unless overwrite=True. Validation reports are only
-    displayed when their recorded hash matches the exported NetCDF file.
-    """
-    from .colorimetry import add_colorimetry
-    from .export import export
-    from .provenance import manifest
+def load(path):
+    with xr.open_dataset(path) as source:
+        return source.load()
+
+
+def export(ds, directory):
+    """sky.nc, colors.csv (every ray), bands.csv (RevC bands), scene.json, numerics.json."""
     directory = Path(directory)
-    occupied = [directory/name for name in EXPORT_FILES if (directory/name).exists()]
-    if occupied and not overwrite:
-        raise FileExistsError(f'Result files already exist in {directory}; pass overwrite=True')
-    if 'total_XYZ' not in dataset:
-        dataset = add_colorimetry(dataset)
-    directory.mkdir(parents=True, exist_ok=True)
-    raw = save_dataset(dataset, directory/'sky.nc', overwrite=overwrite)
-    (directory/'manifest.json').write_text(json.dumps(manifest(dataset, raw), ensure_ascii=False, indent=2)+'\n')
-    (directory/'requested_config.json').write_text(json.dumps(json.loads(dataset.attrs['config_json']), indent=2)+'\n')
-    export(dataset, directory)
+    if 'XYZ' not in ds:
+        ds = add_color(ds)
+    save(ds, directory / 'sky.nc')
+    (directory / 'scene.json').write_text(json.dumps(json.loads(ds.attrs['scene_json']), indent=2) + '\n')
+    (directory / 'numerics.json').write_text(json.dumps(json.loads(ds.attrs['numerics_json']), indent=2) + '\n')
+    rows = ['depression_deg,azimuth_deg,elevation_deg,X,Y_cd_m2,Z,x,y']
+    for i, d in enumerate(ds.depression.values):
+        for j, a in enumerate(ds.azimuth.values):
+            for k, e in enumerate(ds.elevation.values):
+                rows.append(','.join(f'{v:.6g}' for v in (d, a, e, *ds.XYZ.values[i, j, k], *ds.xy.values[i, j, k])))
+    (directory / 'colors.csv').write_text('\n'.join(rows) + '\n')
+    if ds.elevation.values.min() <= BANDS[0][0] and ds.elevation.values.max() >= BANDS[-1][1]:
+        xyz = band_xyz(ds)
+        xy = chromaticity(xyz)
+        rows = ['depression_deg,azimuth_deg,band,elevation_min_deg,elevation_max_deg,X,Y_cd_m2,Z,x,y']
+        for i, d in enumerate(ds.depression.values):
+            for j, a in enumerate(ds.azimuth.values):
+                for b, (lo, hi) in enumerate(BANDS):
+                    rows.append(','.join(f'{v:.6g}' for v in (d, a, b + 1, lo, hi, *xyz[i, j, b], *xy[i, j, b])))
+        (directory / 'bands.csv').write_text('\n'.join(rows) + '\n')
     return directory
+
+
+def same_run(ds, scene, numerics, depressions, elevations, azimuths):
+    """True if a saved dataset was computed with exactly these inputs and axes."""
+    from .numerics import Numerics
+    try:
+        saved = Numerics.from_dict(json.loads(ds.attrs['numerics_json']))
+        return (json.loads(ds.attrs['scene_json']) == scene.to_dict()
+                and saved.resolved(scene) == numerics.resolved(scene)
+                and all(np.array_equal(ds[k].values, np.asarray(v, dtype=float)) for k, v in
+                        (('depression', depressions), ('elevation', elevations), ('azimuth', azimuths))))
+    except (KeyError, ValueError):
+        return False

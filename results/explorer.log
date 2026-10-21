@@ -1,0 +1,66 @@
+1/64 urban dust 0 fog 0: computed in 155 s
+2/64 urban dust 0 fog 0.05: computed in 839 s
+3/64 urban dust 0 fog 0.2: computed in 746 s
+4/64 urban dust 0 fog 0.8: computed in 845 s
+5/64 urban dust 0.03 fog 0: computed in 166 s
+6/64 urban dust 0.03 fog 0.05: computed in 693 s
+7/64 urban dust 0.03 fog 0.2: computed in 749 s
+8/64 urban dust 0.03 fog 0.8: computed in 880 s
+9/64 urban dust 0.1 fog 0: computed in 167 s
+10/64 urban dust 0.1 fog 0.05: computed in 680 s
+11/64 urban dust 0.1 fog 0.2: computed in 735 s
+12/64 urban dust 0.1 fog 0.8: computed in 834 s
+13/64 urban dust 0.3 fog 0: computed in 174 s
+14/64 urban dust 0.3 fog 0.05: computed in 756 s
+15/64 urban dust 0.3 fog 0.2: computed in 793 s
+16/64 urban dust 0.3 fog 0.8: computed in 912 s
+17/64 rural dust 0 fog 0: shared aerosol-free
+18/64 rural dust 0 fog 0.05: shared aerosol-free
+19/64 rural dust 0 fog 0.2: shared aerosol-free
+20/64 rural dust 0 fog 0.8: shared aerosol-free
+21/64 rural dust 0.03 fog 0: computed in 171 s
+22/64 rural dust 0.03 fog 0.05: computed in 678 s
+23/64 rural dust 0.03 fog 0.2: computed in 750 s
+24/64 rural dust 0.03 fog 0.8: computed in 848 s
+25/64 rural dust 0.1 fog 0: computed in 175 s
+26/64 rural dust 0.1 fog 0.05: computed in 758 s
+27/64 rural dust 0.1 fog 0.2: computed in 763 s
+28/64 rural dust 0.1 fog 0.8: computed in 874 s
+29/64 rural dust 0.3 fog 0: computed in 193 s
+30/64 rural dust 0.3 fog 0.05: computed in 787 s
+31/64 rural dust 0.3 fog 0.2: computed in 798 s
+32/64 rural dust 0.3 fog 0.8: computed in 908 s
+33/64 humid dust 0 fog 0: shared aerosol-free
+34/64 humid dust 0 fog 0.05: shared aerosol-free
+35/64 humid dust 0 fog 0.2: shared aerosol-free
+36/64 humid dust 0 fog 0.8: shared aerosol-free
+37/64 humid dust 0.03 fog 0: computed in 163 s
+38/64 humid dust 0.03 fog 0.05: computed in 684 s
+39/64 humid dust 0.03 fog 0.2: computed in 774 s
+40/64 humid dust 0.03 fog 0.8: computed in 859 s
+41/64 humid dust 0.1 fog 0: computed in 182 s
+42/64 humid dust 0.1 fog 0.05: computed in 785 s
+43/64 humid dust 0.1 fog 0.2: computed in 832 s
+44/64 humid dust 0.1 fog 0.8: computed in 933 s
+45/64 humid dust 0.3 fog 0: computed in 201 s
+46/64 humid dust 0.3 fog 0.05: computed in 896 s
+47/64 humid dust 0.3 fog 0.2: computed in 943 s
+48/64 humid dust 0.3 fog 0.8: computed in 1136 s
+49/64 dry dust 0 fog 0: shared aerosol-free
+50/64 dry dust 0 fog 0.05: shared aerosol-free
+51/64 dry dust 0 fog 0.2: shared aerosol-free
+52/64 dry dust 0 fog 0.8: shared aerosol-free
+53/64 dry dust 0.03 fog 0: computed in 180 s
+54/64 dry dust 0.03 fog 0.05: computed in 660 s
+55/64 dry dust 0.03 fog 0.2: computed in 740 s
+56/64 dry dust 0.03 fog 0.8: computed in 849 s
+57/64 dry dust 0.1 fog 0: computed in 175 s
+58/64 dry dust 0.1 fog 0.05: computed in 702 s
+59/64 dry dust 0.1 fog 0.2: computed in 781 s
+60/64 dry dust 0.1 fog 0.8: computed in 866 s
+61/64 dry dust 0.3 fog 0: computed in 180 s
+62/64 dry dust 0.3 fog 0.05: computed in 781 s
+63/64 dry dust 0.3 fog 0.2: computed in 879 s
+64/64 dry dust 0.3 fog 0.8: computed in 897 s
+saved results/explorer/index.html
+exit 0 Tue Oct 20 10:49:26 JST 2026

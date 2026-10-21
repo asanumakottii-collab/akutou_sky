@@ -1,0 +1,138 @@
+"""Band XYZ -> LED PWM duty for the ESP32 firmware.
+
+The sky spans about six decades of luminance during twilight; the dome LEDs
+can show perhaps three. Luminance is compressed with a power law
+Y_out = (Y / Y_ref) ** exponent (exponent 1 = physically proportional), the
+chromaticity xy is kept, and colours outside the LED gamut are desaturated
+toward the LED white at the same luminance. PWM duty is linear in light
+output, so no gamma is applied.
+
+The default primaries are sRGB (D65 white = all channels at 1). Replace them
+with measured values: chromaticity xy and full-duty luminance of each channel,
+optionally different for each of the four bands (see led_primaries.example.json).
+"""
+from dataclasses import dataclass
+import json
+from pathlib import Path
+import numpy as np
+from .color import BANDS, band_xyz, chromaticity
+
+SRGB_PRIMARIES = dict(R=dict(x=0.640, y=0.330, Y=0.2126), G=dict(x=0.300, y=0.600, Y=0.7152),
+                      B=dict(x=0.150, y=0.060, Y=0.0722))
+
+
+@dataclass(frozen=True)
+class Primaries:
+    """XYZ of each LED channel at full duty, as matrix columns (X, Y, Z) x (R, G, B)."""
+    matrix: np.ndarray
+
+    @classmethod
+    def from_xyY(cls, channels):
+        cols = []
+        for key in 'RGB':
+            x, y, Y = channels[key]['x'], channels[key]['y'], channels[key]['Y']
+            if not (0 < y < 1 and 0 < x < 1 and Y > 0):
+                raise ValueError(f'Invalid primary {key}: {channels[key]}')
+            cols.append([x / y * Y, Y, (1 - x - y) / y * Y])
+        return cls(np.array(cols).T)
+
+    def duty(self, xyz):
+        return np.linalg.solve(self.matrix, np.asarray(xyz, dtype=float))
+
+    def xyz(self, duty):
+        return self.matrix @ np.asarray(duty, dtype=float)
+
+
+def load_primaries(path=None):
+    """Return four Primaries (one per band) from JSON, or sRGB defaults."""
+    if path is None:
+        return [Primaries.from_xyY(SRGB_PRIMARIES)] * len(BANDS)
+    data = json.loads(Path(path).read_text(encoding='utf-8'))
+    if 'bands' in data:
+        if len(data['bands']) != len(BANDS):
+            raise ValueError(f'"bands" needs {len(BANDS)} entries, bottom to top')
+        return [Primaries.from_xyY(b) for b in data['bands']]
+    return [Primaries.from_xyY(data)] * len(BANDS)
+
+
+def to_duty(xyz, primaries):
+    """Exact duty for a target XYZ; desaturate toward white if a channel would be negative."""
+    duty = primaries.duty(xyz)
+    if duty.min() < 0:
+        white = primaries.duty(primaries.xyz(np.ones(3)) * xyz[1] / primaries.xyz(np.ones(3))[1])
+        # smallest t with (1-t)*duty + t*white >= 0 for every channel; keeps luminance Y
+        t = max(-d / (w - d) for d, w in zip(duty, white) if d < 0)
+        duty = (1 - t) * duty + t * white
+    peak = duty.max()
+    return np.clip(duty / peak if peak > 1 else duty, 0, 1)
+
+
+def led_table(ds, *, azimuth=0., exponent=0.5, reference_luminance=None, primaries=None,
+              floor=1 / 4095):
+    """Duty table [depression, band, RGB] for one viewing azimuth of a coloured dataset.
+
+    reference_luminance (cd/m2) maps to full duty; default is the brightest band in
+    the table. Duty below floor (one 12-bit PWM step) becomes 0.
+    """
+    primaries = primaries or load_primaries()
+    a = int(np.argmin(np.abs(ds.azimuth.values - azimuth)))
+    xyz = band_xyz(ds)[:, a]                                  # (depression, band, XYZ)
+    y_ref = reference_luminance or xyz[..., 1].max()
+    scale = np.where(xyz[..., 1] > 0, (xyz[..., 1] / y_ref) ** exponent / np.maximum(xyz[..., 1], 1e-300), 0)
+    shown = xyz * scale[..., None]
+    white_y = [p.xyz(np.ones(3))[1] for p in primaries]
+    duty = np.array([[to_duty(shown[i, b] * white_y[b], primaries[b]) for b in range(len(BANDS))]
+                     for i in range(len(xyz))])
+    duty[duty < floor] = 0.
+    return dict(depression=ds.depression.values, azimuth=float(ds.azimuth.values[a]), xyz=xyz,
+                xy=chromaticity(xyz), duty=duty, exponent=exponent, reference_luminance=float(y_ref))
+
+
+def write_csv(table, path):
+    rows = ['depression_deg,band,elevation_min_deg,elevation_max_deg,X,Y_cd_m2,Z,x,y,duty_R,duty_G,duty_B']
+    for i, d in enumerate(table['depression']):
+        for b, (lo, hi) in enumerate(BANDS):
+            rows.append(','.join(f'{v:.6g}' for v in (d, b + 1, lo, hi, *table['xyz'][i, b], *table['xy'][i, b],
+                                                       *table['duty'][i, b])))
+    Path(path).write_text('\n'.join(rows) + '\n', encoding='utf-8')
+
+
+def write_header(table, path, *, scene_name='', version=''):
+    """C header for the ESP32: depression axis, duty table and an interpolating lookup."""
+    d, duty = table['depression'], table['duty']
+    order = np.argsort(d)
+    d, duty = d[order], duty[order]
+    nd, nb = duty.shape[:2]
+    fmt = lambda v: f'{v:.4f}f'
+    rows = ',\n'.join('  {' + ', '.join('{' + ', '.join(fmt(c) for c in band) + '}' for band in step) + '}'
+                      for step in duty)
+    text = f"""// Generated by akutou-sky {version}. Do not edit by hand; regenerate with `akutou-sky led`.
+// Scene: {scene_name}; azimuth {table['azimuth']:g} deg from the Sun (0 = sunward).
+// Luminance compression: duty proportional to (Y / {table['reference_luminance']:.4g} cd/m2) ^ {table['exponent']:g}.
+// Bands (bottom to top): {', '.join(f'{lo:g}-{hi:g} deg' for lo, hi in BANDS)}.
+// Duty is 0..1 and linear in light output (no gamma). Depression > 0: Sun below horizon.
+// Sunrise: sweep depression from AKUTOU_DEPRESSION_DEG[N-1] down to [0]; sunset: the reverse,
+//   e.g. float d = AKUTOU_DEPRESSION_DEG[AKUTOU_N_DEPRESSION - 1] * (1 - p) + AKUTOU_DEPRESSION_DEG[0] * p;
+#pragma once
+
+#define AKUTOU_N_DEPRESSION {nd}
+#define AKUTOU_N_BAND {nb}
+
+static const float AKUTOU_DEPRESSION_DEG[AKUTOU_N_DEPRESSION] = {{{', '.join(f'{v:.2f}f' for v in d)}}};
+
+// [depression][band][R, G, B]
+static const float AKUTOU_DUTY[AKUTOU_N_DEPRESSION][AKUTOU_N_BAND][3] = {{
+{rows}
+}};
+
+// Linear interpolation in depression; clamps outside the table.
+static inline void akutouDuty(float depression, int band, float rgb[3]) {{
+  int i = 0;
+  while (i < AKUTOU_N_DEPRESSION - 2 && depression > AKUTOU_DEPRESSION_DEG[i + 1]) i++;
+  float t = (depression - AKUTOU_DEPRESSION_DEG[i]) / (AKUTOU_DEPRESSION_DEG[i + 1] - AKUTOU_DEPRESSION_DEG[i]);
+  t = t < 0.0f ? 0.0f : (t > 1.0f ? 1.0f : t);
+  for (int c = 0; c < 3; c++)
+    rgb[c] = AKUTOU_DUTY[i][band][c] * (1.0f - t) + AKUTOU_DUTY[i + 1][band][c] * t;
+}}
+"""
+    Path(path).write_text(text, encoding='utf-8')

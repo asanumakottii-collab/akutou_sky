@@ -1,0 +1,10 @@
+standard d= -6.0  model       7045 lx  USNO       5363 lx  ratio 1.31
+standard d= -3.0  model       3146 lx  USNO       2557 lx  ratio 1.23
+standard d= +0.0  model      941.9 lx  USNO      984.5 lx  ratio 0.96
+standard d= +2.0  model      267.6 lx  USNO        169 lx  ratio 1.58
+standard d= +4.0  model      38.59 lx  USNO      24.44 lx  ratio 1.58
+standard d= +6.0  model      3.461 lx  USNO      2.992 lx  ratio 1.16
+standard d= +8.0  model     0.3363 lx  USNO     0.3447 lx  ratio 0.98
+standard d=+10.0  model    0.04492 lx  USNO    0.03886 lx  ratio 1.16
+standard d=+12.0  model    0.00684 lx  USNO   0.004365 lx  ratio 1.57
+exit 0 Tue Oct 20 01:23:43 JST 2026
