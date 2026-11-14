@@ -29,6 +29,19 @@ def chromaticity(xyz):
     return np.divide(xyz[..., :2], total, out=np.full_like(xyz[..., :2], np.nan), where=total > 0)
 
 
+def purple_index(xyz):
+    """How purple a colour is, 0 if not: (min(R, B) - G) / max(R, G, B) in linear sRGB (D65 white).
+
+    Positive only when green is the weakest primary, i.e. the colour lies between
+    blue and red on the hue circle (violet, purple, magenta, pink). Independent of
+    brightness. Used to locate the purple light of twilight (docs/モデルと根拠.md).
+    """
+    rgb = np.asarray(xyz, dtype=float) @ SRGB_FROM_XYZ.T
+    peak = rgb.max(axis=-1)
+    excess = np.minimum(rgb[..., 0], rgb[..., 2]) - rgb[..., 1]
+    return np.divide(np.maximum(excess, 0), peak, out=np.zeros_like(peak), where=peak > 0)
+
+
 def preview_srgb(xyz):
     """Display-only sRGB with each colour's brightest channel = 1 (no luminance information)."""
     rgb = np.maximum(np.asarray(xyz) @ SRGB_FROM_XYZ.T, 0)

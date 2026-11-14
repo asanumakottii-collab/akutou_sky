@@ -1,66 +1,51 @@
-1/64 urban dust 0 fog 0: computed in 155 s
-2/64 urban dust 0 fog 0.05: computed in 839 s
-3/64 urban dust 0 fog 0.2: computed in 746 s
-4/64 urban dust 0 fog 0.8: computed in 845 s
-5/64 urban dust 0.03 fog 0: computed in 166 s
-6/64 urban dust 0.03 fog 0.05: computed in 693 s
-7/64 urban dust 0.03 fog 0.2: computed in 749 s
-8/64 urban dust 0.03 fog 0.8: computed in 880 s
-9/64 urban dust 0.1 fog 0: computed in 167 s
-10/64 urban dust 0.1 fog 0.05: computed in 680 s
-11/64 urban dust 0.1 fog 0.2: computed in 735 s
-12/64 urban dust 0.1 fog 0.8: computed in 834 s
-13/64 urban dust 0.3 fog 0: computed in 174 s
-14/64 urban dust 0.3 fog 0.05: computed in 756 s
-15/64 urban dust 0.3 fog 0.2: computed in 793 s
-16/64 urban dust 0.3 fog 0.8: computed in 912 s
-17/64 rural dust 0 fog 0: shared aerosol-free
-18/64 rural dust 0 fog 0.05: shared aerosol-free
-19/64 rural dust 0 fog 0.2: shared aerosol-free
-20/64 rural dust 0 fog 0.8: shared aerosol-free
-21/64 rural dust 0.03 fog 0: computed in 171 s
-22/64 rural dust 0.03 fog 0.05: computed in 678 s
-23/64 rural dust 0.03 fog 0.2: computed in 750 s
-24/64 rural dust 0.03 fog 0.8: computed in 848 s
-25/64 rural dust 0.1 fog 0: computed in 175 s
-26/64 rural dust 0.1 fog 0.05: computed in 758 s
-27/64 rural dust 0.1 fog 0.2: computed in 763 s
-28/64 rural dust 0.1 fog 0.8: computed in 874 s
-29/64 rural dust 0.3 fog 0: computed in 193 s
-30/64 rural dust 0.3 fog 0.05: computed in 787 s
-31/64 rural dust 0.3 fog 0.2: computed in 798 s
-32/64 rural dust 0.3 fog 0.8: computed in 908 s
-33/64 humid dust 0 fog 0: shared aerosol-free
-34/64 humid dust 0 fog 0.05: shared aerosol-free
-35/64 humid dust 0 fog 0.2: shared aerosol-free
-36/64 humid dust 0 fog 0.8: shared aerosol-free
-37/64 humid dust 0.03 fog 0: computed in 163 s
-38/64 humid dust 0.03 fog 0.05: computed in 684 s
-39/64 humid dust 0.03 fog 0.2: computed in 774 s
-40/64 humid dust 0.03 fog 0.8: computed in 859 s
-41/64 humid dust 0.1 fog 0: computed in 182 s
-42/64 humid dust 0.1 fog 0.05: computed in 785 s
-43/64 humid dust 0.1 fog 0.2: computed in 832 s
-44/64 humid dust 0.1 fog 0.8: computed in 933 s
-45/64 humid dust 0.3 fog 0: computed in 201 s
-46/64 humid dust 0.3 fog 0.05: computed in 896 s
-47/64 humid dust 0.3 fog 0.2: computed in 943 s
-48/64 humid dust 0.3 fog 0.8: computed in 1136 s
-49/64 dry dust 0 fog 0: shared aerosol-free
-50/64 dry dust 0 fog 0.05: shared aerosol-free
-51/64 dry dust 0 fog 0.2: shared aerosol-free
-52/64 dry dust 0 fog 0.8: shared aerosol-free
-53/64 dry dust 0.03 fog 0: computed in 180 s
-54/64 dry dust 0.03 fog 0.05: computed in 660 s
-55/64 dry dust 0.03 fog 0.2: computed in 740 s
-56/64 dry dust 0.03 fog 0.8: computed in 849 s
-57/64 dry dust 0.1 fog 0: computed in 175 s
-58/64 dry dust 0.1 fog 0.05: computed in 702 s
-59/64 dry dust 0.1 fog 0.2: computed in 781 s
-60/64 dry dust 0.1 fog 0.8: computed in 866 s
-61/64 dry dust 0.3 fog 0: computed in 180 s
-62/64 dry dust 0.3 fog 0.05: computed in 781 s
-63/64 dry dust 0.3 fog 0.2: computed in 879 s
-64/64 dry dust 0.3 fog 0.8: computed in 897 s
+Sun Nov 15 02:17:36 JST 2026
+1/48 urban dust 0 strat 0: computed in 203 s
+2/48 urban dust 0 strat 0.005: cached
+3/48 urban dust 0 strat 0.02: computed in 211 s
+4/48 urban dust 0.03 strat 0: computed in 198 s
+5/48 urban dust 0.03 strat 0.005: cached
+6/48 urban dust 0.03 strat 0.02: computed in 167 s
+7/48 urban dust 0.1 strat 0: computed in 195 s
+8/48 urban dust 0.1 strat 0.005: cached
+9/48 urban dust 0.1 strat 0.02: computed in 192 s
+10/48 urban dust 0.3 strat 0: computed in 201 s
+11/48 urban dust 0.3 strat 0.005: cached
+12/48 urban dust 0.3 strat 0.02: computed in 200 s
+13/48 rural dust 0 strat 0: shared (identical without the absent layer)
+14/48 rural dust 0 strat 0.005: cached
+15/48 rural dust 0 strat 0.02: shared (identical without the absent layer)
+16/48 rural dust 0.03 strat 0: computed in 192 s
+17/48 rural dust 0.03 strat 0.005: cached
+18/48 rural dust 0.03 strat 0.02: computed in 214 s
+19/48 rural dust 0.1 strat 0: computed in 188 s
+20/48 rural dust 0.1 strat 0.005: cached
+21/48 rural dust 0.1 strat 0.02: computed in 200 s
+22/48 rural dust 0.3 strat 0: computed in 226 s
+23/48 rural dust 0.3 strat 0.005: cached
+24/48 rural dust 0.3 strat 0.02: computed in 227 s
+25/48 dry dust 0 strat 0: shared (identical without the absent layer)
+26/48 dry dust 0 strat 0.005: cached
+27/48 dry dust 0 strat 0.02: shared (identical without the absent layer)
+28/48 dry dust 0.03 strat 0: computed in 210 s
+29/48 dry dust 0.03 strat 0.005: cached
+30/48 dry dust 0.03 strat 0.02: computed in 214 s
+31/48 dry dust 0.1 strat 0: computed in 210 s
+32/48 dry dust 0.1 strat 0.005: cached
+33/48 dry dust 0.1 strat 0.02: computed in 224 s
+34/48 dry dust 0.3 strat 0: computed in 230 s
+35/48 dry dust 0.3 strat 0.005: cached
+36/48 dry dust 0.3 strat 0.02: computed in 218 s
+37/48 eruption dust 0 strat 0: shared (identical without the absent layer)
+38/48 eruption dust 0 strat 0.005: shared (identical without the absent layer)
+39/48 eruption dust 0 strat 0.02: shared (identical without the absent layer)
+40/48 eruption dust 0.03 strat 0: computed in 231 s
+41/48 eruption dust 0.03 strat 0.005: computed in 223 s
+42/48 eruption dust 0.03 strat 0.02: computed in 189 s
+43/48 eruption dust 0.1 strat 0: computed in 206 s
+44/48 eruption dust 0.1 strat 0.005: computed in 239 s
+45/48 eruption dust 0.1 strat 0.02: computed in 211 s
+46/48 eruption dust 0.3 strat 0: computed in 229 s
+47/48 eruption dust 0.3 strat 0.005: computed in 227 s
+48/48 eruption dust 0.3 strat 0.02: computed in 226 s
 saved results/explorer/index.html
-exit 0 Tue Oct 20 10:49:26 JST 2026
+exit 0 Sun Nov 15 03:59:35 JST 2026

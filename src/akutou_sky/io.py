@@ -4,7 +4,7 @@ from pathlib import Path
 import tempfile
 import numpy as np
 import xarray as xr
-from .color import BANDS, add_color, band_xyz, chromaticity
+from .color import BANDS, add_color, band_xyz, chromaticity, purple_index
 
 
 def save(ds, path):
@@ -43,12 +43,13 @@ def export(ds, directory):
     (directory / 'colors.csv').write_text('\n'.join(rows) + '\n')
     if ds.elevation.values.min() <= BANDS[0][0] and ds.elevation.values.max() >= BANDS[-1][1]:
         xyz = band_xyz(ds)
-        xy = chromaticity(xyz)
-        rows = ['depression_deg,azimuth_deg,band,elevation_min_deg,elevation_max_deg,X,Y_cd_m2,Z,x,y']
+        xy, purple = chromaticity(xyz), purple_index(xyz)
+        rows = ['depression_deg,azimuth_deg,band,elevation_min_deg,elevation_max_deg,X,Y_cd_m2,Z,x,y,purple']
         for i, d in enumerate(ds.depression.values):
             for j, a in enumerate(ds.azimuth.values):
                 for b, (lo, hi) in enumerate(BANDS):
-                    rows.append(','.join(f'{v:.6g}' for v in (d, a, b + 1, lo, hi, *xyz[i, j, b], *xy[i, j, b])))
+                    rows.append(','.join(f'{v:.6g}' for v in (d, a, b + 1, lo, hi, *xyz[i, j, b], *xy[i, j, b],
+                                                               purple[i, j, b])))
         (directory / 'bands.csv').write_text('\n'.join(rows) + '\n')
     return directory
 
@@ -59,7 +60,7 @@ def same_run(ds, scene, numerics, depressions, elevations, azimuths):
     try:
         saved = Numerics.from_dict(json.loads(ds.attrs['numerics_json']))
         return (json.loads(ds.attrs['scene_json']) == scene.to_dict()
-                and saved.resolved(scene) == numerics.resolved(scene)
+                and saved.resolved() == numerics.resolved()
                 and all(np.array_equal(ds[k].values, np.asarray(v, dtype=float)) for k, v in
                         (('depression', depressions), ('elevation', elevations), ('azimuth', azimuths))))
     except (KeyError, ValueError):

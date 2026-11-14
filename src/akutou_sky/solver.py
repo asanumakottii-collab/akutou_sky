@@ -4,9 +4,8 @@
           + diffuse          (coarse grid: successive orders minus their own single scattering)
 
 Scalar runs solve the diffuse field with a consistently truncated delta-M phase
-function (Wiscombe 1977) and use TMS single scattering (Nakajima & Tanaka 1988);
-this is required for forward-peaked fog droplets. Polarized runs (num_stokes=3,
-no fog) solve the full phase function without truncation.
+function (Wiscombe 1977) and use TMS single scattering (Nakajima & Tanaka 1988).
+Polarized runs (num_stokes=3) use the backend-native delta-M.
 """
 import importlib.metadata
 import json
@@ -22,7 +21,7 @@ from .numerics import (HORIZONTAL_GROWTH, atmosphere_grid, check_workload, corre
 from .optics import Optics
 from .scene import get_scene
 
-MODEL_VERSION = '3.0'
+MODEL_VERSION = '3.1'
 EARTH_RADIUS_M = 6371000.
 REFRACTION_WAVELENGTH_NM = 550.
 DEFAULT_ELEVATIONS = [0., .5, 1., 2., 3., 5., 8., 12., 20., 30., 45., 60., 90.]
@@ -46,11 +45,11 @@ def _config(numerics, scene, *, multiple):
     cfg = sk.Config()
     cfg.num_threads = numerics.threads()
     cfg.num_stokes = numerics.num_stokes
-    cfg.num_singlescatter_moments = numerics.moments(scene)
+    cfg.num_singlescatter_moments = numerics.moments()
     cfg.solar_refraction = numerics.solar_refraction
     cfg.wavelength_batch_size = 1
     cfg.delta_m_scaling = True  # TMS single scattering on delta-M scaled optical depth
-    cfg.num_streams = numerics.delta_m(scene)
+    cfg.num_streams = numerics.delta_m()
     cfg.multiple_scatter_source = sk.MultipleScatterSource.NoSource
     if multiple:
         cfg.multiple_scatter_source = sk.MultipleScatterSource.SuccessiveOrders
@@ -96,17 +95,17 @@ def render(depressions, scene='standard', numerics='final', elevations=None, azi
     ds = checked_angles(depressions, 'depressions', -18, 24)
     es = checked_angles(DEFAULT_ELEVATIONS if elevations is None else elevations, 'elevations', 0, 90)
     az = checked_angles(azimuths, 'azimuths', -180, 180)
-    check_workload(numerics, scene, ds, native=_native)
+    check_workload(numerics, scene, ds)
     split = numerics.num_stokes == 1 and not _native
     wavelengths, edges = spectral_grid(numerics.wavelength_step_nm)
     cache_dir = resolve_cache_dir(cache_dir)
     paths = input_paths(cache_dir, allow_download=allow_download)
-    optics = Optics(scene, wavelengths, edges, paths, cache_dir, numerics.moments(scene), numerics.threads())
+    optics = Optics(scene, wavelengths, edges, paths, cache_dir, numerics.moments(), numerics.threads())
 
     coarse, fine = atmosphere_grid(numerics), single_scatter_grid(numerics)
     single = _config(numerics, scene, multiple=False)
     geo_coarse, geo_fine = _geometry(coarse, single), _geometry(fine, single)
-    groups = depression_groups(numerics, ds, scene)
+    groups = depression_groups(numerics, ds)
     if progress:
         progress(f'{len(ds) * len(az) * len(es)} rays, {len(wavelengths)} wavelengths, {len(groups)} depression '
                  f'group(s); diffuse field {len(coarse)} levels x {len(source_grid(numerics))} sources x '
@@ -136,7 +135,7 @@ def render(depressions, scene='standard', numerics='final', elevations=None, azi
         single_coarse = sk.Engine(single, geo_coarse, view)
         if split:
             from .delta_m import DeltaMTransport
-            diffuse_engine = DeltaMTransport(so, geo_coarse, view, numerics.delta_m(scene))
+            diffuse_engine = DeltaMTransport(so, geo_coarse, view, numerics.delta_m())
         else:  # polarized: backend-native delta-M for the diffuse field
             diffuse_engine = sk.Engine(so, geo_coarse, view)
         for i, w in enumerate(wavelengths):
@@ -159,7 +158,7 @@ def render(depressions, scene='standard', numerics='final', elevations=None, azi
         # Single scattering of unpolarized sunlight is exact in scalar form; polarization changes the
         # diffuse field. Its effect (vector - scalar, both backend-native delta-M on one coarse grid,
         # so their discretization errors cancel) is added to the fine scalar solution.
-        coarse_numerics = correction_numerics(numerics, scene)
+        coarse_numerics = correction_numerics(numerics)
         pair = [render(ds, scene, coarse_numerics.replace(num_stokes=n), es, az, cache_dir=cache_dir,
                        allow_download=allow_download, _native=True).radiance.sel(stokes='I').values
                 for n in (3, 1)]
@@ -188,7 +187,7 @@ def render(depressions, scene='standard', numerics='final', elevations=None, azi
                'sasktran2_version': importlib.metadata.version('sasktran2'),
                'scene_json': json.dumps(scene.to_dict(), sort_keys=True),
                'numerics_json': json.dumps(numerics.to_dict(), sort_keys=True),
-               'numerics_resolved_json': json.dumps(numerics.resolved(scene).to_dict(), sort_keys=True),
+               'numerics_resolved_json': json.dumps(numerics.resolved().to_dict(), sort_keys=True),
                'horizontal_growth': HORIZONTAL_GROWTH,
                'aerosol_aod550_ambient': optics.ambient_aod550, 'aerosol_growth_factor': optics.growth,
                'aerosol_wet_median_radius_nm': optics.wet_radius_nm,

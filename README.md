@@ -1,12 +1,17 @@
 # akutou-sky
 
-あくとう（朝焼け・夕焼け・薄明投影機）のために、**理想的な晴天の朝焼け・夕焼け・薄明の空の色と明るさ**を球面大気の放射伝達計算で求め、ESP32 の LED 駆動表まで作るライブラリです。ライブラリ 0.4.0 / モデル 3.0。
+あくとう（朝焼け・夕焼け・薄明投影機）のために、**理想的な晴天の朝焼け・夕焼け・薄明の空の色と明るさ**を球面大気の放射伝達計算で求め、ESP32 の LED 駆動表まで作るライブラリです。ライブラリ 0.5.0 / モデル 3.1。
 
 - 計算の中身と根拠：[docs/モデルと根拠.md](docs/モデルと根拠.md)
 - 精度（数値収束と実測照度との比較）：[docs/精度検証.md](docs/精度検証.md)
 - ChatGPT 作の旧版（0.3.0）のコード・結果・ログは [archive/v0.3/](archive/v0.3/) に移しました
 
-## 0.3 からの主な変更
+## 0.5 の変更
+
+- **霧（高湿度の水滴）を削除**：水滴の鋭い前方散乱は、16 GB のメモリでは収束する設定で計算できず、`humid` 大気では太陽付近で10〜20%の誤差が残っていました。`humid` 大気、比較ページの「湿度が高い」と霧スライダーを削除しました。湿度による微粒子の吸湿成長は残しましたが、湿度が高く粒が大きく育つと散乱光の方向の標本が足りなくなり、RH 95% では誤差が4〜7%に増えました。16 GB で収束を確かめられないため、湿度の上限を RH 95% から 70% に下げました（[docs/精度検証.md](docs/精度検証.md)）。
+- **紫光を表現できるように**：成層圏の硫酸の粒の大きさ（`stratospheric_median_radius_nm`・`stratospheric_mode_width`）を `Scene` で変えられるようにし、噴火後の大気 `eruption` を追加しました。`bands.csv` には紫の度合い（`purple`）の列が付きます。比較ページの霧スライダーは「成層圏の微粒子」スライダーになり、「噴火後」のページを加えました（[docs/モデルと根拠.md](docs/モデルと根拠.md#紫光薄明の紫の光)）。
+
+## 0.3 から 0.4 での主な変更
 
 | | 旧版 0.3 | 新版 0.4 |
 |---|---|---|
@@ -39,7 +44,14 @@ python -m pip install -e .       # 既存の Python 環境に入れる場合
 akutou-sky run --scene standard --cache-dir model_cache --offline --output results/standard
 ```
 
-伏角 −6°〜＋12°（0.5°刻み）、太陽側・横・反対側の3方位、高度0〜90°の13方向を計算し、`sky.nc`（分光放射輝度）、`colors.csv`（各方向の XYZ・xy・輝度）、`bands.csv`（RevC の4高度帯の平均）を保存します。`--scene` は `clear` `standard` `hazy` `urban` `rural` `humid` `dry` または JSON ファイル、`--numerics preview` で速い確認計算になります。
+伏角 −6°〜＋12°（0.5°刻み）、太陽側・横・反対側の3方位、高度0〜90°の13方向を計算し、`sky.nc`（分光放射輝度）、`colors.csv`（各方向の XYZ・xy・輝度）、`bands.csv`（RevC の4高度帯の平均）を保存します。`--scene` は `clear` `standard` `hazy` `urban` `rural` `dry` `eruption` または JSON ファイル、`--numerics preview` で速い確認計算になります。
+
+**紫光**：太陽が地平線の下3〜6°のころ、太陽側の空の中ほどが紫になる現象です。`standard` でも伏角4°前後に淡く出て、`eruption`（噴火後で成層圏の微粒子が多い大気）では高度35〜60°に強く出ます。強さは成層圏の微粒子の量 `stratospheric_aod550`（0〜0.02）、粒の大きさ `stratospheric_median_radius_nm`（40〜150 nm）、粒径の広がり `stratospheric_mode_width` で変えられます。`bands.csv` の `purple` 列が正の帯は、LED でも紫に光ります。
+
+```sh
+akutou-sky run --scene eruption --cache-dir model_cache --offline --output results/eruption
+akutou-sky led results/eruption/sky.nc
+```
 
 ### 2. LED 駆動表を作る
 
@@ -65,7 +77,7 @@ setRgb(rgb[0], rgb[1], rgb[2]);
 akutou-sky explore --cache-dir model_cache --offline      # → results/explorer/index.html
 ```
 
-都会・田舎・湿度が高い日・低い日の4種類について、塵4段階×霧4段階×伏角25点を計算したオフライン HTML を作ります。LED 4系列での見え方も表示します。全条件の計算には 16 GB の Mac で約10時間かかります（計算済みの条件は再利用）。
+都会・田舎・乾いた日・噴火後の4種類について、塵4段階×成層圏の微粒子3段階（なし・平常・噴火後）×伏角25点を計算したオフライン HTML を作ります。成層圏のスライダーで紫光の出方が変わります。LED 4系列での見え方も表示します。全条件の計算には 16 GB の Mac で約2時間20分かかります（塵なしの条件はページ間で共通なので、計算するのは48条件のうち39条件。計算済みの条件は再利用）。
 
 ### 4. 精度を確かめる
 
@@ -93,10 +105,10 @@ table = led_table(sky, azimuth=0)                       # table['duty'][伏角, 
 src/akutou_sky/
   scene.py     物理条件 Scene と名前付きの大気 SCENES
   numerics.py  数値設定 Numerics（preview / final）と格子
-  optics.py    Rayleigh・オゾン・エアロゾル（吸湿成長）・成層圏層・霧・太陽光
+  optics.py    Rayleigh・オゾン・エアロゾル（吸湿成長）・成層圏の硫酸の層・太陽光
   solver.py    SASKTRAN2 による放射伝達（render）
   delta_m.py   前方散乱の Delta-M 打切りと1回散乱の補正
-  color.py     XYZ・xy・輝度、RevC 4高度帯の平均
+  color.py     XYZ・xy・輝度、RevC 4高度帯の平均、紫の度合い
   led.py       LED デューティ表と ESP32 ヘッダ
   check.py     収束テストと実測照度との比較
   explorer.py  比較ページ（templates/explorer.html）
@@ -110,5 +122,5 @@ archive/v0.3/  旧版一式
 ## 注意
 
 - 比較・演出のための仮想的な晴天大気です。特定の日・場所の空の予報ではありません。
-- 太陽円盤、夜光・星・月・街明かり、雲、地形は含みません。伏角12°を超える深い薄明では背景光が支配的になります。
+- 太陽円盤、夜光・星・月・街明かり、霧、雲、地形は含みません。伏角12°を超える深い薄明では背景光が支配的になります。
 - LED の値は、実機の原色・配光・ドーム反射を測って校正してから使ってください。

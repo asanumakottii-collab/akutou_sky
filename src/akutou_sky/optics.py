@@ -1,4 +1,4 @@
-"""Scene -> SASKTRAN2 optical constituents (gas, aerosol, fog, sunlight).
+"""Scene -> SASKTRAN2 optical constituents (gas, aerosol, stratospheric sulfate, sunlight).
 
 Hygroscopic growth: Petters & Kreidenweis (2007), doi:10.5194/acp-7-1961-2007,
 without the Kelvin term; one growth factor shifts the lognormal mode while the
@@ -12,8 +12,7 @@ from scipy.constants import Boltzmann
 
 DU_MOLECULES_M2 = 2.687e20
 WATER_INDEX = complex(1.333, -1e-9)          # visible constant-index approximation
-SULFATE_INDEX = complex(1.43, -1e-8)         # background stratospheric aerosol
-SULFATE_RADIUS_NM, SULFATE_WIDTH = 80., 1.6
+SULFATE_INDEX = complex(1.43, -1e-8)         # stratospheric sulfuric-acid droplets
 
 
 def water_uptake(scene):
@@ -101,7 +100,7 @@ class Optics:
                                / np.diff(edges) / scene.solar_distance_au**2)
         self.growth, self.wet_radius_nm, wet_index = water_uptake(scene)
         self.ambient_aod550 = scene.aod550
-        self.aerosol = self.strato = self.fog = None
+        self.aerosol = self.strato = None
         mie = lambda r, w, n: _mie(wavelengths, cache_dir, r, w, n, moments, threads)
         if scene.aod550 > 0:
             dry = mie(scene.median_radius_nm, scene.mode_width,
@@ -111,9 +110,7 @@ class Optics:
                 self.aerosol = mie(self.wet_radius_nm, scene.mode_width, wet_index)
                 self.ambient_aod550 = scene.aod550 * _extinction_550(self.aerosol) / _extinction_550(dry)
         if scene.stratospheric_aod550 > 0:
-            self.strato = mie(SULFATE_RADIUS_NM, SULFATE_WIDTH, SULFATE_INDEX)
-        if scene.has_fog:
-            self.fog = mie(scene.fog_median_radius_um * 1000, scene.fog_mode_width, WATER_INDEX)
+            self.strato = mie(scene.stratospheric_median_radius_nm, scene.stratospheric_mode_width, SULFATE_INDEX)
 
     def profiles(self, height):
         """550 nm extinction profiles (m-1) on the given altitude grid."""
@@ -125,8 +122,6 @@ class Optics:
             out['stratospheric_aerosol'] = column_profile(
                 height, np.exp(-.5 * ((height - s.stratospheric_center_m) / s.stratospheric_width_m)**2),
                 s.stratospheric_aod550)
-        if self.fog is not None:
-            out['fog'] = column_profile(height, np.exp(-height / s.fog_scale_height_m), s.fog_aod550)
         return out
 
     def add_to(self, atmo, height, first, last):
@@ -137,7 +132,7 @@ class Optics:
         ozone = column_profile(height, np.interp(height, self.std['HGT'] * 1000, self.std['O3'] * 1e-6) * air,
                                self.scene.ozone_du * DU_MOLECULES_M2)
         atmo['ozone'] = sk.constituent.VMRAltitudeAbsorber(self.ozone_optical, height, ozone / air)
-        databases = dict(aerosol=self.aerosol, stratospheric_aerosol=self.strato, fog=self.fog)
+        databases = dict(aerosol=self.aerosol, stratospheric_aerosol=self.strato)
         for name, extinction in self.profiles(height).items():
             atmo[name] = sk.constituent.ExtinctionScatterer(databases[name], height, extinction, 550.)
         atmo['solar'] = _Solar(self.irradiance[first:last])
@@ -145,4 +140,4 @@ class Optics:
         return ozone
 
     def mie_paths(self):
-        return [Path(db.path()) for db in (self.aerosol, self.strato, self.fog) if db is not None]
+        return [Path(db.path()) for db in (self.aerosol, self.strato) if db is not None]

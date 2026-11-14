@@ -6,10 +6,10 @@ import sys
 from ._version import __version__
 
 
-def _common(p):
+def _common(p, numerics='final'):
     p.add_argument('--cache-dir', type=Path, default=None, help='atmospheric input data (default: see README)')
     p.add_argument('--offline', action='store_true', help='refuse to download missing input data')
-    p.add_argument('--numerics', default='final', help='preview, final, or a JSON file')
+    p.add_argument('--numerics', default=numerics, help=f'preview, compare, final, or a JSON file (default: {numerics})')
 
 
 def main(argv=None):
@@ -18,7 +18,7 @@ def main(argv=None):
     sub = parser.add_subparsers(dest='command', required=True)
 
     run = sub.add_parser('run', help='compute one scene -> sky.nc, colors.csv, bands.csv')
-    run.add_argument('--scene', default='standard', help='clear, standard, hazy, urban, rural, humid, dry, or JSON')
+    run.add_argument('--scene', default='standard', help='clear, standard, hazy, urban, rural, dry, eruption, or JSON')
     run.add_argument('--d', type=float, nargs='+', default=[x / 2 for x in range(-12, 25)],
                      help='solar depressions in degrees (default -6..12 every 0.5)')
     run.add_argument('--elevations', type=float, nargs='+')
@@ -34,9 +34,9 @@ def main(argv=None):
     led.add_argument('--primaries', type=Path, help='measured LED primaries JSON (default: sRGB)')
     led.add_argument('--output', type=Path, help='directory (default: next to the input)')
 
-    explore = sub.add_parser('explore', help='four-sky dust/fog comparison page')
+    explore = sub.add_parser('explore', help='four-sky dust / stratospheric-aerosol (purple light) comparison page')
     explore.add_argument('--output', type=Path, default=Path('results/explorer'))
-    _common(explore)
+    _common(explore, numerics='compare')
 
     check = sub.add_parser('check', help='numerical convergence and measured-illuminance comparison')
     check.add_argument('--scene', action='append', help='scene(s) to check (default: standard)')

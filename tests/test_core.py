@@ -7,7 +7,7 @@ import unittest
 import numpy as np
 import colour
 
-from akutou_sky.color import BANDS, band_mean, chromaticity, cmf_weights, xyz_from_radiance
+from akutou_sky.color import BANDS, SRGB_FROM_XYZ, band_mean, chromaticity, cmf_weights, purple_index, xyz_from_radiance
 from akutou_sky.led import Primaries, SRGB_PRIMARIES, load_primaries, to_duty, write_header
 from akutou_sky.numerics import (MAX_SOURCE_WORK, Numerics, PRESETS, atmosphere_grid, check_workload,
                                  depression_groups, horizontal_grid, layered_grid, single_scatter_grid,
@@ -45,6 +45,14 @@ class SpectrumAndColour(unittest.TestCase):
             values.append(xyz_from_radiance(np.ones(len(edges) - 1), np.c_[edges[:-1], edges[1:]]))
         self.assertTrue(np.allclose(values[0], values[1], rtol=1e-9))
 
+    def test_purple_index_only_when_green_is_weakest(self):
+        xyz = lambda rgb: np.linalg.solve(SRGB_FROM_XYZ, rgb)
+        self.assertEqual(purple_index(xyz([.2, .4, 1.])), 0)       # twilight blue
+        self.assertEqual(purple_index(xyz([1., .5, .1])), 0)       # orange glow
+        self.assertAlmostEqual(purple_index(xyz([.6, .3, 1.])), .3)  # violet
+        self.assertAlmostEqual(purple_index(1e-6 * xyz([.6, .3, 1.])), .3)  # brightness does not matter
+        self.assertEqual(purple_index(np.zeros(3)), 0)
+
     def test_black_has_undefined_chromaticity(self):
         self.assertTrue(np.isnan(chromaticity(np.zeros(3))).all())
 
@@ -64,19 +72,25 @@ class SpectrumAndColour(unittest.TestCase):
 class SceneAndNumerics(unittest.TestCase):
     def test_scene_validation_and_json_round_trip(self):
         with self.assertRaises(ValueError):
-            Scene(relative_humidity=.99)
+            Scene(relative_humidity=.9)  # beyond the converged range (outgoing-direction error 4-7%)
+        with self.assertRaises(ValueError):
+            Scene(stratospheric_aod550=.1)
         with self.assertRaises(ValueError):
             Scene.from_dict({'nonsense': 1})
-        scene = SCENES['humid']
-        self.assertEqual(Scene.from_dict(json.loads(scene.to_json())), scene)
+        with self.assertRaises(ValueError):
+            Scene.from_dict({'fog_aod550': .2})  # fog was removed: it cannot be resolved in 16 GB
+        with self.assertRaises(ValueError):
+            Scene(stratospheric_median_radius_nm=200.)  # beyond the converged range
+        for scene in SCENES.values():
+            self.assertEqual(Scene.from_dict(json.loads(scene.to_json())), scene)
 
     def test_numerics_round_trip_and_refinement(self):
         n = Numerics()
         self.assertEqual(Numerics.from_dict(json.loads(n.to_json())), n)
         self.assertEqual(n.refined('incoming_nodes', 1.4).incoming_nodes, 434)
         self.assertEqual(n.refined('atmosphere_steps_m', 2).atmosphere_steps_m[0], n.atmosphere_steps_m[0] / 2)
-        self.assertEqual(n.moments(SCENES['standard']), 64)
-        self.assertEqual(n.moments(SCENES['humid']), 256)
+        self.assertEqual((n.moments(), n.delta_m()), (64, 16))
+        self.assertEqual(n.resolved().delta_m_order, 16)
 
     def test_grids_contain_layer_edges_and_source_is_inside(self):
         n = Numerics()
@@ -100,12 +114,12 @@ class SceneAndNumerics(unittest.TestCase):
         self.assertEqual(sorted(i for g in groups for i in g), list(range(len(d))))
         self.assertTrue(all(workload(n, [d[i] for i in g]) <= MAX_SOURCE_WORK for g in groups))
 
-    def test_fog_requires_fine_boundary_layer_and_scalar(self):
+    def test_stratospheric_layer_must_be_resolved(self):
+        thin = SCENES['standard'].replace(stratospheric_width_m=1000.)
+        check_workload(Numerics(), SCENES['standard'], [0])
         with self.assertRaises(ValueError):
-            check_workload(Numerics(num_stokes=3), SCENES['humid'], [0])
-        with self.assertRaises(ValueError):
-            check_workload(PRESETS['preview'].replace(atmosphere_steps_m=(200., 500., 1000., 2000.)),
-                           SCENES['humid'], [0])
+            check_workload(Numerics(), thin, [0])        # 2 km steps at 10-30 km
+        check_workload(Numerics(), thin.replace(stratospheric_aod550=0.), [0])
 
 
 class Microphysics(unittest.TestCase):
@@ -115,8 +129,8 @@ class Microphysics(unittest.TestCase):
         self.assertEqual(n, complex(1.45, -0.005))
 
     def test_kappa_growth(self):
-        g, r, n = water_uptake(Scene(relative_humidity=.9, hygroscopicity_kappa=.3))
-        self.assertAlmostEqual(g**3, 1 + .3 * .9 / .1)
+        g, r, n = water_uptake(Scene(relative_humidity=.7, hygroscopicity_kappa=.3))
+        self.assertAlmostEqual(g**3, 1 + .3 * .7 / .3)
         self.assertTrue(1.333 < n.real < 1.45)
 
     def test_column_profile_recovers_column(self):

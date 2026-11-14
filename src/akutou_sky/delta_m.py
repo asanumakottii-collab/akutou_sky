@@ -1,7 +1,7 @@
 """Scalar delta-M transport with an explicit single-scattering correction.
 
 The backend's native SO forcing uses the untruncated single-scatter phase.
-For narrow fog peaks this aliases into a coarse incoming quadrature. Instead
+For narrow forward peaks this aliases into a coarse incoming quadrature. Instead
 solve the consistently truncated problem, then replace its observer single
 scatter with the backend's full-phase, scaled-optical-depth single scatter
 (TMS, Nakajima & Tanaka 1988). No colour smoothing or intensity clipping.

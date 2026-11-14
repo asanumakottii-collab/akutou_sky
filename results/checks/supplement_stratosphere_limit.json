@@ -1,0 +1,273 @@
+{
+  "scene": {
+    "aod550": 0.1,
+    "aerosol_scale_height_m": 1500.0,
+    "median_radius_nm": 100.0,
+    "mode_width": 1.6,
+    "refractive_index_real": 1.45,
+    "refractive_index_imag": 0.005,
+    "relative_humidity": 0.0,
+    "hygroscopicity_kappa": 0.0,
+    "stratospheric_aod550": 0.15,
+    "stratospheric_center_m": 20000.0,
+    "stratospheric_width_m": 4000.0,
+    "stratospheric_median_radius_nm": 300.0,
+    "stratospheric_mode_width": 1.8,
+    "ozone_du": 300.0,
+    "surface_albedo": 0.1,
+    "observer_altitude_m": 2.0,
+    "solar_distance_au": 1.0
+  },
+  "numerics": {
+    "wavelength_step_nm": 20.0,
+    "incoming_nodes": 194,
+    "outgoing_nodes": 50,
+    "horizontal_step_deg": 0.5,
+    "horizontal_margin_deg": 3.0,
+    "atmosphere_steps_m": [
+      50.0,
+      500.0,
+      2000.0,
+      4000.0
+    ],
+    "source_steps_m": [
+      100.0,
+      2000.0,
+      4000.0,
+      8000.0
+    ],
+    "single_scatter_steps_m": [
+      25.0,
+      125.0,
+      250.0,
+      500.0
+    ],
+    "legendre_moments": 0,
+    "delta_m_order": 0,
+    "num_stokes": 1,
+    "polarization_correction": true,
+    "solar_refraction": false,
+    "num_threads": 0
+  },
+  "criterion": "band-mean luminance <= 3% and xy <= 0.003",
+  "base_seconds": 117.02926404100072,
+  "checks": {
+    "atmosphere_steps_m": {
+      "base": [
+        50.0,
+        500.0,
+        2000.0,
+        4000.0
+      ],
+      "refined": [
+        25.0,
+        250.0,
+        1000.0,
+        2000.0
+      ],
+      "band_max_Y": 0.09057226689649199,
+      "band_max_xy": 0.007316961809453915,
+      "ray_max_Y_above_1deg": 0.09263899065398375,
+      "ray_max_xy_above_1deg": 0.007349128889948819,
+      "ray_max_Y_below_1deg": 0.08267223883567651,
+      "ray_max_xy_below_1deg": 0.006729746161869262,
+      "passes": false,
+      "per_depression": [
+        {
+          "depression": -6.0,
+          "band_max_Y": 0.0018063741075660077,
+          "band_max_xy": 0.0001708932481504737,
+          "ray_max_Y": 0.0020052121190070687,
+          "ray_max_xy": 0.00017777583668920937
+        },
+        {
+          "depression": -3.0,
+          "band_max_Y": 0.0021005585434571658,
+          "band_max_xy": 0.0002121684867482881,
+          "ray_max_Y": 0.0022166172097188956,
+          "ray_max_xy": 0.00021725093139491353
+        },
+        {
+          "depression": 0.0,
+          "band_max_Y": 0.02724546467228938,
+          "band_max_xy": 0.0007804208772296496,
+          "ray_max_Y": 0.02848295067741123,
+          "ray_max_xy": 0.001489038078811746
+        },
+        {
+          "depression": 3.0,
+          "band_max_Y": 0.049279709936271704,
+          "band_max_xy": 0.0012552533432614093,
+          "ray_max_Y": 0.0508273627440118,
+          "ray_max_xy": 0.0028787392472688577
+        },
+        {
+          "depression": 6.0,
+          "band_max_Y": 0.06198790205264913,
+          "band_max_xy": 0.004404547193242281,
+          "ray_max_Y": 0.06346563004365512,
+          "ray_max_xy": 0.004644512363179304
+        },
+        {
+          "depression": 9.0,
+          "band_max_Y": 0.09057226689649199,
+          "band_max_xy": 0.006858030078185686,
+          "ray_max_Y": 0.09263899065398375,
+          "ray_max_xy": 0.006989794101191235
+        },
+        {
+          "depression": 12.0,
+          "band_max_Y": 0.06001304496390683,
+          "band_max_xy": 0.007316961809453915,
+          "ray_max_Y": 0.06915858134911304,
+          "ray_max_xy": 0.007349128889948819
+        }
+      ]
+    },
+    "source_steps_m": {
+      "base": [
+        100.0,
+        2000.0,
+        4000.0,
+        8000.0
+      ],
+      "refined": [
+        50.0,
+        1000.0,
+        2000.0,
+        4000.0
+      ],
+      "band_max_Y": 0.058216857876584996,
+      "band_max_xy": 0.008747794490038584,
+      "ray_max_Y_above_1deg": 0.06263765304001921,
+      "ray_max_xy_above_1deg": 0.008781747496043942,
+      "ray_max_Y_below_1deg": 0.051477392535765214,
+      "ray_max_xy_below_1deg": 0.008415330948835143,
+      "passes": false,
+      "per_depression": [
+        {
+          "depression": -6.0,
+          "band_max_Y": 0.004990967419429567,
+          "band_max_xy": 0.0003492659450848075,
+          "ray_max_Y": 0.005489125517911384,
+          "ray_max_xy": 0.0003689152851620352
+        },
+        {
+          "depression": -3.0,
+          "band_max_Y": 0.006230050889537496,
+          "band_max_xy": 0.00038680733396271433,
+          "ray_max_Y": 0.006491427886614628,
+          "ray_max_xy": 0.00040479678407544803
+        },
+        {
+          "depression": 0.0,
+          "band_max_Y": 0.00442166683133386,
+          "band_max_xy": 0.0004946695897044843,
+          "ray_max_Y": 0.0045470143213089545,
+          "ray_max_xy": 0.0005086921569221914
+        },
+        {
+          "depression": 3.0,
+          "band_max_Y": 0.004321594240584728,
+          "band_max_xy": 0.0003855214817982049,
+          "ray_max_Y": 0.004403396304552694,
+          "ray_max_xy": 0.0004680821169635126
+        },
+        {
+          "depression": 6.0,
+          "band_max_Y": 0.03642281535756889,
+          "band_max_xy": 0.004948506114448646,
+          "ray_max_Y": 0.03778622568566907,
+          "ray_max_xy": 0.0051198059631202076
+        },
+        {
+          "depression": 9.0,
+          "band_max_Y": 0.058216857876584996,
+          "band_max_xy": 0.006537814637432816,
+          "ray_max_Y": 0.06263765304001921,
+          "ray_max_xy": 0.006783766343064277
+        },
+        {
+          "depression": 12.0,
+          "band_max_Y": 0.035632336137282485,
+          "band_max_xy": 0.008747794490038584,
+          "ray_max_Y": 0.04480746026426982,
+          "ray_max_xy": 0.008781747496043942
+        }
+      ]
+    },
+    "single_scatter_steps_m": {
+      "base": [
+        25.0,
+        125.0,
+        250.0,
+        500.0
+      ],
+      "refined": [
+        12.5,
+        62.5,
+        125.0,
+        250.0
+      ],
+      "band_max_Y": 0.00018944139106181823,
+      "band_max_xy": 1.1357717193693726e-05,
+      "ray_max_Y_above_1deg": 0.0003217296296247185,
+      "ray_max_xy_above_1deg": 2.0833352040788145e-05,
+      "ray_max_Y_below_1deg": 0.00024277628501234678,
+      "ray_max_xy_below_1deg": 0.00012139853593576706,
+      "passes": true,
+      "per_depression": [
+        {
+          "depression": -6.0,
+          "band_max_Y": 2.5831115600002197e-05,
+          "band_max_xy": 3.0857630832707805e-06,
+          "ray_max_Y": 3.248334710564726e-05,
+          "ray_max_xy": 5.2799889695013626e-06
+        },
+        {
+          "depression": -3.0,
+          "band_max_Y": 7.268519331794978e-05,
+          "band_max_xy": 2.423020765196863e-06,
+          "ray_max_Y": 7.525834279599693e-05,
+          "ray_max_xy": 4.219890376124746e-06
+        },
+        {
+          "depression": 0.0,
+          "band_max_Y": 0.00013980610590665486,
+          "band_max_xy": 7.874848539481982e-06,
+          "ray_max_Y": 0.00016342427694853047,
+          "ray_max_xy": 1.505063049058426e-05
+        },
+        {
+          "depression": 3.0,
+          "band_max_Y": 0.00018944139106181823,
+          "band_max_xy": 5.5422080422884615e-06,
+          "ray_max_Y": 0.00022081853237326834,
+          "ray_max_xy": 2.0833352040788145e-05
+        },
+        {
+          "depression": 6.0,
+          "band_max_Y": 0.00012001271910651494,
+          "band_max_xy": 1.1357717193693726e-05,
+          "ray_max_Y": 0.0003217296296247185,
+          "ray_max_xy": 1.1268888859564305e-05
+        },
+        {
+          "depression": 9.0,
+          "band_max_Y": 3.814483650579839e-05,
+          "band_max_xy": 7.238276011844282e-06,
+          "ray_max_Y": 4.3603193413233e-05,
+          "ray_max_xy": 8.314283047134003e-06
+        },
+        {
+          "depression": 12.0,
+          "band_max_Y": 3.4102747118164454e-05,
+          "band_max_xy": 4.660509689243761e-06,
+          "ray_max_Y": 4.27162877810561e-05,
+          "ray_max_xy": 6.772145667425171e-06
+        }
+      ]
+    }
+  },
+  "all_pass": false
+}

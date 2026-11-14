@@ -56,8 +56,6 @@ def convergence(scene='standard', numerics='final', controls=None, *, depression
     scene, numerics = get_scene(scene), get_numerics(numerics)
     controls = [c for c in (controls or CONTROLS)
                 if not (c in ('delta_m_order', 'polarization') and numerics.num_stokes == 3)]
-    if scene.has_fog and 'polarization' in controls:
-        controls.remove('polarization')  # a full polarized solve is not available with fog
     run = lambda n: add_color(render(depressions, scene, n, CONVERGENCE_ELEVATIONS, CONVERGENCE_AZIMUTHS,
                                      cache_dir=cache_dir, allow_download=allow_download))
     base = run(numerics)
@@ -69,7 +67,7 @@ def convergence(scene='standard', numerics='final', controls=None, *, depression
             refined = numerics.replace(num_stokes=3, polarization_correction=False)
             entry = dict(base='scalar + coarse-grid correction', refined='full I/Q/U')
         else:
-            resolved = numerics.resolved(scene)
+            resolved = numerics.resolved()
             refined = resolved.refined(control, REFINEMENTS[control])
             entry = dict(base=resolved.to_dict()[control], refined=refined.to_dict()[control])
         try:
@@ -108,7 +106,7 @@ def _direct_illuminance(ds, scene, numerics, cache_dir):
     cfg.num_threads = numerics.threads()
     cfg.multiple_scatter_source = sk.MultipleScatterSource.NoSource
     cfg.output_los_optical_depth = True
-    cfg.num_singlescatter_moments = numerics.moments(scene)
+    cfg.num_singlescatter_moments = numerics.moments()
     height = ds.altitude.values
     geo = sk.Geometry1D(cos_sza=.5, solar_azimuth=0., earth_radius_m=EARTH_RADIUS_M, altitude_grid_m=height,
                         interpolation_method=sk.InterpolationMethod.LinearInterpolation,
@@ -121,7 +119,7 @@ def _direct_illuminance(ds, scene, numerics, cache_dir):
     edges = np.r_[ds.wavelength_bounds.values[:, 0], ds.wavelength_bounds.values[-1, 1]]
     cache = resolve_cache_dir(cache_dir)
     optics = Optics(scene, ds.wavelength.values, edges, input_paths(cache, allow_download=False), cache,
-                    numerics.moments(scene), numerics.threads())
+                    numerics.moments(), numerics.threads())
     atmo = sk.Atmosphere(geo, cfg, wavelengths_nm=ds.wavelength.values, calculate_derivatives=False)
     optics.add_to(atmo, height, 0, len(ds.wavelength))
     tau = sk.Engine(cfg, geo, view).calculate_radiance(atmo).los_optical_depth.transpose('los', 'wavelength').values

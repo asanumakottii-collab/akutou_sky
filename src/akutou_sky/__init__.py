@@ -9,7 +9,7 @@ from .numerics import Numerics, PRESETS
 from .scene import SCENES, Scene
 
 _LAZY = {
-    'render': 'solver', 'add_color': 'color', 'band_xyz': 'color', 'BANDS': 'color',
+    'render': 'solver', 'add_color': 'color', 'band_xyz': 'color', 'BANDS': 'color', 'purple_index': 'color',
     'led_table': 'led', 'load_primaries': 'led', 'write_header': 'led',
     'save': 'io', 'load': 'io', 'export': 'io', 'build_explorer': 'explorer',
     'convergence': 'check', 'illuminance': 'check',

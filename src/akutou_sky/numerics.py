@@ -32,9 +32,9 @@ class Numerics:
     atmosphere_steps_m: tuple = (50., 500., 2000., 4000.)
     source_steps_m: tuple = (100., 2000., 4000., 8000.)
     single_scatter_steps_m: tuple = (25., 125., 250., 500.)
-    legendre_moments: int = 0             # 0: 64 without fog, 256 with fog
-    delta_m_order: int = 0                # 0: 16 without fog, 32 with fog (see docs)
-    num_stokes: int = 1                   # 3 for I/Q/U (no fog)
+    legendre_moments: int = 0             # 0: automatic (64)
+    delta_m_order: int = 0                # 0: automatic (16; see docs)
+    num_stokes: int = 1                   # 3 for I/Q/U
     polarization_correction: bool = True  # scalar runs: add (vector - scalar) from a coarse-grid pair
     solar_refraction: bool = False        # see docs: SASKTRAN2 bends the beam but omits refractive dilution
     num_threads: int = 0                  # 0: all CPU cores
@@ -66,17 +66,15 @@ class Numerics:
             if isinstance(getattr(self, name), bool) or not isinstance(getattr(self, name), int):
                 raise ValueError(f'{name} must be an integer')
 
-    def moments(self, scene):
-        return self.legendre_moments or (256 if scene.has_fog else 64)
+    def moments(self):
+        return self.legendre_moments or 64
 
-    def delta_m(self, scene):
-        # Fog droplets need a sharper truncated phase function; 32 matches the degree (29)
-        # that the 302-direction incoming Lebedev rule integrates exactly.
-        return self.delta_m_order or (32 if scene.has_fog else 16)
+    def delta_m(self):
+        return self.delta_m_order or 16
 
-    def resolved(self, scene):
-        """Settings with automatic (0) values replaced by what is used for this scene."""
-        return self.replace(legendre_moments=self.moments(scene), delta_m_order=self.delta_m(scene))
+    def resolved(self):
+        """Settings with automatic (0) values replaced by what is used."""
+        return self.replace(legendre_moments=self.moments(), delta_m_order=self.delta_m())
 
     def threads(self):
         return self.num_threads or os.cpu_count() or 1
@@ -112,7 +110,7 @@ class Numerics:
             return self.replace(**{name: larger[0]})
         if name in ('legendre_moments', 'delta_m_order'):
             if not value:
-                raise ValueError(f'{name} is automatic (0); call resolved(scene) first')
+                raise ValueError(f'{name} is automatic (0); call resolved() first')
             return self.replace(**{name: int(value * factor)})
         return self.replace(**{name: value / factor})
 
@@ -127,15 +125,11 @@ PRESETS = {
 }
 
 
-def correction_numerics(numerics, scene):
-    """Coarse settings for the polarization correction (same spectral grid, fog-compatible)."""
-    preview = PRESETS['preview'].replace(incoming_nodes=194)
-    bl = min(preview.atmosphere_steps_m[0], scene.fog_scale_height_m / 4) if scene.has_fog else preview.atmosphere_steps_m[0]
-    sbl = min(preview.source_steps_m[0], scene.fog_scale_height_m / 2) if scene.has_fog else preview.source_steps_m[0]
-    return preview.replace(wavelength_step_nm=numerics.wavelength_step_nm, polarization_correction=False,
-                           solar_refraction=numerics.solar_refraction, num_threads=numerics.num_threads,
-                           atmosphere_steps_m=(bl,) + preview.atmosphere_steps_m[1:],
-                           source_steps_m=(sbl,) + preview.source_steps_m[1:])
+def correction_numerics(numerics):
+    """Coarse settings for the polarization correction (same spectral grid)."""
+    return PRESETS['preview'].replace(incoming_nodes=194, wavelength_step_nm=numerics.wavelength_step_nm,
+                                      polarization_correction=False, solar_refraction=numerics.solar_refraction,
+                                      num_threads=numerics.num_threads)
 
 
 def get_numerics(name_or_numerics):
@@ -192,31 +186,31 @@ def horizontal_grid(numerics, depressions):
     return np.unique(np.round(columns, 6))
 
 
-def workload(numerics, depressions, scene=None):
+def workload(numerics, depressions):
     """Memory driver of the diffuse field: rays traced from every source point in every incoming direction,
     with phase tables that grow with the delta-M order (measured: order 32 needs about 1.9x order 16)."""
-    order = numerics.delta_m(scene) if scene is not None else (numerics.delta_m_order or 16)
+    order = numerics.delta_m()
     return (numerics.incoming_nodes * len(source_grid(numerics)) * len(horizontal_grid(numerics, depressions))
             * len(atmosphere_grid(numerics)) * numerics.num_stokes * max(1, order / 16) ** 0.9)
 
 
-def check_workload(numerics, scene, depressions, *, native=False):
-    """Validate fog resolution; refuse settings whose diffuse field cannot fit even for one depression."""
-    if scene.has_fog:
-        if numerics.num_stokes != 1 and not native:
-            raise ValueError('Fog needs the scalar split delta-M solver: use num_stokes=1')
-        if numerics.atmosphere_steps_m[0] > scene.fog_scale_height_m / 4:
-            raise ValueError('Boundary-layer atmosphere step must be <= fog scale height / 4')
-        if numerics.source_steps_m[0] > scene.fog_scale_height_m / 2:
-            raise ValueError('Boundary-layer source step must be <= fog scale height / 2')
-    worst = max(workload(numerics, [d], scene) for d in depressions)
+def check_workload(numerics, scene, depressions):
+    """Refuse a stratospheric layer thinner than the diffuse grid, or a diffuse field that cannot fit
+    in memory even for one depression."""
+    if scene.stratospheric_aod550 > 0:
+        layer = min(3, int(np.searchsorted(LAYER_EDGES_M, scene.stratospheric_center_m, side='right')) - 1)
+        step = numerics.atmosphere_steps_m[layer]
+        if scene.stratospheric_width_m < step:
+            raise ValueError(f'stratospheric_width_m ({scene.stratospheric_width_m:g} m) must be >= the atmosphere '
+                             f'step at the layer centre ({step:g} m)')
+    worst = max(workload(numerics, [d]) for d in depressions)
     if worst > MAX_SOURCE_WORK:
         raise ValueError(f'Diffuse field work {worst:,.0f} exceeds {MAX_SOURCE_WORK:,.0f} even for one depression; '
                          'use coarser numerics')
     return worst
 
 
-def depression_groups(numerics, depressions, scene=None):
+def depression_groups(numerics, depressions):
     """Split depressions (by value) into groups whose diffuse field fits the memory budget.
 
     Each group is solved separately; returns lists of indices into depressions.
@@ -224,7 +218,7 @@ def depression_groups(numerics, depressions, scene=None):
     order = np.argsort(depressions)
     groups, current = [], []
     for i in order:
-        if current and workload(numerics, [depressions[j] for j in current + [i]], scene) > MAX_SOURCE_WORK:
+        if current and workload(numerics, [depressions[j] for j in current + [i]]) > MAX_SOURCE_WORK:
             groups.append(current)
             current = []
         current.append(int(i))
