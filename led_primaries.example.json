@@ -1,0 +1,6 @@
+{
+  "_comment": "Measured CIE xy chromaticity and full-duty luminance Y (any common unit, e.g. cd/m2 on the dome) of each LED channel. Use either one set (R, G, B) for all bands, or \"bands\": [four sets, bottom to top]. These example values are sRGB primaries.",
+  "R": {"x": 0.640, "y": 0.330, "Y": 0.2126},
+  "G": {"x": 0.300, "y": 0.600, "Y": 0.7152},
+  "B": {"x": 0.150, "y": 0.060, "Y": 0.0722}
+}

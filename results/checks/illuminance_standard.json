@@ -1,0 +1,156 @@
+{
+  "scene": {
+    "aod550": 0.1,
+    "aerosol_scale_height_m": 1500.0,
+    "median_radius_nm": 100.0,
+    "mode_width": 1.6,
+    "refractive_index_real": 1.45,
+    "refractive_index_imag": 0.005,
+    "relative_humidity": 0.0,
+    "hygroscopicity_kappa": 0.0,
+    "stratospheric_aod550": 0.005,
+    "stratospheric_center_m": 20000.0,
+    "stratospheric_width_m": 4000.0,
+    "fog_aod550": 0.0,
+    "fog_scale_height_m": 200.0,
+    "fog_median_radius_um": 5.0,
+    "fog_mode_width": 1.3,
+    "ozone_du": 300.0,
+    "surface_albedo": 0.1,
+    "observer_altitude_m": 2.0,
+    "solar_distance_au": 1.0
+  },
+  "numerics": {
+    "wavelength_step_nm": 10.0,
+    "incoming_nodes": 302,
+    "outgoing_nodes": 50,
+    "horizontal_step_deg": 0.5,
+    "horizontal_margin_deg": 3.0,
+    "atmosphere_steps_m": [
+      50.0,
+      500.0,
+      2000.0,
+      4000.0
+    ],
+    "source_steps_m": [
+      100.0,
+      2000.0,
+      4000.0,
+      8000.0
+    ],
+    "single_scatter_steps_m": [
+      25.0,
+      125.0,
+      250.0,
+      500.0
+    ],
+    "legendre_moments": 0,
+    "delta_m_order": 0,
+    "num_stokes": 1,
+    "polarization_correction": true,
+    "solar_refraction": false,
+    "num_threads": 0
+  },
+  "reference": "USNO Circular 171 (Janiczek & DeYoung 1987) clear-sky illuminance model",
+  "rows": [
+    {
+      "depression": -6.0,
+      "diffuse_lux": 5067.5829265077045,
+      "direct_lux": 1977.1244279907673,
+      "model_lux": 7044.707354498472,
+      "usno_lux": 5363.490801514348,
+      "ratio": 1.3134556607255563,
+      "zenith_x": 0.25922389328856704,
+      "zenith_y": 0.2722919083651975,
+      "zenith_luminance": 648.2771657296178
+    },
+    {
+      "depression": -3.0,
+      "diffuse_lux": 2901.4090480067453,
+      "direct_lux": 244.30202671279102,
+      "model_lux": 3145.711074719536,
+      "usno_lux": 2557.074300047993,
+      "ratio": 1.2301993237586,
+      "zenith_x": 0.2632907441402772,
+      "zenith_y": 0.27725102191875645,
+      "zenith_luminance": 398.0587189875011
+    },
+    {
+      "depression": 0.0,
+      "diffuse_lux": 941.8798619342907,
+      "direct_lux": 0.0,
+      "model_lux": 941.8798619342907,
+      "usno_lux": 984.4700127431685,
+      "ratio": 0.9567379907385876,
+      "zenith_x": 0.2623793285211143,
+      "zenith_y": 0.2745508837863652,
+      "zenith_luminance": 144.3856409096972
+    },
+    {
+      "depression": 2.0,
+      "diffuse_lux": 267.62327839854834,
+      "direct_lux": 0.0,
+      "model_lux": 267.62327839854834,
+      "usno_lux": 169.04497531477077,
+      "ratio": 1.5831483775262738,
+      "zenith_x": 0.2572094763774038,
+      "zenith_y": 0.2641760806919358,
+      "zenith_luminance": 41.877274779814535
+    },
+    {
+      "depression": 4.0,
+      "diffuse_lux": 38.59106082045352,
+      "direct_lux": 0.0,
+      "model_lux": 38.59106082045352,
+      "usno_lux": 24.437800956940325,
+      "ratio": 1.5791543964390002,
+      "zenith_x": 0.2464141890758894,
+      "zenith_y": 0.24767158470181685,
+      "zenith_luminance": 5.618161506619331
+    },
+    {
+      "depression": 6.0,
+      "diffuse_lux": 3.460928839628993,
+      "direct_lux": 0.0,
+      "model_lux": 3.460928839628993,
+      "usno_lux": 2.9921365654926304,
+      "ratio": 1.156674758613225,
+      "zenith_x": 0.22642373725372847,
+      "zenith_y": 0.2257674891019252,
+      "zenith_luminance": 0.4767121075580206
+    },
+    {
+      "depression": 8.0,
+      "diffuse_lux": 0.33627054571056675,
+      "direct_lux": 0.0,
+      "model_lux": 0.33627054571056675,
+      "usno_lux": 0.3446878715540486,
+      "ratio": 0.9755798606851707,
+      "zenith_x": 0.21555324005387194,
+      "zenith_y": 0.20497300137634517,
+      "zenith_luminance": 0.037708054899189575
+    },
+    {
+      "depression": 10.0,
+      "diffuse_lux": 0.044917096416296015,
+      "direct_lux": 0.0,
+      "model_lux": 0.044917096416296015,
+      "usno_lux": 0.03885792279348305,
+      "ratio": 1.1559314854531844,
+      "zenith_x": 0.21286268645977383,
+      "zenith_y": 0.1952632656288721,
+      "zenith_luminance": 0.005645560956925039
+    },
+    {
+      "depression": 12.0,
+      "diffuse_lux": 0.006840188277975256,
+      "direct_lux": 0.0,
+      "model_lux": 0.006840188277975256,
+      "usno_lux": 0.00436450044350404,
+      "ratio": 1.5672328062552812,
+      "zenith_x": 0.20977173887116965,
+      "zenith_y": 0.18977014167895428,
+      "zenith_luminance": 0.0009599477016268312
+    }
+  ]
+}

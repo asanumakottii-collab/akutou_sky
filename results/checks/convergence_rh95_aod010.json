@@ -1,0 +1,119 @@
+{
+  "scene": {
+    "aod550": 0.1,
+    "aerosol_scale_height_m": 1500.0,
+    "median_radius_nm": 100.0,
+    "mode_width": 1.6,
+    "refractive_index_real": 1.45,
+    "refractive_index_imag": 0.005,
+    "relative_humidity": 0.95,
+    "hygroscopicity_kappa": 0.3,
+    "stratospheric_aod550": 0.005,
+    "stratospheric_center_m": 20000.0,
+    "stratospheric_width_m": 4000.0,
+    "stratospheric_median_radius_nm": 80.0,
+    "stratospheric_mode_width": 1.6,
+    "ozone_du": 300.0,
+    "surface_albedo": 0.1,
+    "observer_altitude_m": 2.0,
+    "solar_distance_au": 1.0
+  },
+  "numerics": {
+    "wavelength_step_nm": 20.0,
+    "incoming_nodes": 302,
+    "outgoing_nodes": 50,
+    "horizontal_step_deg": 0.5,
+    "horizontal_margin_deg": 3.0,
+    "atmosphere_steps_m": [
+      50.0,
+      500.0,
+      2000.0,
+      4000.0
+    ],
+    "source_steps_m": [
+      100.0,
+      2000.0,
+      4000.0,
+      8000.0
+    ],
+    "single_scatter_steps_m": [
+      25.0,
+      125.0,
+      250.0,
+      500.0
+    ],
+    "legendre_moments": 0,
+    "delta_m_order": 0,
+    "num_stokes": 1,
+    "polarization_correction": true,
+    "solar_refraction": false,
+    "num_threads": 0
+  },
+  "criterion": "band-mean luminance <= 3% and xy <= 0.003",
+  "base_seconds": 317.09109100000023,
+  "checks": {
+    "outgoing_nodes": {
+      "base": 50,
+      "refined": 74,
+      "band_max_Y": 0.08254456657387531,
+      "band_max_xy": 0.003910885286131681,
+      "ray_max_Y_above_1deg": 0.14013551492874818,
+      "ray_max_xy_above_1deg": 0.007941294148721202,
+      "ray_max_Y_below_1deg": 0.07115180152548595,
+      "ray_max_xy_below_1deg": 0.002221567437566665,
+      "passes": false,
+      "per_depression": [
+        {
+          "depression": -6.0,
+          "band_max_Y": 0.07382544301019933,
+          "band_max_xy": 0.0022149989402656923,
+          "ray_max_Y": 0.14013551492874818,
+          "ray_max_xy": 0.005106344239818693
+        },
+        {
+          "depression": -3.0,
+          "band_max_Y": 0.053631978089686595,
+          "band_max_xy": 0.0019626480302205197,
+          "ray_max_Y": 0.07046769431478381,
+          "ray_max_xy": 0.004936924420434049
+        },
+        {
+          "depression": 0.0,
+          "band_max_Y": 0.039541402145378476,
+          "band_max_xy": 0.002342500955250409,
+          "ray_max_Y": 0.060705475765304974,
+          "ray_max_xy": 0.0031682545810331722
+        },
+        {
+          "depression": 3.0,
+          "band_max_Y": 0.049748767006272274,
+          "band_max_xy": 0.0019771682883719527,
+          "ray_max_Y": 0.06650117501235392,
+          "ray_max_xy": 0.00284301232884734
+        },
+        {
+          "depression": 6.0,
+          "band_max_Y": 0.07552601951656554,
+          "band_max_xy": 0.002544491335236679,
+          "ray_max_Y": 0.11226151150274793,
+          "ray_max_xy": 0.004783798833457558
+        },
+        {
+          "depression": 9.0,
+          "band_max_Y": 0.08254456657387531,
+          "band_max_xy": 0.003910885286131681,
+          "ray_max_Y": 0.11044420923510939,
+          "ray_max_xy": 0.005010816546917805
+        },
+        {
+          "depression": 12.0,
+          "band_max_Y": 0.06888874902226651,
+          "band_max_xy": 0.003257574216244981,
+          "ray_max_Y": 0.13094811993864508,
+          "ray_max_xy": 0.007941294148721202
+        }
+      ]
+    }
+  },
+  "all_pass": false
+}
